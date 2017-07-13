@@ -1,6 +1,6 @@
 import click
 from hesperidescli.applications import applications
-from hesperidescli.configure import configure
+from hesperidescli.configure import commands
 from hesperidescli.events import events
 from hesperidescli.files import files
 from hesperidescli.modules import modules
@@ -16,7 +16,7 @@ def cli():
 
 
 cli.add_command(applications.command)
-cli.add_command(configure.command)
+cli.add_command(commands.command)
 cli.add_command(events.command)
 cli.add_command(files.command)
 cli.add_command(modules.command)

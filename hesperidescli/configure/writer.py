@@ -1,18 +1,21 @@
-import os
-from os.path import expanduser
+from hesperidescli.configure.configfile import ConfigFile
 
 
-class ConfigFileWriter:
-    CONFIG_DIR = '.hesperides'
-    CONFIG_FILE_NAME = 'credentials'
-
+class ConfigFileWriter(ConfigFile):
     def update_config(self, new_values):
         self._create_home()
+        self.config['default'] = new_values
+        self._write_config(self.config)
 
-    def _create_home(self):
-        home = expanduser("~")
-        if not os.path.isdir(home + '/' + self.CONFIG_DIR):
-            os.makedirs(home + '/' + self.CONFIG_DIR)
-        with os.fdopen(os.open(home + '/' + self.CONFIG_DIR + '/' + self.CONFIG_FILE_NAME,
-                               os.O_WRONLY | os.O_CREAT, 0o600), 'w'):
-            pass
+    def update_credentials(self, new_values):
+        self._create_home()
+        self.config['default'] = new_values
+        self._write_credentials(self.config)
+
+    def _write_config(self, config):
+        with open(self._HOME + '/' + self._CONFIG_DIR + '/' + self._CONFIG_FILE_NAME, 'w') as configfile:
+            config.write(configfile)
+
+    def _write_credentials(self, config):
+        with open(self._HOME + '/' + self._CONFIG_DIR + '/' + self._CREDENTIALS_FILE_NAME, 'w') as configfile:
+            config.write(configfile)
