@@ -1,4 +1,5 @@
 import http.client
+import urllib.parse
 
 
 class Client:
@@ -7,5 +8,11 @@ class Client:
 
     def call(self, path):
         self.connection.request("GET", path)
+        response = self.connection.getresponse()
+        return response
+
+    def call(self, path, params):
+        params = urllib.parse.urlencode(params)
+        self.connection.request("GET", path, params)
         response = self.connection.getresponse()
         return response
