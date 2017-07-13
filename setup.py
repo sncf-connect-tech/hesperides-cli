@@ -25,7 +25,11 @@ setup(
 
     entry_points={
         'console_scripts': [
-            'hesperides=hesperidescli.Hello:main',
+            'hesperides=hesperidescli.hesperidescli:cli',
         ],
     },
+
+    install_requires=[
+        "click"
+    ],
 )
