@@ -13,7 +13,7 @@ def command(stream_name, page, size):
         return '[]'
     params = {'page': page, 'size': size}
     client = Client()
-    response = client.call('/rest/events/' + stream_name, params)
+    response = client.get('/rest/events/' + stream_name, params)
     data = response.read()
     parsed = json.loads(data)
     print(json.dumps(parsed, indent=4, sort_keys=True))
