@@ -1,8 +1,11 @@
 import click
 from hesperidescli.applications import applications
-from hesperidescli.configure import commands
+from hesperidescli.cache import cache
+from hesperidescli.configure import configure
 from hesperidescli.events import events
+from hesperidescli.feedback import feedback
 from hesperidescli.files import files
+from hesperidescli.indexation import indexation
 from hesperidescli.modules import modules
 from hesperidescli.stats import stats
 from hesperidescli.templates import templates
@@ -16,9 +19,12 @@ def cli():
 
 
 cli.add_command(applications.command)
-cli.add_command(commands.command)
+cli.add_command(cache.command)
+cli.add_command(configure.command)
 cli.add_command(events.command)
+cli.add_command(feedback.command)
 cli.add_command(files.command)
+cli.add_command(indexation.command)
 cli.add_command(modules.command)
 cli.add_command(stats.command)
 cli.add_command(templates.command)

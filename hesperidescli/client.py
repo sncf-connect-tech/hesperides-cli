@@ -1,15 +1,15 @@
 import http.client
 import ssl
 import urllib.parse
-from hesperidescli.configure import commands
+from hesperidescli.configure import configure
 
 
 class Client:
     def __init__(self):
-        endpoint = commands.get_config('endpoint')
-        port = commands.get_config('port')
-        protocol = commands.get_config('protocol')
-        auth = commands.get_config('auth')
+        endpoint = configure.get_config('endpoint')
+        port = configure.get_config('port')
+        protocol = configure.get_config('protocol')
+        auth = configure.get_config('auth')
         self.headers = {'Authorization': 'Basic %s' % auth}
         if protocol == 'http':
             self.connection = http.client.HTTPConnection(endpoint, port)
