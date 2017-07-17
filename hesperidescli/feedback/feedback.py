@@ -9,11 +9,17 @@ def command():
 
 
 @click.command('hipchat')
-@click.argument('message')
-def hipchat(message):
+@click.option('--message')
+@click.option('--note')
+def hipchat(message, note):
     click.echo('Feedback Hipchat hesperides')
+    feedback = {}
+    if message:
+        feedback = message
+    if note:
+        feedback = "{ \"feedback\": { \"note\": \"" + note + "\" } }"
     client = Client()
-    response = client.post('/rest/feedback/hipchat', message)
+    response = client.post('/rest/feedback/hipchat', feedback)
     data = response.read()
     parsed = json.loads(data)
     print(json.dumps(parsed, indent=4, sort_keys=True))

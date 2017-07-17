@@ -10,7 +10,11 @@ class Client:
         port = configure.get_config('port')
         protocol = configure.get_config('protocol')
         auth = configure.get_config('auth')
-        self.headers = {'Authorization': 'Basic %s' % auth}
+        self.headers = {
+            'Accept': 'application/json',
+            'Authorization': 'Basic %s' % auth,
+            'Content-Type': 'application/json; charset=utf-8'
+        }
         if protocol == 'http':
             self.connection = http.client.HTTPConnection(endpoint, port)
         else:
@@ -22,11 +26,11 @@ class Client:
     def delete(self, path, params=None):
         return self._check_for_params('DELETE', path, params)
 
-    def post(self, path, params=None):
-        return self._check_for_params('POST', path, params)
+    def post(self, path, body=None):
+        return self._call_with_body('POST', path, body)
 
-    def put(self, path, params=None):
-        return self._check_for_params('PUT', path, params)
+    def put(self, path, body=None):
+        return self._check_for_params('PUT', path, body)
 
     def _check_for_params(self, verb, path, params):
         if params is None:
@@ -36,6 +40,11 @@ class Client:
 
     def _call(self, verb, path):
         self.connection.request(verb, path, headers=self.headers)
+        response = self.connection.getresponse()
+        return response
+
+    def _call_with_body(self, verb, path, body):
+        self.connection.request(verb, path, body, headers=self.headers)
         response = self.connection.getresponse()
         return response
 
