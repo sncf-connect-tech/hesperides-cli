@@ -16,7 +16,7 @@ def command():
 @click.option('--hesperides_endpoint_protocol', prompt=True, hide_input=False, confirmation_prompt=False,
               default='https')
 @click.option('--hesperides_endpoint_port', prompt=True, hide_input=False, confirmation_prompt=False,
-              default='80')
+              default='443')
 @click.option('--format', prompt=False, hide_input=False, confirmation_prompt=False,
               default='json')
 def set_config(username, password, hesperides_endpoint, hesperides_endpoint_protocol, hesperides_endpoint_port, format):
