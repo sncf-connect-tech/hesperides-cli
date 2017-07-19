@@ -1,7 +1,8 @@
 # HESPERIDES CLI
 
-Command Line Interface for Hesperides https://github.com/voyages-sncf-technologies/hesperides
+[![Build Status](https://travis-ci.org/victorsalaun/hesperides-cli.svg?branch=master)](https://travis-ci.org/victorsalaun/hesperides-cli)
 
+Command Line Interface for Hesperides https://github.com/voyages-sncf-technologies/hesperides
 
 ## Prerequisites
 
