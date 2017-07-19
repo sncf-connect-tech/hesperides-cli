@@ -6,7 +6,7 @@ Command Line Interface for Hesperides https://github.com/voyages-sncf-technologi
 
 ## Prerequisites
 
-- python 3
+- python 3 >= 3.4
 
 ## Installation
 
