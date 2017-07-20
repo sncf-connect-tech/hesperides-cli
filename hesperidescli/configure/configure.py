@@ -1,5 +1,6 @@
 import base64
 import click
+
 from hesperidescli.configure.reader import ConfigFileReader
 from hesperidescli.configure.writer import ConfigFileWriter
 
@@ -22,7 +23,6 @@ def command():
 def set_config(username, password, hesperides_endpoint, hesperides_endpoint_protocol, hesperides_endpoint_port, format):
     click.echo('Configure hesperides')
     print('username: ' + username)
-    print('password: **********')
     basic_auth = base64.b64encode(str.encode('%s:%s' % (username, password))).decode('UTF-8')
     print('basic_auth: ' + basic_auth)
     print('hesperides_endpoint: ' + hesperides_endpoint)

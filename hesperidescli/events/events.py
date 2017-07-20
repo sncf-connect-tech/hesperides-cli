@@ -1,5 +1,6 @@
 import click
-import json
+
+from hesperidescli import utils
 from hesperidescli.client import Client
 
 
@@ -15,6 +16,4 @@ def command(stream_name, page, size):
         params['size'] = size
     client = Client()
     response = client.get('/rest/events/' + stream_name, params)
-    data = response.read()
-    parsed = json.loads(data)
-    print(json.dumps(parsed, indent=4, sort_keys=True))
+    utils.prettyprint(response)

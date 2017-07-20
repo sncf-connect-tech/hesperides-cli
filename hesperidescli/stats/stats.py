@@ -1,5 +1,6 @@
 import click
-import json
+
+from hesperidescli import utils
 from hesperidescli.client import Client
 
 
@@ -7,6 +8,4 @@ from hesperidescli.client import Client
 def command():
     client = Client()
     response = client.get('/rest/stats')
-    data = response.read()
-    parsed = json.loads(data)
-    print(json.dumps(parsed, indent=4, sort_keys=True))
+    utils.prettyprint(response)

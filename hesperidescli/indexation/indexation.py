@@ -1,5 +1,6 @@
 import click
-import json
+
+from hesperidescli import utils
 from hesperidescli.client import Client
 
 
@@ -13,9 +14,7 @@ def perform_reindex():
     click.echo('Indexation hesperides')
     client = Client()
     response = client.post('/rest/indexation/perform_reindex')
-    data = response.read()
-    parsed = json.loads(data)
-    print(json.dumps(parsed, indent=4, sort_keys=True))
+    utils.prettyprint(response)
 
 
 command.add_command(perform_reindex)

@@ -1,11 +1,12 @@
 import click
-import json
+
+from hesperidescli import utils
 from hesperidescli.client import Client
 
 
 @click.group('templates')
 def command():
-    click.echo('Templates hesperides')
+    pass
 
 
 @click.group('packages', invoke_without_command=True)
@@ -16,9 +17,7 @@ def packages(ctx, package_name, package_version):
     if ctx.invoked_subcommand is None:
         client = Client()
         response = client.post('/rest/templates/packages/')
-        data = response.read()
-        parsed = json.loads(data)
-        print(json.dumps(parsed, indent=4, sort_keys=True))
+        utils.prettyprint(response)
     else:
         if package_name is None:
             print('--package_name required')
@@ -38,9 +37,7 @@ def packages_release(ctx):
         response = client.delete(
             '/rest/templates/packages/' + ctx['PACKAGE_NAME'] + '/' + ctx[
                 'PACKAGE_VERSION'] + '/release')
-        data = response.read()
-        parsed = json.loads(data)
-        print(json.dumps(parsed, indent=4, sort_keys=True))
+        utils.prettyprint(response)
 
 
 @click.command('model')
@@ -50,9 +47,7 @@ def packages_release_model(ctx):
     response = client.get(
         '/rest/templates/packages/' + ctx['PACKAGE_NAME'] + '/' + ctx[
             'PACKAGE_VERSION'] + '/release/model')
-    data = response.read()
-    parsed = json.loads(data)
-    print(json.dumps(parsed, indent=4, sort_keys=True))
+    utils.prettyprint(response)
 
 
 @click.command('templates')
@@ -64,16 +59,12 @@ def packages_release_templates(ctx, template_name):
         response = client.get(
             '/rest/templates/packages/' + ctx['PACKAGE_NAME'] + '/' + ctx[
                 'PACKAGE_VERSION'] + '/release/templates/' + template_name)
-        data = response.read()
-        parsed = json.loads(data)
-        print(json.dumps(parsed, indent=4, sort_keys=True))
+        utils.prettyprint(response)
     else:
         client = Client()
         response = client.get(
             '/rest/templates/packages/' + ctx['PACKAGE_NAME'] + '/' + ctx['PACKAGE_VERSION'] + '/release/templates')
-        data = response.read()
-        parsed = json.loads(data)
-        print(json.dumps(parsed, indent=4, sort_keys=True))
+        utils.prettyprint(response)
 
 
 @click.group('workingcopy', invoke_without_command=True)
@@ -82,9 +73,7 @@ def packages_workingcopy(ctx):
     client = Client()
     response = client.delete(
         '/rest/templates/packages/' + ctx['PACKAGE_NAME'] + '/' + ctx['PACKAGE_VERSION'] + '/workingcopy')
-    data = response.read()
-    parsed = json.loads(data)
-    print(json.dumps(parsed, indent=4, sort_keys=True))
+    utils.prettyprint(response)
 
 
 @click.command('model')
@@ -93,9 +82,7 @@ def packages_workingcopy_model(ctx):
     client = Client()
     response = client.get(
         '/rest/templates/packages/' + ctx['PACKAGE_NAME'] + '/' + ctx['PACKAGE_VERSION'] + '/workingcopy/model')
-    data = response.read()
-    parsed = json.loads(data)
-    print(json.dumps(parsed, indent=4, sort_keys=True))
+    utils.prettyprint(response)
 
 
 @click.command('templates')
@@ -115,45 +102,35 @@ def packages_workingcopy_templates(ctx, template_name, delete, get, post, put):
         response = client.get(
             '/rest/templates/packages/' + ctx['PACKAGE_NAME'] + '/' + ctx[
                 'PACKAGE_VERSION'] + '/workingcopy/templates')
-        data = response.read()
-        parsed = json.loads(data)
-        print(json.dumps(parsed, indent=4, sort_keys=True))
+        utils.prettyprint(response)
 
     if template_name is None and not delete and not get and post and not put:
         client = Client()
         response = client.post(
             '/rest/templates/packages/' + ctx['PACKAGE_NAME'] + '/' + ctx[
                 'PACKAGE_VERSION'] + '/workingcopy/templates')
-        data = response.read()
-        parsed = json.loads(data)
-        print(json.dumps(parsed, indent=4, sort_keys=True))
+        utils.prettyprint(response)
 
     if template_name is None and not delete and not get and not post and put:
         client = Client()
         response = client.put(
             '/rest/templates/packages/' + ctx['PACKAGE_NAME'] + '/' + ctx[
                 'PACKAGE_VERSION'] + '/workingcopy/templates')
-        data = response.read()
-        parsed = json.loads(data)
-        print(json.dumps(parsed, indent=4, sort_keys=True))
+        utils.prettyprint(response)
 
     if template_name is not None and not delete and get and not post and not put:
         client = Client()
         response = client.get(
             '/rest/templates/packages/' + ctx['PACKAGE_NAME'] + '/' + ctx[
                 'PACKAGE_VERSION'] + '/workingcopy/templates/' + template_name)
-        data = response.read()
-        parsed = json.loads(data)
-        print(json.dumps(parsed, indent=4, sort_keys=True))
+        utils.prettyprint(response)
 
     if template_name is not None and delete and not get and not post and not put:
         client = Client()
         response = client.delete(
             '/rest/templates/packages/' + ctx['PACKAGE_NAME'] + '/' + ctx[
                 'PACKAGE_VERSION'] + '/workingcopy/templates/' + template_name)
-        data = response.read()
-        parsed = json.loads(data)
-        print(json.dumps(parsed, indent=4, sort_keys=True))
+        utils.prettyprint(response)
 
 
 @click.command('create_release')
@@ -167,9 +144,7 @@ def packages_create_release(package_name, package_version):
     client = Client()
     response = client.post(
         '/rest/templates/packages/create_release?package_name=' + package_name + '&package_version=' + package_version)
-    data = response.read()
-    parsed = json.loads(data)
-    print(json.dumps(parsed, indent=4, sort_keys=True))
+    utils.prettyprint(response)
 
 
 @click.command('perform_search')
@@ -179,9 +154,7 @@ def packages_perform_search(term):
         term = ''
     client = Client()
     response = client.post('/rest/templates/packages/perform_search?terms=' + term)
-    data = response.read()
-    parsed = json.loads(data)
-    print(json.dumps(parsed, indent=4, sort_keys=True))
+    utils.prettyprint(response)
 
 
 command.add_command(packages)
