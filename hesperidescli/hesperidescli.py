@@ -45,7 +45,9 @@ cli.add_command(files.get_files)
 
 cli.add_command(indexation.perform_reindex)
 
-cli.add_command(modules.command)
+cli.add_command(modules.get_module)
+cli.add_command(modules.get_modules)
+cli.add_command(modules.get_release_module)
 
 cli.add_command(properties.get_global_properties)
 cli.add_command(properties.get_global_properties_usage)
