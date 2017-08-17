@@ -7,6 +7,7 @@ from hesperidescli.feedback import feedback
 from hesperidescli.files import files
 from hesperidescli.indexation import indexation
 from hesperidescli.modules import modules
+from hesperidescli.platforms import platforms
 from hesperidescli.properties import properties
 from hesperidescli.stats import stats
 from hesperidescli.templates import templates
@@ -48,6 +49,11 @@ cli.add_command(indexation.perform_reindex)
 cli.add_command(modules.get_module)
 cli.add_command(modules.get_modules)
 cli.add_command(modules.get_release_module)
+
+cli.add_command(platforms.create_application_platforms)
+cli.add_command(platforms.delete_application_platforms)
+cli.add_command(platforms.get_application_platforms)
+cli.add_command(platforms.update_application_platforms)
 
 cli.add_command(properties.get_global_properties)
 cli.add_command(properties.get_global_properties_usage)
