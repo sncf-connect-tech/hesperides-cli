@@ -60,6 +60,23 @@ def get_application_platforms(application_name, platform_name):
     utils.prettyprint(response)
 
 
+@click.command('platforms-perform-search')
+@click.option('--application_name')
+@click.option('--platform_name')
+def platforms_perform_search(application_name, platform_name):
+    if application_name is None:
+        print('--application_name required')
+        return ''
+    if platform_name is None:
+        print('--platform_name required')
+        return ''
+    client = Client()
+    response = client.get(
+        '/rest/applications/platforms/perform_search?application_name=' + application_name
+        + '&platform_name=' + platform_name)
+    utils.prettyprint(response)
+
+
 @click.command('update-application-platforms')
 @click.option('--application_name')
 @click.option('--copy_properties_for_upgraded_modules', is_flag=True)

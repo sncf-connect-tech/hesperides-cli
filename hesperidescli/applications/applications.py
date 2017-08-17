@@ -4,6 +4,20 @@ from hesperidescli import utils
 from hesperidescli.client import Client
 
 
+@click.command('applications-perform-search')
+@click.option('--name')
+def applications_perform_search(name):
+    params = {}
+    if name is None:
+        print('--name required')
+        return ''
+    else:
+        params['name'] = name
+    client = Client()
+    response = client.get('/rest/applications/perform_search', params)
+    utils.prettyprint(response)
+
+
 @click.command('get-application')
 @click.option('--application_name')
 def get_application(application_name):
@@ -33,16 +47,3 @@ def get_application_from_module(module, version, type):
     response = client.get('/rest/applications/using_module/' + module + '/' + version + '/' + type)
     utils.prettyprint(response)
 
-
-@click.command('perform-search')
-@click.option('--name')
-def perform_search(name):
-    params = {}
-    if name is None:
-        print('--name required')
-        return ''
-    else:
-        params['name'] = name
-    client = Client()
-    response = client.get('/rest/applications/perform_search', params)
-    utils.prettyprint(response)

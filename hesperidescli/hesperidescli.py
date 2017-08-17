@@ -21,9 +21,9 @@ def cli():
     pass
 
 
+cli.add_command(applications.applications_perform_search)
 cli.add_command(applications.get_application)
 cli.add_command(applications.get_application_from_module)
-cli.add_command(applications.perform_search)
 
 cli.add_command(cache.delete_application_cache)
 cli.add_command(cache.delete_applications_cache)
@@ -54,6 +54,7 @@ cli.add_command(modules.get_release_module)
 cli.add_command(platforms.create_application_platforms)
 cli.add_command(platforms.delete_application_platforms)
 cli.add_command(platforms.get_application_platforms)
+cli.add_command(platforms.platforms_perform_search)
 cli.add_command(platforms.update_application_platforms)
 
 cli.add_command(properties.get_global_properties)
