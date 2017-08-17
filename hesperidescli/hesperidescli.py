@@ -18,7 +18,9 @@ def cli():
     pass
 
 
-cli.add_command(applications.command)
+cli.add_command(applications.get_application)
+cli.add_command(applications.get_application_from_module)
+cli.add_command(applications.perform_search)
 cli.add_command(cache.command)
 cli.add_command(configure.command)
 cli.add_command(events.get_events)
