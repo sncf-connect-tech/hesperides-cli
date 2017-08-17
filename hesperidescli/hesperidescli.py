@@ -1,5 +1,9 @@
 import click
+
 from hesperidescli.applications import applications
+from hesperidescli.applications.platforms import platforms
+from hesperidescli.applications.platforms.properties import properties
+from hesperidescli.applications.platforms.snapshots import snapshots
 from hesperidescli.cache import cache
 from hesperidescli.configure import configure
 from hesperidescli.events import events
@@ -7,9 +11,6 @@ from hesperidescli.feedback import feedback
 from hesperidescli.files import files
 from hesperidescli.indexation import indexation
 from hesperidescli.modules import modules
-from hesperidescli.platforms import platforms
-from hesperidescli.properties import properties
-from hesperidescli.snapshots import snapshots
 from hesperidescli.stats import stats
 from hesperidescli.templates import templates
 from hesperidescli.users import users
