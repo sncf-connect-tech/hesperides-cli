@@ -9,6 +9,7 @@ from hesperidescli.indexation import indexation
 from hesperidescli.modules import modules
 from hesperidescli.platforms import platforms
 from hesperidescli.properties import properties
+from hesperidescli.snapshots import snapshots
 from hesperidescli.stats import stats
 from hesperidescli.templates import templates
 from hesperidescli.users import users
@@ -59,6 +60,10 @@ cli.add_command(properties.get_global_properties)
 cli.add_command(properties.get_global_properties_usage)
 cli.add_command(properties.get_properties)
 cli.add_command(properties.get_properties_instance_model)
+
+cli.add_command(snapshots.get_snapshots)
+cli.add_command(snapshots.restore_snapshot)
+cli.add_command(snapshots.take_snapshot)
 
 cli.add_command(stats.get_stats)
 
