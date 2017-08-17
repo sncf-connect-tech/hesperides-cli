@@ -4,16 +4,10 @@ from hesperidescli import utils
 from hesperidescli.client import Client
 
 
-@click.group('feedback')
-def command():
-    pass
-
-
-@click.command('hipchat')
+@click.command('post-feedback')
 @click.option('--message')
 @click.option('--note')
-def hipchat(message, note):
-    click.echo('Feedback Hipchat hesperides')
+def post_feedback(message, note):
     feedback = {}
     if message:
         feedback = message
@@ -22,6 +16,3 @@ def hipchat(message, note):
     client = Client()
     response = client.post('/rest/feedback/hipchat', feedback)
     utils.prettyprint(response)
-
-
-command.add_command(hipchat)
