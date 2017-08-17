@@ -68,7 +68,18 @@ cli.add_command(snapshots.take_snapshot)
 
 cli.add_command(stats.get_stats)
 
-cli.add_command(templates.command)
+cli.add_command(templates.create_templates_packages_release)
+cli.add_command(templates.create_templates_packages)
+cli.add_command(templates.delete_release_template_package)
+cli.add_command(templates.delete_workingcopy_template_package)
+cli.add_command(templates.get_release_templates)
+cli.add_command(templates.get_release_template)
+cli.add_command(templates.get_template_package_release_model)
+cli.add_command(templates.get_template_package_workingcopy_model)
+cli.add_command(templates.get_workingcopy_templates)
+cli.add_command(templates.get_workingcopy_template)
+cli.add_command(templates.templates_packages_perform_search)
+cli.add_command(templates.update_workingcopy_template)
 
 cli.add_command(users.get_user)
 
