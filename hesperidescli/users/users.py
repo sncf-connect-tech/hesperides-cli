@@ -4,8 +4,8 @@ from hesperidescli import utils
 from hesperidescli.client import Client
 
 
-@click.command('users')
-def command():
+@click.command('get-user')
+def get_user():
     client = Client()
     response = client.get('/rest/users/auth')
     utils.prettyprint(response)
