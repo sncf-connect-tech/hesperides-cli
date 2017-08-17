@@ -19,3 +19,9 @@ For development purpose:
 ## Usage
 
     hesperides [OPTIONS] COMMAND [ARGS]
+
+### Configure
+
+To set up your environment:
+
+    hesperides configure
