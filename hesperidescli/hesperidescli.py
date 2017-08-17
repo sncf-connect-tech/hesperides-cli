@@ -21,7 +21,7 @@ def cli():
 cli.add_command(applications.command)
 cli.add_command(cache.command)
 cli.add_command(configure.command)
-cli.add_command(events.command)
+cli.add_command(events.get_events)
 cli.add_command(feedback.post_feedback)
 cli.add_command(files.command)
 cli.add_command(indexation.perform_reindex)

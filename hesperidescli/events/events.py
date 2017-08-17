@@ -4,11 +4,11 @@ from hesperidescli import utils
 from hesperidescli.client import Client
 
 
-@click.command('events')
-@click.argument('stream_name')
+@click.command('get-events')
+@click.option('--stream_name')
 @click.option('--page')
 @click.option('--size')
-def command(stream_name, page, size):
+def get_events(stream_name, page, size):
     params = {}
     if page is not None:
         params['page'] = page
