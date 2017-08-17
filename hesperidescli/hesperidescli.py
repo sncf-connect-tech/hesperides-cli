@@ -7,6 +7,7 @@ from hesperidescli.feedback import feedback
 from hesperidescli.files import files
 from hesperidescli.indexation import indexation
 from hesperidescli.modules import modules
+from hesperidescli.properties import properties
 from hesperidescli.stats import stats
 from hesperidescli.templates import templates
 from hesperidescli.users import users
@@ -28,6 +29,10 @@ cli.add_command(feedback.post_feedback)
 cli.add_command(files.command)
 cli.add_command(indexation.perform_reindex)
 cli.add_command(modules.command)
+cli.add_command(properties.get_global_properties)
+cli.add_command(properties.get_global_properties_usage)
+cli.add_command(properties.get_properties)
+cli.add_command(properties.get_properties_instance_model)
 cli.add_command(stats.get_stats)
 cli.add_command(templates.command)
 cli.add_command(users.get_user)
