@@ -10,6 +10,12 @@ Command Line Interface for Hesperides https://github.com/voyages-sncf-technologi
 
 ## Installation
 
+hesperides-cli has been registered. It can be installed via pip:
+
+    pip install hesperides-cli
+
+## Build
+
     python3 setup.py install
 
 For development purpose:
@@ -24,4 +30,5 @@ For development purpose:
 
 To set up your environment:
 
-    hesperides configure
+    hesperides set-conf
+    hesperides set-profile [PROFILE_NAME]

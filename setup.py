@@ -1,4 +1,4 @@
-from setuptools import Command, find_packages, setup
+from setuptools import find_packages, setup
 
 setup(
     # Application name:
@@ -17,11 +17,11 @@ setup(
     include_package_data=True,
 
     # Details
-    url="http://pypi.python.org/pypi/MyApplication_v010/",
+    url="https://pypi.python.org/pypi/hesperides-cli/0.1.0",
 
     #
     # license="LICENSE.txt",
-    description="hesperides-cli",
+    description="Command Line Interface for Hesperides https://github.com/voyages-sncf-technologies/hesperides",
 
     entry_points={
         'console_scripts': [
