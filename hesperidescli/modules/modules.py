@@ -18,11 +18,13 @@ def get_module(module_name, module_version, module_type):
     client = Client()
     if module_type is None and module_version is None:
         response = client.get('/rest/modules/' + module_name)
+        utils.prettyprint(response)
     if module_type and module_version is None:
         response = client.get('/rest/modules/' + module_name + '/' + module_type)
+        utils.prettyprint(response)
     if module_type and module_version:
         response = client.get('/rest/modules/' + module_name + '/' + module_type + '/' + module_version)
-    utils.prettyprint(response)
+        utils.prettyprint(response)
 
 
 @click.command('get-modules')

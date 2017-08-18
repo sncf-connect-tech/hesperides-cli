@@ -36,8 +36,9 @@ def get_files(application_name, platform_name, path, module_name, module_version
         response = client.get(
             '/files/applications/' + application_name + '/platforms/' + platform_name + '}/' + path + '/' + module_name
             + '/' + module_version + '/instances/' + instance_name + '/' + filename)
+        utils.prettyprint(response)
     else:
         response = client.get(
             '/files/applications/' + application_name + '/platforms/' + platform_name + '}/' + path + '/' + module_name
             + '/' + module_version + '/instances/' + instance_name)
-    utils.prettyprint(response)
+        utils.prettyprint(response)
