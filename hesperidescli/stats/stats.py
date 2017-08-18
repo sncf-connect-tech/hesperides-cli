@@ -8,4 +8,4 @@ from hesperidescli.client import Client
 def get_stats():
     client = Client()
     response = client.get('/rest/stats')
-    utils.prettyprint(response)
+    utils.pretty_print(response)

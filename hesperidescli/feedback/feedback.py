@@ -15,4 +15,4 @@ def post_feedback(message, note):
         feedback = "{ \"feedback\": { \"note\": \"" + note + "\" } }"
     client = Client()
     response = client.post('/rest/feedback/hipchat', feedback)
-    utils.prettyprint(response)
+    utils.pretty_print(response)

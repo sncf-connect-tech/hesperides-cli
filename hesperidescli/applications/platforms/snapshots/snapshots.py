@@ -16,7 +16,7 @@ def get_snapshots(application_name, platform_name):
         return ''
     client = Client()
     response = client.get('/rest/applications/' + application_name + '/platforms/' + platform_name + '/snapshots')
-    utils.prettyprint(response)
+    utils.pretty_print(response)
 
 
 @click.command('restore-snapshot')
@@ -32,7 +32,7 @@ def restore_snapshot(application_name, platform_name):
     client = Client()
     response = client.post(
         '/rest/applications/' + application_name + '/platforms/' + platform_name + '/restore_snapshot')
-    utils.prettyprint(response)
+    utils.pretty_print(response)
 
 
 @click.command('take-snapshot')
@@ -55,4 +55,4 @@ def take_snapshot(application_name, platform_name, body):
     client = Client()
     response = client.post(
         '/rest/applications/' + application_name + '/platforms/' + platform_name + '/take_snapshot', file_body)
-    utils.prettyprint(response)
+    utils.pretty_print(response)

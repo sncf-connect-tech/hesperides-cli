@@ -25,7 +25,7 @@ def create_templates_packages_release(from_package_name, from_package_version, f
     response = client.post(
         '/rest/templates/packages?from_package_name=' + from_package_name + '&from_package_version='
         + from_package_version, file_body)
-    utils.prettyprint(response)
+    utils.pretty_print(response)
 
 
 @click.command('create-templates-packages')
@@ -53,7 +53,7 @@ def create_templates_packages(from_package_name, from_package_version, from_is_w
             + from_package_version + '&from_is_working_copy=' + from_is_working_copy, file_body)
     else:
         response = client.post('/rest/templates/packages?from_is_working_copy=' + from_is_working_copy, file_body)
-    utils.prettyprint(response)
+    utils.pretty_print(response)
 
 
 @click.command('create-workingcopy-template')
@@ -81,7 +81,7 @@ def create_workingcopy_template(package_name, package_version, template_name, bo
     response = client.post(
         '/rest/templates/packages/' + package_name + '/' + package_version + '/workingcopy/templates/' + template_name,
         file_body)
-    utils.prettyprint(response)
+    utils.pretty_print(response)
 
 
 @click.command('delete-release-template-package')
@@ -96,7 +96,7 @@ def delete_release_template_package(package_name, package_version):
         return ''
     client = Client()
     response = client.delete('/rest/templates/packages/' + package_name + '/' + package_version + '/release')
-    utils.prettyprint(response)
+    utils.pretty_print(response)
 
 
 @click.command('delete-workingcopy-template-package')
@@ -111,7 +111,7 @@ def delete_workingcopy_template_package(package_name, package_version):
         return ''
     client = Client()
     response = client.delete('/rest/templates/packages/' + package_name + '/' + package_version + '/workingcopy')
-    utils.prettyprint(response)
+    utils.pretty_print(response)
 
 
 @click.command('get-release-templates')
@@ -126,7 +126,7 @@ def get_release_templates(package_name, package_version):
         return ''
     client = Client()
     response = client.get('/rest/templates/packages/' + package_name + '/' + package_version + '/release/templates')
-    utils.prettyprint(response)
+    utils.pretty_print(response)
 
 
 @click.command('get-release-template')
@@ -146,7 +146,7 @@ def get_release_template(package_name, package_version, template_name):
     client = Client()
     response = client.get(
         '/rest/templates/packages/' + package_name + '/' + package_version + '/release/templates/' + template_name)
-    utils.prettyprint(response)
+    utils.pretty_print(response)
 
 
 @click.command('get-template-package-release-model')
@@ -161,7 +161,7 @@ def get_template_package_release_model(package_name, package_version):
         return ''
     client = Client()
     response = client.get('/rest/templates/packages/' + package_name + '/' + package_version + '/release/model')
-    utils.prettyprint(response)
+    utils.pretty_print(response)
 
 
 @click.command('get-template-package-workingcopy-model')
@@ -176,7 +176,7 @@ def get_template_package_workingcopy_model(package_name, package_version):
         return ''
     client = Client()
     response = client.get('/rest/templates/packages/' + package_name + '/' + package_version + '/workingcopy/model')
-    utils.prettyprint(response)
+    utils.pretty_print(response)
 
 
 @click.command('get-workingcopy-templates')
@@ -191,7 +191,7 @@ def get_workingcopy_templates(package_name, package_version):
         return ''
     client = Client()
     response = client.get('/rest/templates/packages/' + package_name + '/' + package_version + '/workingcopy/templates')
-    utils.prettyprint(response)
+    utils.pretty_print(response)
 
 
 @click.command('get-workingcopy-template')
@@ -211,7 +211,7 @@ def get_workingcopy_template(package_name, package_version, template_name):
     client = Client()
     response = client.get(
         '/rest/templates/packages/' + package_name + '/' + package_version + '/workingcopy/templates/' + template_name)
-    utils.prettyprint(response)
+    utils.pretty_print(response)
 
 
 @click.command('templates-packages-perform-search')
@@ -222,7 +222,7 @@ def templates_packages_perform_search(terms):
         return ''
     client = Client()
     response = client.get('/rest/templates/packages/perform_search?terms=' + terms)
-    utils.prettyprint(response)
+    utils.pretty_print(response)
 
 
 @click.command('update-workingcopy-template')
@@ -250,4 +250,4 @@ def update_workingcopy_template(package_name, package_version, template_name, bo
     response = client.put(
         '/rest/templates/packages/' + package_name + '/' + package_version + '/workingcopy/templates/' + template_name,
         file_body)
-    utils.prettyprint(response)
+    utils.pretty_print(response)

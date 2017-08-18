@@ -27,7 +27,7 @@ def create_application_platforms(application_name, from_application, from_platfo
     file.close()
     client = Client()
     response = client.post('/rest/applications/' + application_name + '/platforms', file_body)
-    utils.prettyprint(response)
+    utils.pretty_print(response)
 
 
 @click.command('delete-application-platforms')
@@ -42,7 +42,7 @@ def delete_application_platforms(application_name, platform_name):
         return ''
     client = Client()
     response = client.delete('/rest/applications/' + application_name + '/platforms/' + platform_name)
-    utils.prettyprint(response)
+    utils.pretty_print(response)
 
 
 @click.command('get-application-platforms')
@@ -57,7 +57,7 @@ def get_application_platforms(application_name, platform_name):
         return ''
     client = Client()
     response = client.get('/rest/applications/' + application_name + '/platforms/' + platform_name)
-    utils.prettyprint(response)
+    utils.pretty_print(response)
 
 
 @click.command('platforms-perform-search')
@@ -74,7 +74,7 @@ def platforms_perform_search(application_name, platform_name):
     response = client.get(
         '/rest/applications/platforms/perform_search?application_name=' + application_name
         + '&platform_name=' + platform_name)
-    utils.prettyprint(response)
+    utils.pretty_print(response)
 
 
 @click.command('update-application-platforms')
@@ -95,4 +95,4 @@ def update_application_platforms(application_name, copy_properties_for_upgraded_
     response = client.put(
         '/rest/applications/' + application_name + '/platforms?copyPropertiesForUpgradedModules='
         + copy_properties_for_upgraded_modules, file_body)
-    utils.prettyprint(response)
+    utils.pretty_print(response)

@@ -8,4 +8,4 @@ from hesperidescli.client import Client
 def perform_reindex():
     client = Client()
     response = client.post('/rest/indexation/perform_reindex')
-    utils.prettyprint(response)
+    utils.pretty_print(response)

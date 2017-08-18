@@ -22,7 +22,7 @@ def get_global_properties(application_name, platform_name, timestamp):
     client = Client()
     response = client.get(
         '/rest/applications/' + application_name + '/platforms/' + platform_name + '/properties', params)
-    utils.prettyprint(response)
+    utils.pretty_print(response)
 
 
 @click.command('get-global-properties-usage')
@@ -38,7 +38,7 @@ def get_global_properties_usage(application_name, platform_name):
     client = Client()
     response = client.get(
         '/rest/applications/' + application_name + '/platforms/' + platform_name + '/global_properties_usage')
-    utils.prettyprint(response)
+    utils.pretty_print(response)
 
 
 @click.command('get-properties')
@@ -64,7 +64,7 @@ def get_properties(application_name, platform_name, path, timestamp):
     client = Client()
     response = client.get(
         '/rest/applications/' + application_name + '/platforms/' + platform_name + '/properties', params)
-    utils.prettyprint(response)
+    utils.pretty_print(response)
 
 
 @click.command('get-properties-instance-model')
@@ -80,4 +80,4 @@ def get_properties_instance_model(application_name, platform_name):
     client = Client()
     response = client.get(
         '/rest/applications/' + application_name + '/platforms/' + platform_name + '/properties/instance-model')
-    utils.prettyprint(response)
+    utils.pretty_print(response)

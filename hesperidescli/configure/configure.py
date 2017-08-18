@@ -36,18 +36,6 @@ def set_conf(username, password, hesperides_endpoint, hesperides_endpoint_protoc
 @click.command('get-conf')
 def get_conf():
     config_reader = ConfigFileReader()
-    credentials_reader = ConfigFileReader()
-    # config = config_reader.get_config()
-    # credentials = credentials_reader.get_credentials()
-    # print('Config')
-    # print('======')
-    # for key in config:
-    #     print(key + ' = ' + config[key])
-    # print('')
-    # print('Credentials')
-    # print('===========')
-    # for key in credentials:
-    #     print(key + ' = ' + credentials[key])
     config_reader.print_config()
     config_reader.print_credentials()
 

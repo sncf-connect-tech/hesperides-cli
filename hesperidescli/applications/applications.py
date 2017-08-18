@@ -15,7 +15,7 @@ def applications_perform_search(name):
         params['name'] = name
     client = Client()
     response = client.get('/rest/applications/perform_search', params)
-    utils.prettyprint(response)
+    utils.pretty_print(response)
 
 
 @click.command('get-application')
@@ -26,7 +26,7 @@ def get_application(application_name):
         return ''
     client = Client()
     response = client.get('/rest/applications/' + application_name)
-    utils.prettyprint(response)
+    utils.pretty_print(response)
 
 
 @click.command('get-application-from-module')
@@ -45,5 +45,5 @@ def get_application_from_module(module, version, type):
         return ''
     client = Client()
     response = client.get('/rest/applications/using_module/' + module + '/' + version + '/' + type)
-    utils.prettyprint(response)
+    utils.pretty_print(response)
 

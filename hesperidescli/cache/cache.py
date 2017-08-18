@@ -16,21 +16,21 @@ def delete_application_cache(application_name, platform_name):
         return ''
     client = Client()
     response = client.delete('/rest/cache/application/' + application_name + '/' + platform_name)
-    utils.prettyprint(response)
+    utils.pretty_print(response)
 
 
 @click.command('delete-applications-cache')
 def delete_applications_cache():
     client = Client()
     response = client.delete('/rest/cache/applications')
-    utils.prettyprint(response)
+    utils.pretty_print(response)
 
 
 @click.command('delete-modules-cache')
 def delete_modules_cache():
     client = Client()
     response = client.delete('/rest/cache/modules')
-    utils.prettyprint(response)
+    utils.pretty_print(response)
 
 
 @click.command('delete-release-modules-cache')
@@ -45,7 +45,7 @@ def delete_release_module_cache(module_name, module_version):
         return ''
     client = Client()
     response = client.delete('/rest/cache/module/' + module_name + '/' + module_version + '/release')
-    utils.prettyprint(response)
+    utils.pretty_print(response)
 
 
 @click.command('delete-template-package-cache')
@@ -60,14 +60,14 @@ def delete_release_template_package_cache(template_name, template_version):
         return ''
     client = Client()
     response = client.delete('/rest/cache/template/package/' + template_name + '/' + template_version + '/release')
-    utils.prettyprint(response)
+    utils.pretty_print(response)
 
 
 @click.command('delete-templates-packages-cache')
 def delete_templates_packages_cache():
     client = Client()
     response = client.delete('/rest/cache/templates/packages')
-    utils.prettyprint(response)
+    utils.pretty_print(response)
 
 
 @click.command('delete-workingcopy-modules-cache')
@@ -82,7 +82,7 @@ def delete_workingcopy_module_cache(module_name, module_version):
         return ''
     client = Client()
     response = client.delete('/rest/cache/module/' + module_name + '/' + module_version + '/workingcopy')
-    utils.prettyprint(response)
+    utils.pretty_print(response)
 
 
 @click.command('delete-workingcopy-template-package-cache')
@@ -97,7 +97,7 @@ def delete_workingcopy_template_package_cache(template_name, template_version):
         return ''
     client = Client()
     response = client.delete('/rest/cache/template/package/' + template_name + '/' + template_version + '/workingcopy')
-    utils.prettyprint(response)
+    utils.pretty_print(response)
 
 
 @click.command('regenerate-application-cache')
@@ -112,7 +112,7 @@ def regenerate_application_cache(application_name, platform_name):
         return ''
     client = Client()
     response = client.post('/rest/cache/application/' + application_name + '/' + platform_name + '/regenerate')
-    utils.prettyprint(response)
+    utils.pretty_print(response)
 
 
 @click.command('regenerate-module-cache')
@@ -127,7 +127,7 @@ def regenerate_module_cache(module_name, module_version):
         return ''
     client = Client()
     response = client.post('/rest/cache/module/' + module_name + '/' + module_version + '/regenerate')
-    utils.prettyprint(response)
+    utils.pretty_print(response)
 
 
 @click.command('regenerate-template-package-cache')
@@ -142,4 +142,4 @@ def regenerate_template_package_cache(template_name, template_version):
         return ''
     client = Client()
     response = client.post('/rest/template/package/' + template_name + '/' + template_version + '/regenerate')
-    utils.prettyprint(response)
+    utils.pretty_print(response)

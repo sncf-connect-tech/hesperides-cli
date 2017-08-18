@@ -8,4 +8,4 @@ from hesperidescli.client import Client
 def get_versions():
     client = Client()
     response = client.get('/rest/versions/')
-    utils.prettyprint(response)
+    utils.pretty_print(response)

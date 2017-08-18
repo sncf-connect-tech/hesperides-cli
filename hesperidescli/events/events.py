@@ -16,4 +16,4 @@ def get_events(stream_name, page, size):
         params['size'] = size
     client = Client()
     response = client.get('/rest/events/' + stream_name, params)
-    utils.prettyprint(response)
+    utils.pretty_print(response)

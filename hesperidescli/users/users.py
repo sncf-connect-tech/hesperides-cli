@@ -8,4 +8,4 @@ from hesperidescli.client import Client
 def get_user():
     client = Client()
     response = client.get('/rest/users/auth')
-    utils.prettyprint(response)
+    utils.pretty_print(response)
