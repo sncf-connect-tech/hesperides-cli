@@ -8,6 +8,8 @@ class ConfigFile:
     _CONFIG_DIR = '.hesperides'
     _CONFIG_FILE_NAME = 'config'
     _CREDENTIALS_FILE_NAME = 'credentials'
+    _CONFIG_FILE_PATH = _HOME + '/' + _CONFIG_DIR + '/' + _CONFIG_FILE_NAME
+    _CREDENTIALS_FILE_PATH = _HOME + '/' + _CONFIG_DIR + '/' + _CREDENTIALS_FILE_NAME
 
     def __init__(self):
         self.config = configparser.ConfigParser()

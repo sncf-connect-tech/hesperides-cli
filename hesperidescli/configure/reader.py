@@ -1,29 +1,43 @@
+from configparser import NoSectionError, NoOptionError
+
+import sys
+
 from hesperidescli.configure.configfile import ConfigFile
 
 
 class ConfigFileReader(ConfigFile):
-    def get_config(self):
-        self.config.read(self._HOME + '/' + self._CONFIG_DIR + '/' + self._CONFIG_FILE_NAME)
-        try:
-            return self.config['default']
-        except KeyError:
-            raise Exception('hesperides-cli has not been configured. Please type "hesperides configure set".')
+    def get_config(self, section):
+        self._get(self._CONFIG_FILE_PATH, section)
 
-    def get_credentials(self):
-        self.config.read(self._HOME + '/' + self._CONFIG_DIR + '/' + self._CREDENTIALS_FILE_NAME)
+    def get_credentials(self, section):
+        self._get(self._CREDENTIALS_FILE_PATH, section)
+
+    def get_item(self, section, item):
+        return self.config.get(section, item)
+
+    def get_profile(self):
         try:
-            return self.config['default']
-        except KeyError:
-            raise Exception('hesperides-cli has not been configured. Please type "hesperides configure set".')
+            self.get_config('config')
+            return self.get_item('config', 'profile')
+        except (NoSectionError, NoOptionError):
+            print('No profile has been configured')
+            sys.exit(1)
 
     def print_config(self):
-        self.config.read(self._HOME + '/' + self._CONFIG_DIR + '/' + self._CONFIG_FILE_NAME)
-        file = open(self._HOME + '/' + self._CONFIG_DIR + '/' + self._CONFIG_FILE_NAME, "r")
-        print(file.read())
-        file.close()
+        self._print(self._CONFIG_FILE_PATH)
 
     def print_credentials(self):
-        self.config.read(self._HOME + '/' + self._CONFIG_DIR + '/' + self._CREDENTIALS_FILE_NAME)
-        file = open(self._HOME + '/' + self._CONFIG_DIR + '/' + self._CREDENTIALS_FILE_NAME, "r")
+        self._print(self._CREDENTIALS_FILE_PATH)
+
+    def _get(self, file_path, section):
+        self.config.read(file_path)
+        try:
+            return self.config.items(section)
+        except KeyError:
+            raise Exception('hesperides has not been configured. Please type "hesperides set-conf"')
+
+    def _print(self, file_path):
+        self.config.read(file_path)
+        file = open(file_path, "r")
         print(file.read())
         file.close()

@@ -38,8 +38,11 @@ cli.add_command(cache.regenerate_application_cache)
 cli.add_command(cache.regenerate_module_cache)
 cli.add_command(cache.regenerate_template_package_cache)
 
+cli.add_command(configure.delete_profile)
 cli.add_command(configure.get_conf)
+cli.add_command(configure.get_profile)
 cli.add_command(configure.set_conf)
+cli.add_command(configure.set_profile)
 
 cli.add_command(events.get_events)
 
