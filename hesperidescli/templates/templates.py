@@ -31,7 +31,7 @@ def create_templates_packages_release(from_package_name, from_package_version, f
 @click.command('create-templates-packages')
 @click.option('--from_package_name')
 @click.option('--from_package_version')
-@click.option('--from_is_working_copy', isFlag=True)
+@click.option('--from_is_working_copy', is_flag=True)
 @click.option('--body')
 def create_templates_packages(from_package_name, from_package_version, from_is_working_copy, body):
     if from_package_name is None and from_package_version:
