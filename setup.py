@@ -4,7 +4,7 @@ setup(
     # Application name:
     name="hesperides-cli",
 
-    version="0.1.0",
+    version="0.2.0",
 
     # Application author details:
     author="Victor SALAUN",
@@ -17,7 +17,7 @@ setup(
     include_package_data=True,
 
     # Details
-    url="https://pypi.python.org/pypi/hesperides-cli/0.1.0",
+    url="https://pypi.python.org/pypi/hesperides-cli/0.2.0",
 
     #
     # license="LICENSE.txt",
