@@ -7,10 +7,10 @@ from hesperidescli.configure.configfile import ConfigFile
 
 class ConfigFileReader(ConfigFile):
     def get_config(self, section):
-        self._get(self._CONFIG_FILE_PATH, section)
+        return self._get(self._CONFIG_FILE_PATH, section)
 
     def get_credentials(self, section):
-        self._get(self._CREDENTIALS_FILE_PATH, section)
+        return self._get(self._CREDENTIALS_FILE_PATH, section)
 
     def get_item(self, section, item):
         return self.config.get(section, item)

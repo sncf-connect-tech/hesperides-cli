@@ -39,7 +39,7 @@ def get_config(key):
     reader = ConfigFileReader()
     config = reader.get_config(profile)
     config = reader.get_credentials(profile)
-    return config[key]
+    return reader.get_item(profile, key)
 
 
 @click.command('set-conf')
