@@ -14,7 +14,7 @@ def applications_perform_search(name):
     else:
         params['name'] = name
     client = Client()
-    response = client.get('/rest/applications/perform_search', params)
+    response = client.post('/rest/applications/perform_search?terms+' + str(name))
     utils.pretty_print(response)
 
 
