@@ -1,0 +1,25 @@
+{
+  "namespace": "",
+  "name": "",
+  "filename": "",
+  "location": "",
+  "content": "",
+  "rights": {
+    "user": {
+      "read": false,
+      "write": false,
+      "execute": false
+    },
+    "group": {
+      "read": false,
+      "write": false,
+      "execute": false
+    },
+    "other": {
+      "read": false,
+      "write": false,
+      "execute": false
+    }
+  },
+  "version_id": 0
+}

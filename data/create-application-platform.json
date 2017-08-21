@@ -1,0 +1,9 @@
+{
+  "production": false,
+  "application_name": "VSL",
+  "version_id": 1,
+  "platform_name": "INT6",
+  "application_version": "GUNS",
+  "modules": [
+  ]
+}
