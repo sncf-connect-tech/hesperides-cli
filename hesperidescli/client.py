@@ -30,7 +30,7 @@ class Client:
         return self._call_with_body('POST', path, body)
 
     def put(self, path, body=None):
-        return self._check_for_params('PUT', path, body)
+        return self._call_with_body('PUT', path, body)
 
     def _check_for_params(self, verb, path, params):
         if params is None:

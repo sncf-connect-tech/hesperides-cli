@@ -4,12 +4,12 @@ from hesperidescli import utils
 from hesperidescli.client import Client
 
 
-@click.command('create-application-platforms')
+@click.command('create-application-platform')
 @click.option('--application_name')
 @click.option('--from_application')
 @click.option('--from_platform')
 @click.option('--body')
-def create_application_platforms(application_name, from_application, from_platform, body):
+def create_application_platform(application_name, from_application, from_platform, body):
     if application_name is None:
         print('--application_name required')
         return ''
@@ -30,10 +30,10 @@ def create_application_platforms(application_name, from_application, from_platfo
     utils.pretty_print(response)
 
 
-@click.command('delete-application-platforms')
+@click.command('delete-application-platform')
 @click.option('--application_name')
 @click.option('--platform_name')
-def delete_application_platforms(application_name, platform_name):
+def delete_application_platform(application_name, platform_name):
     if application_name is None:
         print('--application_name required')
         return ''
@@ -45,10 +45,10 @@ def delete_application_platforms(application_name, platform_name):
     utils.pretty_print(response)
 
 
-@click.command('get-application-platforms')
+@click.command('get-application-platform')
 @click.option('--application_name')
 @click.option('--platform_name')
-def get_application_platforms(application_name, platform_name):
+def get_application_platform(application_name, platform_name):
     if application_name is None:
         print('--application_name required')
         return ''
@@ -77,11 +77,11 @@ def platforms_perform_search(application_name, platform_name):
     utils.pretty_print(response)
 
 
-@click.command('update-application-platforms')
+@click.command('update-application-platform')
 @click.option('--application_name')
 @click.option('--copy_properties_for_upgraded_modules', is_flag=True)
 @click.option('--body')
-def update_application_platforms(application_name, copy_properties_for_upgraded_modules, body):
+def update_application_platform(application_name, copy_properties_for_upgraded_modules, body):
     if application_name is None:
         print('--application_name required')
         return ''
@@ -94,5 +94,5 @@ def update_application_platforms(application_name, copy_properties_for_upgraded_
     client = Client()
     response = client.put(
         '/rest/applications/' + application_name + '/platforms?copyPropertiesForUpgradedModules='
-        + copy_properties_for_upgraded_modules, file_body)
+        + str(copy_properties_for_upgraded_modules), file_body)
     utils.pretty_print(response)
