@@ -22,7 +22,7 @@ def cli():
     pass
 
 
-cli.add_command(applications.applications_perform_search)
+cli.add_command(applications.perform_search_application)
 cli.add_command(applications.get_application)
 cli.add_command(applications.get_application_from_module)
 
@@ -74,7 +74,7 @@ cli.add_command(modules.update_module_workingcopy_template)
 cli.add_command(platforms.create_application_platform)
 cli.add_command(platforms.delete_application_platform)
 cli.add_command(platforms.get_application_platform)
-cli.add_command(platforms.platforms_perform_search)
+cli.add_command(platforms.perform_search_application_platforms)
 cli.add_command(platforms.update_application_platform)
 
 cli.add_command(properties.get_global_properties)
@@ -82,24 +82,24 @@ cli.add_command(properties.get_global_properties_usage)
 cli.add_command(properties.get_properties)
 cli.add_command(properties.get_properties_instance_model)
 
-cli.add_command(snapshots.get_snapshots)
-cli.add_command(snapshots.restore_snapshot)
-cli.add_command(snapshots.take_snapshot)
+cli.add_command(snapshots.get_application_platform_snapshots)
+cli.add_command(snapshots.restore_application_platform_snapshots)
+cli.add_command(snapshots.take_application_platform_snapshot)
 
 cli.add_command(stats.get_stats)
 
-cli.add_command(templates.create_templates_packages_release)
-cli.add_command(templates.create_templates_packages)
-cli.add_command(templates.delete_release_template_package)
-cli.add_command(templates.delete_workingcopy_template_package)
-cli.add_command(templates.get_release_templates)
-cli.add_command(templates.get_release_template)
+cli.add_command(templates.create_template_package)
+cli.add_command(templates.create_template_package_workingcopy)
+cli.add_command(templates.delete_template_package_release)
+cli.add_command(templates.delete_template_package_workingcopy)
+cli.add_command(templates.get_template_package_release)
 cli.add_command(templates.get_template_package_release_model)
+cli.add_command(templates.get_template_package_workingcopy)
 cli.add_command(templates.get_template_package_workingcopy_model)
-cli.add_command(templates.get_workingcopy_templates)
-cli.add_command(templates.get_workingcopy_template)
-cli.add_command(templates.templates_packages_perform_search)
-cli.add_command(templates.update_workingcopy_template)
+cli.add_command(templates.get_templates_packages_release)
+cli.add_command(templates.get_templates_packages_workingcopy)
+cli.add_command(templates.perform_search_templates_packages)
+cli.add_command(templates.update_template_package_workingcopy)
 
 cli.add_command(users.get_user)
 

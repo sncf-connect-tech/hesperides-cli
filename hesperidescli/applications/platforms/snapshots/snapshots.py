@@ -4,10 +4,10 @@ from hesperidescli import utils
 from hesperidescli.client import Client
 
 
-@click.command('get-snapshots')
+@click.command('get-application-platform-snapshots')
 @click.option('--application_name')
 @click.option('--platform_name')
-def get_snapshots(application_name, platform_name):
+def get_application_platform_snapshots(application_name, platform_name):
     if application_name is None:
         print('--application_name required')
         return ''
@@ -19,10 +19,10 @@ def get_snapshots(application_name, platform_name):
     utils.pretty_print(response)
 
 
-@click.command('restore-snapshot')
+@click.command('restore-application-platform-snapshots')
 @click.option('--application_name')
 @click.option('--platform_name')
-def restore_snapshot(application_name, platform_name):
+def restore_application_platform_snapshots(application_name, platform_name):
     if application_name is None:
         print('--application_name required')
         return ''
@@ -35,11 +35,11 @@ def restore_snapshot(application_name, platform_name):
     utils.pretty_print(response)
 
 
-@click.command('take-snapshot')
+@click.command('take-application-platform-snapshot')
 @click.option('--application_name')
 @click.option('--platform_name')
 @click.option('--body')
-def take_snapshot(application_name, platform_name, body):
+def take_application_platform_snapshot(application_name, platform_name, body):
     if application_name is None:
         print('--application_name required')
         return ''

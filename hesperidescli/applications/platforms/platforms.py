@@ -60,10 +60,10 @@ def get_application_platform(application_name, platform_name):
     utils.pretty_print(response)
 
 
-@click.command('platforms-perform-search')
+@click.command('perform-search-application-platforms')
 @click.option('--application_name')
 @click.option('--platform_name')
-def platforms_perform_search(application_name, platform_name):
+def perform_search_application_platforms(application_name, platform_name):
     if application_name is None:
         print('--application_name required')
         return ''
