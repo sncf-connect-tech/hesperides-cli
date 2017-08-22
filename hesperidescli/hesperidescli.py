@@ -22,9 +22,9 @@ def cli():
     pass
 
 
-cli.add_command(applications.perform_search_application)
 cli.add_command(applications.get_application)
 cli.add_command(applications.get_application_from_module)
+cli.add_command(applications.perform_search_application)
 
 cli.add_command(cache.delete_application_cache)
 cli.add_command(cache.delete_applications_cache)
