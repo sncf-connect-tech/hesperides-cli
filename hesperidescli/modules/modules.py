@@ -261,21 +261,18 @@ def perform_search_modules(terms):
         print('--terms required')
         return ''
     client = Client()
-    response = client.post('/rest/modules/perform_search?terms=' + terms)
+    response = client.post('/rest/modules/perform_search?terms=' + str(terms))
     utils.pretty_print(response)
 
 
 @click.command('search-module')
 @click.option('--terms')
 def search_module(terms):
-    params = {}
     if terms is None:
         print('--terms required')
         return ''
-    else:
-        params['terms'] = terms
     client = Client()
-    response = client.post('/rest/modules/search', params)
+    response = client.post('/rest/modules/search?terms=' + terms)
     utils.pretty_print(response)
 
 

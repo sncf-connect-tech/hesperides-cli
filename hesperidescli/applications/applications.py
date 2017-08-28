@@ -34,9 +34,9 @@ def get_application_from_module(module, version, type):
     utils.pretty_print(response)
 
 
-@click.command('perform-search-application')
+@click.command('perform-search-applications')
 @click.option('--name')
-def perform_search_application(name):
+def perform_search_applications(name):
     params = {}
     if name is None:
         print('--name required')
