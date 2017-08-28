@@ -16,19 +16,33 @@ hesperides-cli has been registered. It can be installed via pip:
 
 ## Build
 
-    python3 setup.py install
+    python setup.py install
 
 For development purpose:
 
-    python3 setup.py develop
+    python setup.py develop
 
 ## Usage
 
     hesperides [OPTIONS] COMMAND [ARGS]
+
+To get all hesperides commands, just type:
+
+    hesperides
 
 ### Configure
 
 To set up your environment:
 
     hesperides set-conf
+    
+Once your configuration is set, you can start using it with:
+
     hesperides set-profile [PROFILE_NAME]
+
+To try your configuration, type one of these commands:
+
+    hesperides get-versions
+    hesperides get-user
+    hesperides get-stats
+    
