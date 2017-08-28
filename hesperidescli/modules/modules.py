@@ -140,14 +140,14 @@ def get_module(module_name, module_version, module_type):
         print('--module_version required')
         return ''
     client = Client()
-    if module_type is None and module_version is None:
+    if module_version is None and module_type is None:
         response = client.get('/rest/modules/' + module_name)
         utils.pretty_print(response)
-    if module_type and module_version is None:
-        response = client.get('/rest/modules/' + module_name + '/' + module_type)
+    if module_version and module_type is None:
+        response = client.get('/rest/modules/' + module_name + '/' + module_version)
         utils.pretty_print(response)
-    if module_type and module_version:
-        response = client.get('/rest/modules/' + module_name + '/' + module_type + '/' + module_version)
+    if module_version and module_type:
+        response = client.get('/rest/modules/' + module_name + '/' + module_version + '/' + module_type)
         utils.pretty_print(response)
 
 
