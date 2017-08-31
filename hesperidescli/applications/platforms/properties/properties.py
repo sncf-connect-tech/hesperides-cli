@@ -37,7 +37,7 @@ def get_global_properties_usage(application_name, platform_name):
         return ''
     client = Client()
     response = client.get(
-        '/rest/applications/' + application_name + '/platforms/' + platform_name + '/global_properties_usage')
+        '/rest/applications/' + application_name + '/platforms/' + platform_name + '/global_properties_usage', None)
     utils.pretty_print(response)
 
 
