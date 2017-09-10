@@ -1,0 +1,28 @@
+{
+  "modules": [
+    {
+      "id": 0,
+      "name": "",
+      "version": "",
+      "path": "",
+      "instances": [
+        {
+          "name": "",
+          "key_values": [
+            {
+              "value": "",
+              "name": ""
+            }
+          ]
+        }
+      ],
+      "propertiesPath": "",
+      "working_copy": false
+    }
+  ],
+  "production": false,
+  "application_name": "",
+  "platform_name": "",
+  "application_version": "",
+  "version_id": 0
+}

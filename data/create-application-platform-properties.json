@@ -1,0 +1,14 @@
+{
+  "key_value_properties": [
+    {
+      "value": "",
+      "name": ""
+    }
+  ],
+  "iterable_properties": [
+    {
+      "iterableValorisationItems": "List[IterableValorisationItem]",
+      "name": ""
+    }
+  ]
+}
