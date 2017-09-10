@@ -88,4 +88,10 @@ setup(
     cmdclass={
         'publish': PublishCommand,
     },
+
+    entry_points={
+        'console_scripts': [
+            'hesperides=hesperidescli.hesperidescli:cli',
+        ],
+    }
 )
