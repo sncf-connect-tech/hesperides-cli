@@ -71,11 +71,11 @@ def perform_search_application_platforms(application_name, platform_name):
     if platform_name:
         response = client.post(
             '/rest/applications/platforms/perform_search?application_name=' + application_name
-            + '&platform_name=' + platform_name)
+            + '&platform_name=' + platform_name, None)
         utils.pretty_print(response)
     else:
         response = client.post(
-            '/rest/applications/platforms/perform_search?application_name=' + application_name)
+            '/rest/applications/platforms/perform_search?application_name=' + application_name, None)
         utils.pretty_print(response)
 
 

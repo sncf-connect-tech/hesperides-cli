@@ -20,23 +20,17 @@ class Client:
         else:
             self.connection = http.client.HTTPSConnection(endpoint, port, context=ssl._create_unverified_context())
 
-    def get(self, path, params):
-        return self._check_for_params('GET', path, params)
+    def get(self, path):
+        return self._call('GET', path)
 
-    def delete(self, path, params):
-        return self._check_for_params('DELETE', path, params)
+    def delete(self, path):
+        return self._call('DELETE', path)
 
     def post(self, path, body):
         return self._call_with_body('POST', path, body)
 
     def put(self, path, body):
         return self._call_with_body('PUT', path, body)
-
-    def _check_for_params(self, verb, path, params):
-        if params is None:
-            return self._call(verb, path)
-        else:
-            return self._call_with_params(verb, path, params)
 
     def _call(self, verb, path):
         self.connection.request(verb, path, headers=self.headers)

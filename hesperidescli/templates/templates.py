@@ -197,7 +197,7 @@ def perform_search_templates_packages(terms):
         print('--terms required')
         return ''
     client = Client()
-    response = client.post('/rest/templates/packages/perform_search?terms=' + terms)
+    response = client.post('/rest/templates/packages/perform_search?terms=' + terms, None)
     utils.pretty_print(response)
 
 

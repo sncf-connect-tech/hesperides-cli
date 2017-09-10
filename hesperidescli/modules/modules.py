@@ -48,11 +48,11 @@ def create_module_release(module_name, module_version, release_version):
     if release_version:
         response = client.post(
             '/rest/modules/create_release?module_name=' + module_name + '&module_version=' + module_version
-            + '&release_version=' + release_version)
+            + '&release_version=' + release_version, None)
         utils.pretty_print(response)
     else:
         response = client.post(
-            '/rest/modules/create_release?module_name=' + module_name + '&module_version=' + module_version)
+            '/rest/modules/create_release?module_name=' + module_name + '&module_version=' + module_version, None)
         utils.pretty_print(response)
 
 
@@ -261,7 +261,7 @@ def perform_search_modules(terms):
         print('--terms required')
         return ''
     client = Client()
-    response = client.post('/rest/modules/perform_search?terms=' + str(terms))
+    response = client.post('/rest/modules/perform_search?terms=' + str(terms), None)
     utils.pretty_print(response)
 
 
@@ -272,7 +272,7 @@ def search_module(terms):
         print('--terms required')
         return ''
     client = Client()
-    response = client.post('/rest/modules/search?terms=' + terms)
+    response = client.post('/rest/modules/search?terms=' + terms, None)
     utils.pretty_print(response)
 
 

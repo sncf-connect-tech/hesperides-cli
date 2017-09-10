@@ -9,11 +9,15 @@ from hesperidescli.client import Client
 @click.option('--page')
 @click.option('--size')
 def get_events(stream_name, page, size):
-    params = {}
-    if page is not None:
-        params['page'] = page
-    if size is not None:
-        params['size'] = size
+    params = ""
+    if page or size:
+        params = "?"
+    if page:
+        params += "page=" + page
+    if size:
+        if page:
+            params += "&"
+        params += "size=" + size
     client = Client()
-    response = client.get('/rest/events/' + stream_name, params)
+    response = client.get('/rest/events/' + stream_name + params)
     utils.pretty_print(response)
