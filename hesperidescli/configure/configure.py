@@ -46,18 +46,12 @@ def get_config(key):
 @click.option('--profile', prompt=True, hide_input=False, confirmation_prompt=False, default='default')
 @click.option('--username', prompt=True, hide_input=False, confirmation_prompt=False, default='')
 @click.option('--password', prompt=True, hide_input=True, confirmation_prompt=False, default='')
-@click.option('--hesperides_endpoint', prompt=True, hide_input=False, confirmation_prompt=False, default='hesperides')
-@click.option('--hesperides_endpoint_protocol', prompt=True, hide_input=False, confirmation_prompt=False,
-              default='https')
-@click.option('--hesperides_endpoint_port', prompt=True, hide_input=False, confirmation_prompt=False,
-              default='443')
-@click.option('--format', prompt=False, hide_input=False, confirmation_prompt=False,
-              default='json')
-def set_conf(profile, username, password, hesperides_endpoint, hesperides_endpoint_protocol, hesperides_endpoint_port,
-             format):
+@click.option('--hesperides_endpoint', prompt=True, hide_input=False, confirmation_prompt=False,
+              default='https://hesperides')
+@click.option('--response_format', prompt=False, hide_input=False, confirmation_prompt=False, default='json')
+def set_conf(profile, username, password, hesperides_endpoint, response_format):
     basic_auth = base64.b64encode(str.encode('%s:%s' % (username, password))).decode('UTF-8')
-    config = {'endpoint': hesperides_endpoint, 'protocol': hesperides_endpoint_protocol,
-              'port': hesperides_endpoint_port, 'format': format}
+    config = {'endpoint': hesperides_endpoint, 'format': response_format}
     credentials = {'username': username, 'auth': basic_auth}
     config_writer = ConfigFileWriter()
     config_writer.update_config(profile, config, False)

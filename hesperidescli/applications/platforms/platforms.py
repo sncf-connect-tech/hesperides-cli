@@ -26,7 +26,7 @@ def create_application_platform(application_name, from_application, from_platfor
     file_body = file.read()
     file.close()
     client = Client()
-    response = client.post('/rest/applications/' + application_name + '/platforms', file_body)
+    response = client.post('/rest/applications/' + application_name + '/platforms', body=file_body)
     utils.pretty_print(response)
 
 
@@ -64,19 +64,16 @@ def get_application_platform(application_name, platform_name):
 @click.option('--application_name')
 @click.option('--platform_name')
 def perform_search_application_platforms(application_name, platform_name):
+    params = {}
     if application_name is None:
         print('--application_name required')
         return ''
-    client = Client()
+    params['application_name'] = application_name
     if platform_name:
-        response = client.post(
-            '/rest/applications/platforms/perform_search?application_name=' + application_name
-            + '&platform_name=' + platform_name, None)
-        utils.pretty_print(response)
-    else:
-        response = client.post(
-            '/rest/applications/platforms/perform_search?application_name=' + application_name, None)
-        utils.pretty_print(response)
+        params['platform_name'] = platform_name
+    client = Client()
+    response = client.post('/rest/applications/platforms/perform_search', params=params)
+    utils.pretty_print(response)
 
 
 @click.command('update-application-platform')
@@ -84,17 +81,18 @@ def perform_search_application_platforms(application_name, platform_name):
 @click.option('--copy_properties_for_upgraded_modules', is_flag=True)
 @click.option('--body')
 def update_application_platform(application_name, copy_properties_for_upgraded_modules, body):
+    params = {}
     if application_name is None:
         print('--application_name required')
         return ''
     if body is None:
         print('--body required')
         return ''
+    if copy_properties_for_upgraded_modules:
+        params['copy_properties_for_upgraded_modules'] = copy_properties_for_upgraded_modules
     file = open(body, "r")
     file_body = file.read()
     file.close()
     client = Client()
-    response = client.put(
-        '/rest/applications/' + application_name + '/platforms?copyPropertiesForUpgradedModules='
-        + str(copy_properties_for_upgraded_modules), file_body)
+    response = client.put('/rest/applications/' + application_name + '/platforms', params=params, body=file_body)
     utils.pretty_print(response)

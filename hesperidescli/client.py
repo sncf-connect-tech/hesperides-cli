@@ -1,50 +1,43 @@
-import http.client
-import ssl
-import urllib.parse
+from json import JSONDecodeError
+
+import requests
+import urllib3
+
 from hesperidescli.configure import configure
+
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
 class Client:
     def __init__(self):
-        endpoint = configure.get_config('endpoint')
-        port = configure.get_config('port')
-        protocol = configure.get_config('protocol')
+        self.endpoint = configure.get_config('endpoint')
         auth = configure.get_config('auth')
         self.headers = {
             'Accept': 'application/json',
             'Authorization': 'Basic %s' % auth,
             'Content-Type': 'application/json; charset=utf-8'
         }
-        if protocol == 'http':
-            self.connection = http.client.HTTPConnection(endpoint, port)
+
+    def get(self, path, params=None):
+        return requests.get(self.endpoint + path, params=params, headers=self.headers,
+                            verify=False)
+
+    def delete(self, path, params=None):
+        return requests.delete(self.endpoint + path, params=params, headers=self.headers,
+                               verify=False)
+
+    def post(self, path, params=None, body=None):
+        if body:
+            return requests.post(self.endpoint + path, params=params, body=body, headers=self.headers,
+                                 verify=False)
         else:
-            self.connection = http.client.HTTPSConnection(endpoint, port, context=ssl._create_unverified_context())
+            return requests.post(self.endpoint + path, params=params, headers=self.headers,
+                                 verify=False, stream=True)
 
-    def get(self, path):
-        return self._call('GET', path)
-
-    def delete(self, path):
-        return self._call('DELETE', path)
-
-    def post(self, path, body):
-        return self._call_with_body('POST', path, body)
-
-    def put(self, path, body):
-        return self._call_with_body('PUT', path, body)
-
-    def _call(self, verb, path):
-        self.connection.request(verb, path, headers=self.headers)
-        response = self.connection.getresponse()
-        return response
-
-    def _call_with_body(self, verb, path, body):
-        self.connection.request(verb, path, body, headers=self.headers)
-        response = self.connection.getresponse()
-        return response
-
-    def _call_with_params(self, verb, path, params):
-        params = urllib.parse.urlencode(params)
-        print(params)
-        self.connection.request(verb, path, params, headers=self.headers)
-        response = self.connection.getresponse()
-        return response
+    def put(self, path, params=None, body=None):
+        if body:
+            return requests.put(self.endpoint + path, params=params, body=body, headers=self.headers,
+                                verify=False)
+        else:
+            return requests.put(self.endpoint + path, params=params, body=body, headers=self.headers,
+                                verify=False)

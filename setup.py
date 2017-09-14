@@ -15,7 +15,9 @@ EMAIL = 'victor.salaun@gmail.com'
 AUTHOR = 'Victor SALAUN'
 
 REQUIRED = [
-               "click"
+               "click",
+               "requests",
+               "urllib3"
            ],
 
 here = os.path.abspath(os.path.dirname(__file__))

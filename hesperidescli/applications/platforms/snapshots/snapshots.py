@@ -54,5 +54,5 @@ def take_application_platform_snapshot(application_name, platform_name, body):
     file.close()
     client = Client()
     response = client.post(
-        '/rest/applications/' + application_name + '/platforms/' + platform_name + '/take_snapshot', file_body)
+        '/rest/applications/' + application_name + '/platforms/' + platform_name + '/take_snapshot', body=file_body)
     utils.pretty_print(response)

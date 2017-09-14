@@ -10,6 +10,7 @@ from hesperidescli.client import Client
 @click.option('--from_is_working_copy', is_flag=True)
 @click.option('--body')
 def create_template_package(from_package_name, from_package_version, from_is_working_copy, body):
+    params = {}
     if from_package_name is None and from_package_version:
         print('--from_package_name required when --from_package_version is given')
         return ''
@@ -19,16 +20,14 @@ def create_template_package(from_package_name, from_package_version, from_is_wor
     if body is None:
         print('--body required')
         return ''
+    params['from_package_name'] = from_package_name
+    params['from_package_version'] = from_package_version
+    params['from_is_working_copy'] = from_is_working_copy
     file = open(body, "r")
     file_body = file.read()
     file.close()
     client = Client()
-    if from_package_name and from_package_version:
-        response = client.post(
-            '/rest/templates/packages?from_package_name=' + from_package_name + '&from_package_version='
-            + from_package_version + '&from_is_working_copy=' + str(from_is_working_copy), file_body)
-    else:
-        response = client.post('/rest/templates/packages?from_is_working_copy=' + from_is_working_copy, file_body)
+    response = client.post('/rest/templates/packages', params=params, body=file_body)
     utils.pretty_print(response)
 
 
@@ -56,7 +55,7 @@ def create_template_package_workingcopy(package_name, package_version, template_
     client = Client()
     response = client.post(
         '/rest/templates/packages/' + package_name + '/' + package_version + '/workingcopy/templates/' + template_name,
-        file_body)
+        body=file_body)
     utils.pretty_print(response)
 
 
@@ -193,11 +192,13 @@ def get_templates_packages_workingcopy(package_name, package_version):
 @click.command('perform-search-templates-packages')
 @click.option('--terms')
 def perform_search_templates_packages(terms):
+    params = {}
     if terms is None:
         print('--terms required')
         return ''
+    params['terms'] = terms
     client = Client()
-    response = client.post('/rest/templates/packages/perform_search?terms=' + terms, None)
+    response = client.post('/rest/templates/packages/perform_search', params=params)
     utils.pretty_print(response)
 
 
@@ -225,5 +226,5 @@ def update_template_package_workingcopy(package_name, package_version, template_
     client = Client()
     response = client.put(
         '/rest/templates/packages/' + package_name + '/' + package_version + '/workingcopy/templates/' + template_name,
-        file_body)
+        body=file_body)
     utils.pretty_print(response)

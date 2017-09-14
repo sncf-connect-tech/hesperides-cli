@@ -10,6 +10,7 @@ from hesperidescli.client import Client
 @click.option('--from_is_working_copy', is_flag=True)
 @click.option('--body')
 def create_module(from_module_name, from_module_version, from_is_working_copy, body):
+    params = {}
     if from_module_name is None and from_module_version:
         print('--from_module_name required when --from_module_version is given')
         return ''
@@ -19,18 +20,15 @@ def create_module(from_module_name, from_module_version, from_is_working_copy, b
     if body is None:
         print('--body required')
         return ''
+    params['from_module_name'] = from_module_name
+    params['from_module_version'] = from_module_version
+    params['from_is_working_copy'] = from_is_working_copy
     file = open(body, "r")
     file_body = file.read()
     file.close()
     client = Client()
-    if from_module_name and from_module_version:
-        response = client.post('/rest/modules/?from_is_working_copy=' + str(
-            from_is_working_copy) + '&from_module_name=' + from_module_name + '&from_module_version='
-                               + from_module_version, file_body)
-        utils.pretty_print(response)
-    else:
-        response = client.post('/rest/modules/', file_body)
-        utils.pretty_print(response)
+    response = client.post('/rest/modules', params=params, body=file_body)
+    utils.pretty_print(response)
 
 
 @click.command('create-module-release')
@@ -38,22 +36,18 @@ def create_module(from_module_name, from_module_version, from_is_working_copy, b
 @click.option('--module_version')
 @click.option('--release_version')
 def create_module_release(module_name, module_version, release_version):
+    params = {}
     if module_name is None:
         print('--module_name required')
         return ''
     if module_version is None:
         print('--module_version required')
         return ''
+    params['module_name'] = module_name
+    params['release_version'] = release_version
     client = Client()
-    if release_version:
-        response = client.post(
-            '/rest/modules/create_release?module_name=' + module_name + '&module_version=' + module_version
-            + '&release_version=' + release_version, None)
-        utils.pretty_print(response)
-    else:
-        response = client.post(
-            '/rest/modules/create_release?module_name=' + module_name + '&module_version=' + module_version, None)
-        utils.pretty_print(response)
+    response = client.post('/rest/modules/create_release', params=params)
+    utils.pretty_print(response)
 
 
 @click.command('delete-module-workingcopy-template')
@@ -74,7 +68,7 @@ def create_module_workingcopy_template(module_name, module_version, body):
     file_body = file.read()
     file.close()
     client = Client()
-    response = client.post('/rest/rest/modules' + module_name + '/' + module_version + '/workingcopy', file_body)
+    response = client.post('/rest/rest/modules' + module_name + '/' + module_version + '/workingcopy', body=file_body)
     utils.pretty_print(response)
 
 
@@ -257,22 +251,26 @@ def get_modules():
 @click.command('perform-search-modules')
 @click.option('--terms')
 def perform_search_modules(terms):
+    params = {}
     if terms is None:
         print('--terms required')
         return ''
+    params['terms'] = terms
     client = Client()
-    response = client.post('/rest/modules/perform_search?terms=' + str(terms), None)
+    response = client.post('/rest/modules/perform_search', params=params)
     utils.pretty_print(response)
 
 
 @click.command('search-module')
 @click.option('--terms')
 def search_module(terms):
+    params = {}
     if terms is None:
         print('--terms required')
         return ''
+    params['temrs'] = terms
     client = Client()
-    response = client.post('/rest/modules/search?terms=' + terms, None)
+    response = client.post('/rest/modules/search', params=params)
     utils.pretty_print(response)
 
 
@@ -286,7 +284,7 @@ def update_module(body):
     file_body = file.read()
     file.close()
     client = Client()
-    response = client.put('/rest/modules/', file_body)
+    response = client.put('/rest/modules/', body=file_body)
     utils.pretty_print(response)
 
 
@@ -308,5 +306,6 @@ def update_module_workingcopy_template(module_name, module_version, body):
     file_body = file.read()
     file.close()
     client = Client()
-    response = client.put('/rest/modules/' + module_name + '/' + module_version + '/workingcopy/templates', file_body)
+    response = client.put('/rest/modules/' + module_name + '/' + module_version + '/workingcopy/templates',
+                          body=file_body)
     utils.pretty_print(response)
