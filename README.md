@@ -1,6 +1,6 @@
 # HESPERIDES CLI
 
-[![Build Status](https://travis-ci.org/victorsalaun/hesperides-cli.svg?branch=master)](https://travis-ci.org/victorsalaun/hesperides-cli)
+[![Build Status](https://travis-ci.org/victorsalaun/hesperides-cli.svg?branch=master)](https://travis-ci.org/victorsalaun/hesperides-cli) [![Build Status](https://img.shields.io/pypi/v/hesperides-cli.svg)](https://pypi.python.org/pypi/requests) [![Build Status](https://img.shields.io/pypi/pyversions/hesperides-cli.svg)](https://pypi.python.org/pypi/requests) [![Build Status](https://img.shields.io/pypi/l/hesperides-cli.svg)](https://pypi.python.org/pypi/requests)
 
 Command Line Interface for Hesperides https://github.com/voyages-sncf-technologies/hesperides
 
