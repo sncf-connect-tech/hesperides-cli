@@ -50,7 +50,12 @@ cli.add_command(feedback.post_feedback)
 
 cli.add_command(files.get_files)
 
-cli.add_command(indexation.perform_reindex)
+cli.add_command(indexation.perform_indexation_all)
+cli.add_command(indexation.perform_indexation_applications)
+cli.add_command(indexation.perform_indexation_mapping)
+cli.add_command(indexation.perform_indexation_modules)
+cli.add_command(indexation.perform_indexation_modules_templates)
+cli.add_command(indexation.perform_indexation_templates_packages)
 
 cli.add_command(modules.create_module)
 cli.add_command(modules.create_module_release)
