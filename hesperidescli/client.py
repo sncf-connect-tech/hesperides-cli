@@ -28,7 +28,7 @@ class Client:
 
     def post(self, path, params=None, body=None):
         if body:
-            return requests.post(self.endpoint + path, params=params, body=body, headers=self.headers,
+            return requests.post(self.endpoint + path, params=params, data=body, headers=self.headers,
                                  verify=False)
         else:
             return requests.post(self.endpoint + path, params=params, headers=self.headers,
@@ -36,8 +36,7 @@ class Client:
 
     def put(self, path, params=None, body=None):
         if body:
-            return requests.put(self.endpoint + path, params=params, body=body, headers=self.headers,
+            return requests.put(self.endpoint + path, params=params, data=body, headers=self.headers,
                                 verify=False)
         else:
-            return requests.put(self.endpoint + path, params=params, body=body, headers=self.headers,
-                                verify=False)
+            return requests.put(self.endpoint + path, params=params, headers=self.headers, verify=False)

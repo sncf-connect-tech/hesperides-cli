@@ -20,9 +20,12 @@ def create_module(from_module_name, from_module_version, from_is_working_copy, b
     if body is None:
         print('--body required')
         return ''
-    params['from_module_name'] = from_module_name
-    params['from_module_version'] = from_module_version
-    params['from_is_working_copy'] = from_is_working_copy
+    if from_module_name:
+        params['from_module_name'] = from_module_name
+    if from_module_version:
+        params['from_module_version'] = from_module_version
+    if from_is_working_copy:
+        params['from_is_working_copy'] = from_is_working_copy
     file = open(body, "r")
     file_body = file.read()
     file.close()
