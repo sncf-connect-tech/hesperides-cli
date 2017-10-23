@@ -1,6 +1,6 @@
 # HESPERIDES CLI
 
-[![Build Status](https://travis-ci.org/voyages-sncf-technologies/hesperides-cli.svg?branch=master)](https://travis-ci.org/voyages-sncf-technologies/hesperides-cli) [![Build Status](https://img.shields.io/pypi/v/hesperides-cli.svg)](https://pypi.python.org/pypi/requests) [![Build Status](https://img.shields.io/pypi/pyversions/hesperides-cli.svg)](https://pypi.python.org/pypi/requests) [![Build Status](https://img.shields.io/pypi/l/hesperides-cli.svg)](https://pypi.python.org/pypi/requests)
+[![Build Status](https://travis-ci.org/voyages-sncf-technologies/hesperides-cli.svg?branch=master)](https://travis-ci.org/voyages-sncf-technologies/hesperides-cli) [![Coverage Status](https://coveralls.io/repos/github/voyages-sncf-technologies/hesperides-cli/badge.svg?branch=master)](https://coveralls.io/github/voyages-sncf-technologies/hesperides-cli?branch=master) [![Build Status](https://img.shields.io/pypi/v/hesperides-cli.svg)](https://pypi.python.org/pypi/requests) [![Build Status](https://img.shields.io/pypi/pyversions/hesperides-cli.svg)](https://pypi.python.org/pypi/requests) [![Build Status](https://img.shields.io/pypi/l/hesperides-cli.svg)](https://pypi.python.org/pypi/requests)
 
 Command Line Interface for Hesperides https://github.com/voyages-sncf-technologies/hesperides
 
