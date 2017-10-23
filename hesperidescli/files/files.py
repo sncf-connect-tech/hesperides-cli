@@ -15,22 +15,22 @@ from hesperidescli.client import Client
 def get_files(application_name, platform_name, path, module_name, module_version, instance_name, filename):
     if application_name is None:
         print('--application_name required')
-        return ''
+        raise click.Abort()
     if platform_name is None:
         print('--platform_name required')
-        return ''
+        raise click.Abort()
     if path is None:
         print('--path required')
-        return ''
+        raise click.Abort()
     if module_name is None:
         print('--module_name required')
-        return ''
+        raise click.Abort()
     if module_version is None:
         print('--module_version required')
-        return ''
+        raise click.Abort()
     if instance_name is None:
         print('--instance_name required')
-        return ''
+        raise click.Abort()
     client = Client()
     if filename:
         response = client.get(

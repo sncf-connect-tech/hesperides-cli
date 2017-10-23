@@ -9,7 +9,7 @@ from hesperidescli.client import Client
 def get_application(application_name):
     if application_name is None:
         print('--application_name required')
-        return ''
+        raise click.Abort()
     client = Client()
     response = client.get('/rest/applications/' + application_name)
     utils.pretty_print(response)
@@ -22,13 +22,13 @@ def get_application(application_name):
 def get_application_from_module(module, version, type):
     if module is None:
         print('--module required')
-        return ''
+        raise click.Abort()
     if version is None:
         print('--version required')
-        return ''
+        raise click.Abort()
     if type is None:
         print('--type required')
-        return ''
+        raise click.Abort()
     client = Client()
     response = client.get('/rest/applications/using_module/' + module + '/' + version + '/' + type)
     utils.pretty_print(response)
@@ -40,7 +40,7 @@ def perform_search_applications(name):
     params = {}
     if name is None:
         print('--name required')
-        return ''
+        raise click.Abort()
     else:
         params['name'] = name
     client = Client()

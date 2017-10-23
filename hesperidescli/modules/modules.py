@@ -13,13 +13,13 @@ def create_module(from_module_name, from_module_version, from_is_working_copy, b
     params = {}
     if from_module_name is None and from_module_version:
         print('--from_module_name required when --from_module_version is given')
-        return ''
+        raise click.Abort()
     if from_module_name and from_module_version is None:
         print('--from_module_version required when --from_module_name is given')
-        return ''
+        raise click.Abort()
     if body is None:
         print('--body required')
-        return ''
+        raise click.Abort()
     if from_module_name:
         params['from_module_name'] = from_module_name
     if from_module_version:
@@ -42,10 +42,10 @@ def create_module_release(module_name, module_version, release_version):
     params = {}
     if module_name is None:
         print('--module_name required')
-        return ''
+        raise click.Abort()
     if module_version is None:
         print('--module_version required')
-        return ''
+        raise click.Abort()
     params['module_name'] = module_name
     params['release_version'] = release_version
     client = Client()
@@ -60,13 +60,13 @@ def create_module_release(module_name, module_version, release_version):
 def create_module_workingcopy_template(module_name, module_version, body):
     if module_name is None:
         print('--module_name required')
-        return ''
+        raise click.Abort()
     if module_version is None:
         print('--module_version required')
-        return ''
+        raise click.Abort()
     if body is None:
         print('--body required')
-        return ''
+        raise click.Abort()
     file = open(body, "r")
     file_body = file.read()
     file.close()
@@ -81,10 +81,10 @@ def create_module_workingcopy_template(module_name, module_version, body):
 def delete_module_release(module_name, module_version):
     if module_name is None:
         print('--module_name required')
-        return ''
+        raise click.Abort()
     if module_version is None:
         print('--module_version required')
-        return ''
+        raise click.Abort()
     client = Client()
     response = client.delete('/rest/rest/modules' + module_name + '/' + module_version + '/release')
     utils.pretty_print(response)
@@ -96,10 +96,10 @@ def delete_module_release(module_name, module_version):
 def delete_module_workingcopy(module_name, module_version):
     if module_name is None:
         print('--module_name required')
-        return ''
+        raise click.Abort()
     if module_version is None:
         print('--module_version required')
-        return ''
+        raise click.Abort()
     client = Client()
     response = client.delete('/rest/rest/modules' + module_name + '/' + module_version + '/workingcopy')
     utils.pretty_print(response)
@@ -112,13 +112,13 @@ def delete_module_workingcopy(module_name, module_version):
 def delete_module_workingcopy_template(module_name, module_version, template_name):
     if module_name is None:
         print('--module_name required')
-        return ''
+        raise click.Abort()
     if module_version is None:
         print('--module_version required')
-        return ''
+        raise click.Abort()
     if template_name is None:
         print('--template_name required')
-        return ''
+        raise click.Abort()
     client = Client()
     response = client.delete(
         '/rest/rest/modules' + module_name + '/' + module_version + '/workingcopy/templates/' + template_name)
@@ -132,10 +132,10 @@ def delete_module_workingcopy_template(module_name, module_version, template_nam
 def get_module(module_name, module_version, module_type):
     if module_name is None:
         print('--module_name required')
-        return ''
+        raise click.Abort()
     if module_type and module_version is None:
         print('--module_version required')
-        return ''
+        raise click.Abort()
     client = Client()
     if module_version is None and module_type is None:
         response = client.get('/rest/modules/' + module_name)
@@ -154,10 +154,10 @@ def get_module(module_name, module_version, module_type):
 def get_module_release(module_name, module_version):
     if module_name is None:
         print('--module_name required')
-        return ''
+        raise click.Abort()
     if module_version is None:
         print('--module_version required')
-        return ''
+        raise click.Abort()
     client = Client()
     response = client.get('/rest/modules/' + module_name + '/' + module_version + '/release')
     utils.pretty_print(response)
@@ -170,10 +170,10 @@ def get_module_release(module_name, module_version):
 def get_module_release_template(module_name, module_version, template_name):
     if module_name is None:
         print('--module_name required')
-        return ''
+        raise click.Abort()
     if module_version is None:
         print('--module_version required')
-        return ''
+        raise click.Abort()
     client = Client()
     response = client.get('/rest/modules/' + module_name + '/' + module_version + '/release/templates' + template_name)
     utils.pretty_print(response)
@@ -185,10 +185,10 @@ def get_module_release_template(module_name, module_version, template_name):
 def get_module_release_templates(module_name, module_version):
     if module_name is None:
         print('--module_name required')
-        return ''
+        raise click.Abort()
     if module_version is None:
         print('--module_version required')
-        return ''
+        raise click.Abort()
     client = Client()
     response = client.get('/rest/modules/' + module_name + '/' + module_version + '/release/templates')
     utils.pretty_print(response)
@@ -200,10 +200,10 @@ def get_module_release_templates(module_name, module_version):
 def get_module_workingcopy(module_name, module_version):
     if module_name is None:
         print('--module_name required')
-        return ''
+        raise click.Abort()
     if module_version is None:
         print('--module_version required')
-        return ''
+        raise click.Abort()
     client = Client()
     response = client.get('/rest/modules/' + module_name + '/' + module_version + '/workingcopy')
     utils.pretty_print(response)
@@ -216,13 +216,13 @@ def get_module_workingcopy(module_name, module_version):
 def get_module_workingcopy_template(module_name, module_version, template_name):
     if module_name is None:
         print('--module_name required')
-        return ''
+        raise click.Abort()
     if module_version is None:
         print('--module_version required')
-        return ''
+        raise click.Abort()
     if template_name is None:
         print('--template_name required')
-        return ''
+        raise click.Abort()
     client = Client()
     response = client.get(
         '/rest/modules/' + module_name + '/' + module_version + '/workingcopy/templates/' + template_name)
@@ -235,10 +235,10 @@ def get_module_workingcopy_template(module_name, module_version, template_name):
 def get_module_workingcopy_templates(module_name, module_version):
     if module_name is None:
         print('--module_name required')
-        return ''
+        raise click.Abort()
     if module_version is None:
         print('--module_version required')
-        return ''
+        raise click.Abort()
     client = Client()
     response = client.get('/rest/modules/' + module_name + '/' + module_version + '/workingcopy/templates/')
     utils.pretty_print(response)
@@ -257,7 +257,7 @@ def perform_search_modules(terms):
     params = {}
     if terms is None:
         print('--terms required')
-        return ''
+        raise click.Abort()
     params['terms'] = terms
     client = Client()
     response = client.post('/rest/modules/perform_search', params=params)
@@ -270,7 +270,7 @@ def search_module(terms):
     params = {}
     if terms is None:
         print('--terms required')
-        return ''
+        raise click.Abort()
     params['temrs'] = terms
     client = Client()
     response = client.post('/rest/modules/search', params=params)
@@ -282,7 +282,7 @@ def search_module(terms):
 def update_module(body):
     if body is None:
         print('--body required')
-        return ''
+        raise click.Abort()
     file = open(body, "r")
     file_body = file.read()
     file.close()
@@ -298,13 +298,13 @@ def update_module(body):
 def update_module_workingcopy_template(module_name, module_version, body):
     if module_name is None:
         print('--module_name required')
-        return ''
+        raise click.Abort()
     if module_version is None:
         print('--module_version required')
-        return ''
+        raise click.Abort()
     if body is None:
         print('--body required')
-        return ''
+        raise click.Abort()
     file = open(body, "r")
     file_body = file.read()
     file.close()
