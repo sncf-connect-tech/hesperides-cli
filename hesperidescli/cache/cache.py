@@ -87,7 +87,7 @@ def delete_workingcopy_module_cache(module_name, module_version):
 
 @click.command('delete-workingcopy-template-package-cache')
 @click.option('--template_name')
-@click.option('--module_version')
+@click.option('--template_version')
 def delete_workingcopy_template_package_cache(template_name, template_version):
     if template_name is None:
         print('--template_name required')
