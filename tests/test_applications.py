@@ -10,23 +10,28 @@ class TestApplications(unittest.TestCase):
         runner = CliRunner()
         result = runner.invoke(get_application)
         assert result.exit_code == 1
+        assert result.output == '--application_name required\nAborted!\n'
 
     def test_get_application_from_module_missing_module(self):
         runner = CliRunner()
         result = runner.invoke(get_application_from_module)
         assert result.exit_code == 1
+        assert result.output == '--module required\nAborted!\n'
 
     def test_get_application_from_module_missing_version(self):
         runner = CliRunner()
-        result = runner.invoke(get_application_from_module)
+        result = runner.invoke(get_application_from_module, ['--module', 'toto'])
         assert result.exit_code == 1
+        assert result.output == '--version required\nAborted!\n'
 
     def test_get_application_from_module_missing_type(self):
         runner = CliRunner()
-        result = runner.invoke(get_application_from_module)
+        result = runner.invoke(get_application_from_module, ['--module', 'toto', '--version', 'titi'])
         assert result.exit_code == 1
+        assert result.output == '--type required\nAborted!\n'
 
     def test_perform_search_applications_missing_name(self):
         runner = CliRunner()
         result = runner.invoke(perform_search_applications)
         assert result.exit_code == 1
+        assert result.output == '--name required\nAborted!\n'
