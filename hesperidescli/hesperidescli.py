@@ -9,6 +9,7 @@ from hesperidescli.configure import configure
 from hesperidescli.events import events
 from hesperidescli.feedback import feedback
 from hesperidescli.files import files
+from hesperidescli.local import generate as local_generate, validate as local_validate
 from hesperidescli.indexation import indexation
 from hesperidescli.modules import modules
 from hesperidescli.stats import stats
@@ -47,6 +48,9 @@ cli.add_command(configure.set_profile)
 cli.add_command(events.get_events)
 
 cli.add_command(feedback.post_feedback)
+
+cli.add_command(local_generate)
+cli.add_command(local_validate)
 
 cli.add_command(files.get_files)
 

@@ -34,11 +34,10 @@ def get_profile():
 
 
 def get_config(key):
-    profile_reader = ConfigFileReader()
-    profile = profile_reader.get_profile()
+    profile = ConfigFileReader().get_profile()
     reader = ConfigFileReader()
-    config = reader.get_config(profile)
-    config = reader.get_credentials(profile)
+    # config = reader.get_config(profile)
+    # config = reader.get_credentials(profile)
     return reader.get_item(profile, key)
 
 
@@ -57,7 +56,6 @@ def set_conf(profile, username, password, hesperides_endpoint, response_format):
     config_writer.update_config(profile, config, False)
     credentials_writer = ConfigFileWriter()
     credentials_writer.update_credentials(profile, credentials, False)
-    profile_writer = ConfigFileWriter()
     config_writer.update_config('config', {}, False)
 
 

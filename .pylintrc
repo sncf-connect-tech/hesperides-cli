@@ -1,0 +1,7 @@
+[MESSAGES CONTROL]
+disable = duplicate-code, line-too-long, missing-docstring
+
+[FORMAT]
+# We extend the built-in characters limit
+argument-rgx=[a-z_][a-z0-9_]{2,40}$
+function-rgx=[a-z_][a-z0-9_]{2,40}$

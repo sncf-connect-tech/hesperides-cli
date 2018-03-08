@@ -1,0 +1,4 @@
+coveralls
+pylint
+pytest
+tox

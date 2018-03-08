@@ -1,5 +1,3 @@
-from json import JSONDecodeError
-
 import requests
 import urllib3
 
@@ -30,13 +28,11 @@ class Client:
         if body:
             return requests.post(self.endpoint + path, params=params, data=body, headers=self.headers,
                                  verify=False)
-        else:
-            return requests.post(self.endpoint + path, params=params, headers=self.headers,
-                                 verify=False, stream=True)
+        return requests.post(self.endpoint + path, params=params, headers=self.headers,
+                             verify=False, stream=True)
 
     def put(self, path, params=None, body=None):
         if body:
             return requests.put(self.endpoint + path, params=params, data=body, headers=self.headers,
                                 verify=False)
-        else:
-            return requests.put(self.endpoint + path, params=params, headers=self.headers, verify=False)
+        return requests.put(self.endpoint + path, params=params, headers=self.headers, verify=False)

@@ -3,6 +3,7 @@ import os
 from os.path import expanduser
 
 
+# pylint: disable=too-few-public-methods
 class ConfigFile:
     _HOME = expanduser("~")
     _CONFIG_DIR = '.hesperides'
