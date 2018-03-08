@@ -2,25 +2,20 @@
 
 [![Build Status](https://travis-ci.org/voyages-sncf-technologies/hesperides-cli.svg?branch=master)](https://travis-ci.org/voyages-sncf-technologies/hesperides-cli) [![Coverage Status](https://coveralls.io/repos/github/voyages-sncf-technologies/hesperides-cli/badge.svg?branch=master)](https://coveralls.io/github/voyages-sncf-technologies/hesperides-cli?branch=master) [![Build Status](https://img.shields.io/pypi/v/hesperides-cli.svg)](https://pypi.python.org/pypi/requests) [![Build Status](https://img.shields.io/pypi/pyversions/hesperides-cli.svg)](https://pypi.python.org/pypi/requests) [![Build Status](https://img.shields.io/pypi/l/hesperides-cli.svg)](https://pypi.python.org/pypi/requests)
 
-Command Line Interface for Hesperides https://github.com/voyages-sncf-technologies/hesperides
+Python Command Line Interface for Hesperides https://github.com/voyages-sncf-technologies/hesperides
 
-## Prerequisites
-
-- python 3 >= 3.4
 
 ## Installation
 
-hesperides-cli has been registered. It can be installed via pip:
+`hesperides-cli` is published on [Pypi](https://pypi.python.org/pypi/hesperides-cli). It can be installed simply with `pip`:
 
     pip install hesperides-cli
 
-## Build
+### Developper environment installation
+After cloning this repo and optionally creating a [virtualenv](https://github.com/berdario/pew):
 
-    python setup.py install
+    pip install -e .
 
-For development purpose:
-
-    python setup.py develop
 
 ## Usage
 
@@ -31,6 +26,8 @@ To get all hesperides commands, just type:
     hesperides
 
 ### Configure
+
+This client configuration is stored locally in `~/.hesperides/`:
 
 To set up your environment:
 
@@ -45,4 +42,3 @@ To try your configuration, type one of these commands:
     hesperides get-versions
     hesperides get-user
     hesperides get-stats
-    

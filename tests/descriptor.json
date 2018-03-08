@@ -1,0 +1,30 @@
+{
+  "module1": {
+    "tests/template-app-props.yml": {
+      "title": "app-props.yml",
+      "filename": "app-props.yml",
+      "location": "tests/",
+      "local": {
+        "values": {
+          "foo": "bar"
+        }
+      }
+    },
+    "tests/template-app.properties": {
+      "title": "app.properties",
+      "filename": "app.properties",
+      "location": "tests/"
+    }
+  },
+  "module2": {
+    "tests/template-app.properties": {
+      "title": "app.properties",
+      "filename": "app.properties",
+      "location": "/appl/{{userwas}}/properties",
+      "local": {
+        "filename": "app2.properties",
+        "location": "tests/"
+      }
+    }
+  }
+}

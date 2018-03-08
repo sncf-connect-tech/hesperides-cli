@@ -1,24 +1,18 @@
 language: python
 
 python:
-  - "3.4"
   - "3.5"
   - "3.6"
+  - "3.7"
 
 sudo: false
 
-before_install:
-  - if [ "$TRAVIS_PULL_REQUEST" != "false" ] && [ "$TRAVIS_BRANCH" == "master" ]; then
-      echo "No pull requests can be sent to the master branch" 1>&2;
-      exit 1;
-    fi
-
 install:
   - pip install .
-  - pip install tox coveralls
-  - python setup.py install
+  - pip install -r dev-requirements.txt
 
 script:
+  - pylint hesperidescli
   - tox
 
 after_success:

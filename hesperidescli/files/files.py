@@ -12,6 +12,7 @@ from hesperidescli.client import Client
 @click.option('--module_version')
 @click.option('--instance_name')
 @click.option('--filename')
+# pylint: disable=too-many-arguments
 def get_files(application_name, platform_name, path, module_name, module_version, instance_name, filename):
     if application_name is None:
         print('--application_name required')
