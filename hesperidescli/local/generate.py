@@ -4,7 +4,6 @@ import shutil
 
 import click
 
-from hesperidescli.client import Client
 from hesperidescli.local.descriptor_utils import list_generated_files_contents
 
 
