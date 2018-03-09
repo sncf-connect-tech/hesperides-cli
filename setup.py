@@ -10,7 +10,7 @@ from setuptools import find_packages, setup, Command
 # Package meta-data.
 NAME = 'hesperides-cli'
 DESCRIPTION = 'Command Line Interface for Hesperides'
-URL = 'https://github.com/victorsalaun/hesperides-cli'
+URL = 'https://github.com/voyages-sncf-technologies/hesperides-cli'
 EMAIL = 'victor.salaun@gmail.com'
 AUTHOR = 'Victor SALAUN'
 
@@ -47,15 +47,15 @@ class PublishCommand(Command):
 
     def run(self):
         try:
-            self.status('Removing previous builds…')
+            self.status('Removing previous builds...')
             rmtree(os.path.join(here, 'dist'))
         except FileNotFoundError:
             pass
 
-        self.status('Building Source and Wheel (universal) distribution…')
+        self.status('Building Source and Wheel (universal) distribution...')
         os.system('{0} setup.py sdist bdist_wheel --universal'.format(sys.executable))
 
-        self.status('Uploading the package to PyPi via Twine…')
+        self.status('Uploading the package to PyPi via Twine...')
         os.system('twine upload dist/*')
 
         sys.exit()
@@ -63,7 +63,7 @@ class PublishCommand(Command):
 
 setup(
     name=NAME,
-    version="0.2.2",
+    version="0.3.1",
     description=DESCRIPTION,
     long_description=long_description,
     author=AUTHOR,
@@ -79,7 +79,6 @@ setup(
         'Environment :: Console',
         'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: Implementation :: CPython',
