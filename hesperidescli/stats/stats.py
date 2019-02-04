@@ -4,8 +4,8 @@ from hesperidescli import utils
 from hesperidescli.client import Client
 
 
-@click.command('get-stats')
+@click.command("get-stats")
 def get_stats():
     client = Client()
-    response = client.get('/rest/stats')
+    response = client.get("/rest/stats")
     utils.pretty_print(response)
