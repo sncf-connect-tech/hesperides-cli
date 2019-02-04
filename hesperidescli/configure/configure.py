@@ -1,7 +1,6 @@
-import base64
-import click
+import base64, click
 
-from hesperidescli.configure.reader import ConfigFileReader
+from hesperidescli.configure.reader import ConfigFileReader, ConfigParserError
 from hesperidescli.configure.writer import ConfigFileWriter
 
 
@@ -34,11 +33,19 @@ def get_profile():
 
 
 def get_config(key):
-    profile = ConfigFileReader().get_profile()
-    reader = ConfigFileReader()
-    # config = reader.get_config(profile)
-    # config = reader.get_credentials(profile)
-    return reader.get_item(profile, key)
+    config_reader = ConfigFileReader()
+    try:
+        return config_reader.get_config_item(config_reader.get_profile(), key)
+    except ConfigParserError:
+        return config_reader.get_config_item(key)
+
+
+def get_credentials(key):
+    config_reader = ConfigFileReader()
+    try:
+        return config_reader.get_credentials_item(config_reader.get_profile(), key)
+    except ConfigParserError:
+        return config_reader.get_credentials_item(key)
 
 
 @click.command("set-conf")

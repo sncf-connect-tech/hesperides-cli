@@ -9,7 +9,7 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 class Client:
     def __init__(self):
         self.endpoint = configure.get_config("endpoint")
-        auth = configure.get_config("auth")
+        auth = configure.get_credentials("auth")
         self.headers = {
             "Accept": "application/json",
             "Authorization": "Basic %s" % auth,
