@@ -15,6 +15,7 @@ def get_application(application_name):
     utils.pretty_print(response)
 
 
+# pylint: disable=redefined-builtin
 @click.command("get-applications-using-module")
 @click.option("--module")
 @click.option("--version")
