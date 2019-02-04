@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [v0.3.0] - Work In Progress
 ### Changed
-- Renamed `applications import get_application_from_module` as `get_applications_using_module`
+- Renamed `applications import get_application_from_module` to `get_applications_using_module`
 - Shortened import paths: no more `$resource.$resource`
 
 ### Added

@@ -13,7 +13,7 @@ install:
 
 script:
   - pylint hesperidescli
-  - black hesperidescli
+  - black hesperidescli/ tests/
   - tox
 
 after_success:

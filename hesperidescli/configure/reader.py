@@ -17,10 +17,10 @@ class ConfigFileReader(ConfigFile):
 
     def get_profile(self):
         try:
-            self.get_config('config')
-            return self.get_item('config', 'profile')
+            self.get_config("config")
+            return self.get_item("config", "profile")
         except (NoSectionError, NoOptionError):
-            print('No profile has been configured')
+            print("No profile has been configured")
             sys.exit(1)
 
     def print_config(self):
@@ -34,7 +34,9 @@ class ConfigFileReader(ConfigFile):
         try:
             return self.config.items(section)
         except KeyError:
-            raise Exception('hesperides has not been configured. Please type "hesperides set-conf"')
+            raise Exception(
+                'hesperides has not been configured. Please type "hesperides set-conf"'
+            )
 
     def _print(self, file_path):
         self.config.read(file_path)

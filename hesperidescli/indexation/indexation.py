@@ -4,43 +4,43 @@ from hesperidescli import utils
 from hesperidescli.client import Client
 
 
-@click.command('perform-indexation-all')
+@click.command("perform-indexation-all")
 def perform_indexation_all():
     client = Client()
-    response = client.post('/rest/indexation/all')
+    response = client.post("/rest/indexation/all")
     utils.pretty_print(response)
 
 
-@click.command('perform-indexation-applications')
+@click.command("perform-indexation-applications")
 def perform_indexation_applications():
     client = Client()
-    response = client.post('/rest/indexation/applications')
+    response = client.post("/rest/indexation/applications")
     utils.pretty_print(response)
 
 
-@click.command('perform-indexation-mapping')
+@click.command("perform-indexation-mapping")
 def perform_indexation_mapping():
     client = Client()
-    response = client.post('/rest/indexation/mapping')
+    response = client.post("/rest/indexation/mapping")
     utils.pretty_print(response)
 
 
-@click.command('perform-indexation-modules')
+@click.command("perform-indexation-modules")
 def perform_indexation_modules():
     client = Client()
-    response = client.post('/rest/indexation/modules')
+    response = client.post("/rest/indexation/modules")
     utils.pretty_print(response)
 
 
-@click.command('perform-indexation-modules-templates')
+@click.command("perform-indexation-modules-templates")
 def perform_indexation_modules_templates():
     client = Client()
-    response = client.post('/rest/indexation/modules/templates')
+    response = client.post("/rest/indexation/modules/templates")
     utils.pretty_print(response)
 
 
-@click.command('perform-indexation-templates-packages')
+@click.command("perform-indexation-templates-packages")
 def perform_indexation_templates_packages():
     client = Client()
-    response = client.post('/rest/indexation/templates/packages')
+    response = client.post("/rest/indexation/templates/packages")
     utils.pretty_print(response)

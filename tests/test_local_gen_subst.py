@@ -6,51 +6,53 @@ import pytest
 
 
 def test_mustache_subst_with_extra_whitespaces():
-    assert substitute_all_mustaches('{{ a | @default 42 }}', local_values={}) == '42'
+    assert substitute_all_mustaches("{{ a | @default 42 }}", local_values={}) == "42"
 
 
 def test_mustache_empty_pattern_ok():
-    assert substitute_all_mustaches(r'{{b @pattern XXX}}', local_values={}) == ''
+    assert substitute_all_mustaches(r"{{b @pattern XXX}}", local_values={}) == ""
 
 
 def test_mustache_empty_required_ko():
     with pytest.raises(ValueError) as subst_error:
-        substitute_all_mustaches(r'{{c @required}}', local_values={})
+        substitute_all_mustaches(r"{{c @required}}", local_values={})
     assert "Aucune valeur n'a été définie pour la moustache c" in str(subst_error)
 
 
 def test_mustache_pattern_ok():
     template_content = r'{{marketLangs |@pattern "^\"([a-z]{2}|\*)-([A-Z]{2}|\*)\"(,\"([a-z]{2}|\*)-([A-Z]{2}|\*)\")*$" @default "\"fr-FR\",\"uk-EN\""}}'
-    assert substitute_all_mustaches(template_content, local_values={}) == '"fr-FR","uk-EN"'
+    assert (
+        substitute_all_mustaches(template_content, local_values={}) == '"fr-FR","uk-EN"'
+    )
 
 
 def test_mustache_pattern_digit_ok():
     template_content = r'{{hystrix_mur_threads | @default 40 @pattern "\\d+"}}'
-    assert substitute_all_mustaches(template_content, local_values={}) == '40'
+    assert substitute_all_mustaches(template_content, local_values={}) == "40"
 
 
 def test_mustache_pattern_fail():
     template_content = r'{{marketLangs |  @pattern   "^\"([a-z]{2}|\*)-([A-Z]{2}|\*)\"(,\"([a-z]{2}|\*)-([A-Z]{2}|\*)\")*$" }}'
     with pytest.raises(ValueError) as subst_error:
-        substitute_all_mustaches(template_content, local_values={'marketLangs': 'XXX'})
-    assert 'La valeur XXX ne respecte pas le @pattern' in str(subst_error)
+        substitute_all_mustaches(template_content, local_values={"marketLangs": "XXX"})
+    assert "La valeur XXX ne respecte pas le @pattern" in str(subst_error)
 
 
 def test_mustache_subst_empty_iterable():
-    template_content = '''[
+    template_content = """[
   {{#products.configuration}}
   {
     "productType": "{{productType}}"
   },
   {{/products.configuration}}
   {}
-]'''
-    local_values = {'products.configuration': []}
-    assert substitute_all_mustaches(template_content, local_values) == '[\n  {}\n]'
+]"""
+    local_values = {"products.configuration": []}
+    assert substitute_all_mustaches(template_content, local_values) == "[\n  {}\n]"
 
 
 def test_mustache_subst_iterable():
-    template_content = '''[
+    template_content = """[
   {{#products.configuration}}
   {
     "productType": "{{productType |@pattern "^[A-Z]*$" @required @comment "Type du produit. Ex : HOTEL" }}",
@@ -66,60 +68,60 @@ def test_mustache_subst_iterable():
   },
   {{/products.configuration}}
   {}
-]'''
+]"""
     local_values = {
-      'products.configuration': [
-        {
-          'productType': 'HOTEL',
-          'marketLangs': "\"fr-FR\"",
-          'daysFromToday': 0,
-          'minStayLengthInDays': 1,
-          'maxStayLengthInDays': 27,
-          'murServiceName': None
-        },
-        {
-          'productType': 'IDAVIS',
-          'marketLangs': "\"*-*\"",
-          'daysFromToday': 0,
-          'minStayLengthInDays': None,
-          'maxStayLengthInDays': None,
-          'murServiceName': "\"Avis\""
-        },
-        {
-          'productType': 'ARTICLE',
-          'marketLangs': "\"*-FR\"",
-          'daysFromToday': None,
-          'minStayLengthInDays': None,
-          'maxStayLengthInDays': None,
-          'murServiceName': None
-        },
-        {
-          'productType': 'VOITURE',
-          'marketLangs': "\"fr-FR\"",
-          'daysFromToday': 0,
-          'minStayLengthInDays': None,
-          'maxStayLengthInDays': None,
-          'murServiceName': "\"Avis\""
-        },
-        {
-          'productType': 'IDCAB',
-          'marketLangs': "\"*-FR\"",
-          'daysFromToday': None,
-          'minStayLengthInDays': None,
-          'maxStayLengthInDays': None,
-          'murServiceName': "\"iDCAB\""
-        },
-        {
-          'productType': 'OUICAR',
-          'marketLangs': "\"*-FR\"",
-          'daysFromToday': None,
-          'minStayLengthInDays': None,
-          'maxStayLengthInDays': None,
-          'murServiceName': "\"OUICARService\""
-        }
-      ]
+        "products.configuration": [
+            {
+                "productType": "HOTEL",
+                "marketLangs": '"fr-FR"',
+                "daysFromToday": 0,
+                "minStayLengthInDays": 1,
+                "maxStayLengthInDays": 27,
+                "murServiceName": None,
+            },
+            {
+                "productType": "IDAVIS",
+                "marketLangs": '"*-*"',
+                "daysFromToday": 0,
+                "minStayLengthInDays": None,
+                "maxStayLengthInDays": None,
+                "murServiceName": '"Avis"',
+            },
+            {
+                "productType": "ARTICLE",
+                "marketLangs": '"*-FR"',
+                "daysFromToday": None,
+                "minStayLengthInDays": None,
+                "maxStayLengthInDays": None,
+                "murServiceName": None,
+            },
+            {
+                "productType": "VOITURE",
+                "marketLangs": '"fr-FR"',
+                "daysFromToday": 0,
+                "minStayLengthInDays": None,
+                "maxStayLengthInDays": None,
+                "murServiceName": '"Avis"',
+            },
+            {
+                "productType": "IDCAB",
+                "marketLangs": '"*-FR"',
+                "daysFromToday": None,
+                "minStayLengthInDays": None,
+                "maxStayLengthInDays": None,
+                "murServiceName": '"iDCAB"',
+            },
+            {
+                "productType": "OUICAR",
+                "marketLangs": '"*-FR"',
+                "daysFromToday": None,
+                "minStayLengthInDays": None,
+                "maxStayLengthInDays": None,
+                "murServiceName": '"OUICARService"',
+            },
+        ]
     }
-    expected_result = '''[
+    expected_result = """[
   {
     "productType": "HOTEL",
     "marketLangs": [
@@ -193,5 +195,5 @@ def test_mustache_subst_iterable():
     "murServiceName": "OUICARService"
   },
   {}
-]'''
+]"""
     assert substitute_all_mustaches(template_content, local_values) == expected_result
