@@ -5,19 +5,19 @@ from hesperidescli.client import Client
 
 
 @click.command("create-template-package")
-@click.option("--from_package_name")
-@click.option("--from_package_version")
-@click.option("--from_is_working_copy", is_flag=True)
+@click.option("--from-package-name")
+@click.option("--from-package-version")
+@click.option("--from-is-working-copy", is_flag=True)
 @click.option("--body")
 def create_template_package(
     from_package_name, from_package_version, from_is_working_copy, body
 ):
     params = {}
     if from_package_name is None and from_package_version:
-        print("--from_package_name required when --from_package_version is given")
+        print("--from-package-name required when --from-package-version is given")
         raise click.Abort()
     if from_package_name and from_package_version is None:
-        print("--from_package_version required when --from_package_name is given")
+        print("--from-package-version required when --from-package-name is given")
         raise click.Abort()
     if body is None:
         print("--body required")
@@ -34,21 +34,21 @@ def create_template_package(
 
 
 @click.command("create-template-package-workingcopy")
-@click.option("--package_name")
-@click.option("--package_version")
-@click.option("--template_name")
+@click.option("--package-name")
+@click.option("--package-version")
+@click.option("--template-name")
 @click.option("--body")
 def create_template_package_workingcopy(
     package_name, package_version, template_name, body
 ):
     if package_name is None:
-        print("--package_name required")
+        print("--package-name required")
         raise click.Abort()
     if package_version is None:
-        print("--package_version required")
+        print("--package-version required")
         raise click.Abort()
     if template_name is None:
-        print("--template_name required")
+        print("--template-name required")
         raise click.Abort()
     if body is None:
         print("--body required")
@@ -70,14 +70,14 @@ def create_template_package_workingcopy(
 
 
 @click.command("delete-template-package-release")
-@click.option("--package_name")
-@click.option("--package_version")
+@click.option("--package-name")
+@click.option("--package-version")
 def delete_template_package_release(package_name, package_version):
     if package_name is None:
-        print("--package_name required")
+        print("--package-name required")
         raise click.Abort()
     if package_version is None:
-        print("--package_version required")
+        print("--package-version required")
         raise click.Abort()
     client = Client()
     response = client.delete(
@@ -87,14 +87,14 @@ def delete_template_package_release(package_name, package_version):
 
 
 @click.command("delete-template-package-workingcopy")
-@click.option("--package_name")
-@click.option("--package_version")
+@click.option("--package-name")
+@click.option("--package-version")
 def delete_template_package_workingcopy(package_name, package_version):
     if package_name is None:
-        print("--package_name required")
+        print("--package-name required")
         raise click.Abort()
     if package_version is None:
-        print("--package_version required")
+        print("--package-version required")
         raise click.Abort()
     client = Client()
     response = client.delete(
@@ -108,18 +108,18 @@ def delete_template_package_workingcopy(package_name, package_version):
 
 
 @click.command("get-template-package-release")
-@click.option("--package_name")
-@click.option("--package_version")
-@click.option("--template_name")
+@click.option("--package-name")
+@click.option("--package-version")
+@click.option("--template-name")
 def get_template_package_release(package_name, package_version, template_name):
     if package_name is None:
-        print("--package_name required")
+        print("--package-name required")
         raise click.Abort()
     if package_version is None:
-        print("--package_version required")
+        print("--package-version required")
         raise click.Abort()
     if template_name is None:
-        print("--template_name required")
+        print("--template-name required")
         raise click.Abort()
     client = Client()
     response = client.get(
@@ -134,14 +134,14 @@ def get_template_package_release(package_name, package_version, template_name):
 
 
 @click.command("get-template-package-release-model")
-@click.option("--package_name")
-@click.option("--package_version")
+@click.option("--package-name")
+@click.option("--package-version")
 def get_template_package_release_model(package_name, package_version):
     if package_name is None:
-        print("--package_name required")
+        print("--package-name required")
         raise click.Abort()
     if package_version is None:
-        print("--package_version required")
+        print("--package-version required")
         raise click.Abort()
     client = Client()
     response = client.get(
@@ -155,18 +155,18 @@ def get_template_package_release_model(package_name, package_version):
 
 
 @click.command("get-template-package-workingcopy")
-@click.option("--package_name")
-@click.option("--package_version")
-@click.option("--template_name")
+@click.option("--package-name")
+@click.option("--package-version")
+@click.option("--template-name")
 def get_template_package_workingcopy(package_name, package_version, template_name):
     if package_name is None:
-        print("--package_name required")
+        print("--package-name required")
         raise click.Abort()
     if package_version is None:
-        print("--package_version required")
+        print("--package-version required")
         raise click.Abort()
     if template_name is None:
-        print("--template_name required")
+        print("--template-name required")
         raise click.Abort()
     client = Client()
     response = client.get(
@@ -181,14 +181,14 @@ def get_template_package_workingcopy(package_name, package_version, template_nam
 
 
 @click.command("get-template-package-workingcopy-model")
-@click.option("--package_name")
-@click.option("--package_version")
+@click.option("--package-name")
+@click.option("--package-version")
 def get_template_package_workingcopy_model(package_name, package_version):
     if package_name is None:
-        print("--package_name required")
+        print("--package-name required")
         raise click.Abort()
     if package_version is None:
-        print("--package_version required")
+        print("--package-version required")
         raise click.Abort()
     client = Client()
     response = client.get(
@@ -202,14 +202,14 @@ def get_template_package_workingcopy_model(package_name, package_version):
 
 
 @click.command("get-templates-packages-release")
-@click.option("--package_name")
-@click.option("--package_version")
+@click.option("--package-name")
+@click.option("--package-version")
 def get_templates_packages_release(package_name, package_version):
     if package_name is None:
-        print("--package_name required")
+        print("--package-name required")
         raise click.Abort()
     if package_version is None:
-        print("--package_version required")
+        print("--package-version required")
         raise click.Abort()
     client = Client()
     response = client.get(
@@ -223,14 +223,14 @@ def get_templates_packages_release(package_name, package_version):
 
 
 @click.command("get-templates-packages-workingcopy")
-@click.option("--package_name")
-@click.option("--package_version")
+@click.option("--package-name")
+@click.option("--package-version")
 def get_templates_packages_workingcopy(package_name, package_version):
     if package_name is None:
-        print("--package_name required")
+        print("--package-name required")
         raise click.Abort()
     if package_version is None:
-        print("--package_version required")
+        print("--package-version required")
         raise click.Abort()
     client = Client()
     response = client.get(
@@ -257,21 +257,21 @@ def perform_search_templates_packages(terms):
 
 
 @click.command("update-template-package-workingcopy")
-@click.option("--package_name")
-@click.option("--package_version")
-@click.option("--template_name")
+@click.option("--package-name")
+@click.option("--package-version")
+@click.option("--template-name")
 @click.option("--body")
 def update_template_package_workingcopy(
     package_name, package_version, template_name, body
 ):
     if package_name is None:
-        print("--package_name required")
+        print("--package-name required")
         raise click.Abort()
     if package_version is None:
-        print("--package_version required")
+        print("--package-version required")
         raise click.Abort()
     if template_name is None:
-        print("--template_name required")
+        print("--template-name required")
         raise click.Abort()
     if body is None:
         print("--body required")

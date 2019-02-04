@@ -5,10 +5,10 @@ from hesperidescli.client import Client
 
 
 @click.command("get-application")
-@click.option("--application_name")
+@click.option("--application-name")
 def get_application(application_name):
     if application_name is None:
-        print("--application_name required")
+        print("--application-name required")
         raise click.Abort()
     client = Client()
     response = client.get("/rest/applications/" + application_name)

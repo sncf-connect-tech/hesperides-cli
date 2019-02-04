@@ -5,14 +5,14 @@ from hesperidescli.client import Client
 
 
 @click.command("get-application-platform-snapshots")
-@click.option("--application_name")
-@click.option("--platform_name")
+@click.option("--application-name")
+@click.option("--platform-name")
 def get_application_platform_snapshots(application_name, platform_name):
     if application_name is None:
-        print("--application_name required")
+        print("--application-name required")
         raise click.Abort()
     if platform_name is None:
-        print("--platform_name required")
+        print("--platform-name required")
         raise click.Abort()
     client = Client()
     response = client.get(
@@ -26,14 +26,14 @@ def get_application_platform_snapshots(application_name, platform_name):
 
 
 @click.command("restore-application-platform-snapshots")
-@click.option("--application_name")
-@click.option("--platform_name")
+@click.option("--application-name")
+@click.option("--platform-name")
 def restore_application_platform_snapshots(application_name, platform_name):
     if application_name is None:
-        print("--application_name required")
+        print("--application-name required")
         raise click.Abort()
     if platform_name is None:
-        print("--platform_name required")
+        print("--platform-name required")
         raise click.Abort()
     client = Client()
     response = client.post(
@@ -47,15 +47,15 @@ def restore_application_platform_snapshots(application_name, platform_name):
 
 
 @click.command("take-application-platform-snapshot")
-@click.option("--application_name")
-@click.option("--platform_name")
+@click.option("--application-name")
+@click.option("--platform-name")
 @click.option("--body")
 def take_application_platform_snapshot(application_name, platform_name, body):
     if application_name is None:
-        print("--application_name required")
+        print("--application-name required")
         raise click.Abort()
     if platform_name is None:
-        print("--platform_name required")
+        print("--platform-name required")
         raise click.Abort()
     if body is None:
         print("--body required")

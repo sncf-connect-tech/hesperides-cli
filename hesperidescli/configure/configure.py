@@ -6,10 +6,10 @@ from hesperidescli.configure.writer import ConfigFileWriter
 
 
 @click.command("delete-profile")
-@click.option("--profile_name")
+@click.option("--profile-name")
 def delete_profile(profile_name):
     if profile_name is None:
-        print("--profile_name required")
+        print("--profile-name required")
         raise click.Abort()
     config_writer = ConfigFileWriter()
     config_writer.remove_config_section(profile_name)
@@ -56,14 +56,14 @@ def get_config(key):
     "--password", prompt=True, hide_input=True, confirmation_prompt=False, default=""
 )
 @click.option(
-    "--hesperides_endpoint",
+    "--hesperides-endpoint",
     prompt=True,
     hide_input=False,
     confirmation_prompt=False,
     default="https://hesperides",
 )
 @click.option(
-    "--response_format",
+    "--response-format",
     prompt=False,
     hide_input=False,
     confirmation_prompt=False,
@@ -83,10 +83,10 @@ def set_conf(profile, username, password, hesperides_endpoint, response_format):
 
 
 @click.command("set-profile")
-@click.option("--profile_name")
+@click.option("--profile-name")
 def set_profile(profile_name):
     if profile_name is None:
-        print("--profile_name required")
+        print("--profile-name required")
         raise click.Abort()
     config_writer = ConfigFileWriter()
     config = {"profile": profile_name}

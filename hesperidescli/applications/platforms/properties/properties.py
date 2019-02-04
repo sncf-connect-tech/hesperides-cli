@@ -5,16 +5,16 @@ from hesperidescli.client import Client
 
 
 @click.command("get-global-properties")
-@click.option("--application_name")
-@click.option("--platform_name")
+@click.option("--application-name")
+@click.option("--platform-name")
 @click.option("--timestamp")
 def get_global_properties(application_name, platform_name, timestamp):
     params = {}
     if application_name is None:
-        print("--application_name required")
+        print("--application-name required")
         raise click.Abort()
     if platform_name is None:
-        print("--platform_name required")
+        print("--platform-name required")
         raise click.Abort()
     params["path"] = "#"
     if timestamp:
@@ -32,14 +32,14 @@ def get_global_properties(application_name, platform_name, timestamp):
 
 
 @click.command("get-global-properties-usage")
-@click.option("--application_name")
-@click.option("--platform_name")
+@click.option("--application-name")
+@click.option("--platform-name")
 def get_global_properties_usage(application_name, platform_name):
     if application_name is None:
-        print("--application_name required")
+        print("--application-name required")
         raise click.Abort()
     if platform_name is None:
-        print("--platform_name required")
+        print("--platform-name required")
         raise click.Abort()
     client = Client()
     response = client.get(
@@ -53,17 +53,17 @@ def get_global_properties_usage(application_name, platform_name):
 
 
 @click.command("get-properties")
-@click.option("--application_name")
-@click.option("--platform_name")
+@click.option("--application-name")
+@click.option("--platform-name")
 @click.option("--path")
 @click.option("--timestamp")
 def get_properties(application_name, platform_name, path, timestamp):
     params = {}
     if application_name is None:
-        print("--application_name required")
+        print("--application-name required")
         raise click.Abort()
     if platform_name is None:
-        print("--platform_name required")
+        print("--platform-name required")
         raise click.Abort()
     if path is None:
         print("--path required")
@@ -84,14 +84,14 @@ def get_properties(application_name, platform_name, path, timestamp):
 
 
 @click.command("get-properties-instance-model")
-@click.option("--application_name")
-@click.option("--platform_name")
+@click.option("--application-name")
+@click.option("--platform-name")
 def get_properties_instance_model(application_name, platform_name):
     if application_name is None:
-        print("--application_name required")
+        print("--application-name required")
         raise click.Abort()
     if platform_name is None:
-        print("--platform_name required")
+        print("--platform-name required")
         raise click.Abort()
     client = Client()
     response = client.get(
