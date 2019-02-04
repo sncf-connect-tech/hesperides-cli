@@ -1,20 +1,18 @@
 language: python
-
 python:
-  - "3.5"
   - "3.6"
-  - "3.7-dev"
+  # Does not support black:
+  # - "3.7-dev"
 
 sudo: false
 
-install:
-  - pip install .
-  - pip install -r dev-requirements.txt
+cache: pip
+
+install:  pip install . -r dev-requirements.txt
 
 script:
   - pylint hesperidescli
   - black hesperidescli/ tests/
-  - tox
+  - pytest
 
-after_success:
-    - coveralls
+after_success: coveralls

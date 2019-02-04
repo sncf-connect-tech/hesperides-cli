@@ -18,6 +18,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
     hesperides local-generate-files tests/descriptor.json
     hesperides local-validate-files tests/descriptor.json
 
+### Deprecated
+- All the `cache`, `feedback`, `indexation` & `stats` commands
+
 
 ## [v0.2.0] - 2017-08-31
 ## Added

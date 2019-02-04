@@ -1,5 +1,4 @@
 *.py[co]
-*.DS_Store
 
 # Packages
 *.egg
@@ -20,37 +19,9 @@ pip-log.txt
 /.cache/
 /.pytest_cache/
 .coverage
-.tox
 coverage.xml
-nosetests.xml
 
 # Files generated during tests
 /tests/app-props.yml
 /tests/app.properties
 /tests/app2.properties
-
-#Translations
-*.mo
-
-#Mr Developer
-.mr.developer.cfg
-
-# Emacs backup files
-*~
-
-# Eclipse IDE
-/.project
-/.pydevproject
-
-# IDEA IDE
-.idea*
-src/
-
-# CLI docs generation
-doc/source/aws_man_pages.json
-doc/source/reference
-doc/source/topic
-doc/source/tutorial/services.rst
-
-# Pyenv
-.python-version

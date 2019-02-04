@@ -1,5 +1,5 @@
 [MESSAGES CONTROL]
-disable = duplicate-code, line-too-long, missing-docstring
+disable = bad-continuation, duplicate-code, line-too-long, missing-docstring, multiple-imports
 
 [FORMAT]
 # We extend the built-in characters limit
