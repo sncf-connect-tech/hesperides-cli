@@ -1,7 +1,7 @@
 from click.testing import CliRunner
 import unittest
 
-from hesperidescli.applications.applications import get_application, get_application_from_module, \
+from hesperidescli.applications.applications import get_application, get_applications_using_module, \
     perform_search_applications
 
 
@@ -12,21 +12,21 @@ class TestApplications(unittest.TestCase):
         assert result.exit_code == 1
         assert result.output == '--application_name required\nAborted!\n'
 
-    def test_get_application_from_module_missing_module(self):
+    def test_get_applications_using_module_missing_module(self):
         runner = CliRunner()
-        result = runner.invoke(get_application_from_module)
+        result = runner.invoke(get_applications_using_module)
         assert result.exit_code == 1
         assert result.output == '--module required\nAborted!\n'
 
-    def test_get_application_from_module_missing_version(self):
+    def test_get_applications_using_module_missing_version(self):
         runner = CliRunner()
-        result = runner.invoke(get_application_from_module, ['--module', 'toto'])
+        result = runner.invoke(get_applications_using_module, ['--module', 'toto'])
         assert result.exit_code == 1
         assert result.output == '--version required\nAborted!\n'
 
-    def test_get_application_from_module_missing_type(self):
+    def test_get_applications_using_module_missing_type(self):
         runner = CliRunner()
-        result = runner.invoke(get_application_from_module, ['--module', 'toto', '--version', 'titi'])
+        result = runner.invoke(get_applications_using_module, ['--module', 'toto', '--version', 'titi'])
         assert result.exit_code == 1
         assert result.output == '--type required\nAborted!\n'
 

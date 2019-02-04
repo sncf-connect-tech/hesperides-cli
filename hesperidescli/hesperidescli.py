@@ -24,7 +24,7 @@ def cli():
 
 
 cli.add_command(applications.get_application)
-cli.add_command(applications.get_application_from_module)
+cli.add_command(applications.get_applications_using_module)
 cli.add_command(applications.perform_search_applications)
 
 cli.add_command(cache.delete_application_cache)

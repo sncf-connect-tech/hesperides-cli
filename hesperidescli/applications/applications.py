@@ -15,22 +15,22 @@ def get_application(application_name):
     utils.pretty_print(response)
 
 
-@click.command('get-application-from-module')
+@click.command('get-applications-using-module')
 @click.option('--module')
 @click.option('--version')
 @click.option('--type')
-def get_application_from_module(module, version, mod_type):
+def get_applications_using_module(module, version, type):
     if module is None:
         print('--module required')
         raise click.Abort()
     if version is None:
         print('--version required')
         raise click.Abort()
-    if mod_type is None:
+    if type is None:
         print('--type required')
         raise click.Abort()
     client = Client()
-    response = client.get('/rest/applications/using_module/' + module + '/' + version + '/' + mod_type)
+    response = client.get('/rest/applications/using_module/' + module + '/' + version + '/' + type)
     utils.pretty_print(response)
 
 

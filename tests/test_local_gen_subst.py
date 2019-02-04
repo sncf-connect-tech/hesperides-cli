@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-from hesperides_templates import substitute_all_mustaches
+from hesperidescli.local.descriptor_utils import substitute_all_mustaches
 import pytest
 
 
