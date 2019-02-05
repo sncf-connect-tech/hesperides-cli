@@ -5,18 +5,13 @@ from hesperidescli.configure.writer import ConfigFileWriter
 
 
 @click.command("delete-profile")
-@click.option("--profile-name")
+@click.argument("profile-name")
 def delete_profile(profile_name):
-    if profile_name is None:
-        print("--profile-name required")
-        raise click.Abort()
     config_writer = ConfigFileWriter()
     config_writer.remove_config_section(profile_name)
-    reader = ConfigFileReader()
-    if reader.get_profile() == profile_name:
+    if ConfigFileReader().get_profile() == profile_name:
         config_writer.remove_profile()
-    credentials_writer = ConfigFileWriter()
-    credentials_writer.remove_credentials_section(profile_name)
+    ConfigFileWriter().remove_credentials_section(profile_name)
 
 
 @click.command("get-conf")
@@ -29,33 +24,29 @@ def get_conf():
 @click.command("get-profile")
 def get_profile():
     reader = ConfigFileReader()
-    print(reader.get_profile())
+    click.secho(reader.get_profile())
 
 
-def get_config(key):
+def get_config(key, **kwargs):
     config_reader = ConfigFileReader()
     try:
-        return config_reader.get_config_item(config_reader.get_profile(), key)
+        return config_reader.get_config_item(config_reader.get_profile(), key, **kwargs)
     except ConfigParserError:
-        return config_reader.get_config_item(key)
+        return config_reader.get_config_item(key, **kwargs)
 
 
-def get_credentials(key):
+def get_credentials(key, **kwargs):
     config_reader = ConfigFileReader()
     try:
-        return config_reader.get_credentials_item(config_reader.get_profile(), key)
+        return config_reader.get_credentials_item(
+            config_reader.get_profile(), key, **kwargs
+        )
     except ConfigParserError:
-        return config_reader.get_credentials_item(key)
+        return config_reader.get_credentials_item(key, **kwargs)
 
 
 @click.command("set-conf")
-@click.option(
-    "--profile",
-    prompt=True,
-    hide_input=False,
-    confirmation_prompt=False,
-    default="default",
-)
+@click.argument("profile-name", default="default")
 @click.option(
     "--username", prompt=True, hide_input=False, confirmation_prompt=False, default=""
 )
@@ -77,25 +68,27 @@ def get_credentials(key):
     flag_value=True,
     default=False,
 )
-def set_conf(profile, username, password, hesperides_endpoint, ignore_ssl_warnings):
+def set_conf(
+    profile_name, username, password, hesperides_endpoint, ignore_ssl_warnings
+):
     basic_auth = base64.b64encode(str.encode("%s:%s" % (username, password))).decode(
         "UTF-8"
     )
-    config = {"endpoint": hesperides_endpoint, "ignore_ssl_warnings": str(ignore_ssl_warnings)}
-    credentials = {"username": username, "auth": basic_auth}
     config_writer = ConfigFileWriter()
-    config_writer.update_config(profile, config, False)
-    credentials_writer = ConfigFileWriter()
-    credentials_writer.update_credentials(profile, credentials, False)
-    config_writer.update_config("config", {}, False)
+    config_writer.update_config(
+        profile_name,
+        {
+            "endpoint": hesperides_endpoint,
+            "ignore_ssl_warnings": str(ignore_ssl_warnings),
+        },
+    )
+    ConfigFileWriter().update_credentials(
+        profile_name, {"username": username, "auth": basic_auth}
+    )
+    config_writer.update_config("config", {"profile": profile_name})
 
 
-@click.command("set-profile")
-@click.option("--profile-name")
-def set_profile(profile_name):
-    if profile_name is None:
-        print("--profile-name required")
-        raise click.Abort()
-    config_writer = ConfigFileWriter()
-    config = {"profile": profile_name}
-    config_writer.update_config("config", config, True)
+@click.command("use-profile")
+@click.argument("profile-name")
+def use_profile(profile_name):
+    ConfigFileWriter().update_config("config", {"profile": profile_name})

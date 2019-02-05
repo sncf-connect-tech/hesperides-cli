@@ -43,7 +43,7 @@ cli.add_command(configure.delete_profile)
 cli.add_command(configure.get_conf)
 cli.add_command(configure.get_profile)
 cli.add_command(configure.set_conf)
-cli.add_command(configure.set_profile)
+cli.add_command(configure.use_profile)
 
 cli.add_command(events.get_events)
 

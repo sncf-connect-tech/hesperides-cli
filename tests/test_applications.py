@@ -11,27 +11,26 @@ from hesperidescli.applications import (
 class TestApplications(unittest.TestCase):
     def test_get_application_missing_application_name(self):
         result = CliRunner().invoke(get_application)
-        assert result.exit_code == 1
-        assert result.output == "--application-name required\nAborted!\n"
+        assert result.exit_code == 2
+        assert (
+            result.output
+            == """Usage: get-application [OPTIONS] APPLICATION_NAME
+Try "get-application --help" for help.
 
-    def test_get_applications_using_module_missing_module(self):
+Error: Missing argument "APPLICATION_NAME".
+"""
+        )
+
+    def test_get_applications_using_module_missing_args(self):
         result = CliRunner().invoke(get_applications_using_module)
-        assert result.exit_code == 1
-        assert result.output == "--module required\nAborted!\n"
-
-    def test_get_applications_using_module_missing_version(self):
+        assert result.exit_code == 2
         result = CliRunner().invoke(get_applications_using_module, ["--module", "toto"])
-        assert result.exit_code == 1
-        assert result.output == "--version required\nAborted!\n"
-
-    def test_get_applications_using_module_missing_type(self):
+        assert result.exit_code == 2
         result = CliRunner().invoke(
             get_applications_using_module, ["--module", "toto", "--version", "titi"]
         )
-        assert result.exit_code == 1
-        assert result.output == "--type required\nAborted!\n"
+        assert result.exit_code == 2
 
     def test_perform_search_applications_missing_name(self):
         result = CliRunner().invoke(perform_search_applications)
-        assert result.exit_code == 1
-        assert result.output == "--name required\nAborted!\n"
+        assert result.exit_code == 2

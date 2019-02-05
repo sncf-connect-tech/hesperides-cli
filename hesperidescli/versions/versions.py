@@ -6,6 +6,5 @@ from hesperidescli.client import Client
 
 @click.command("get-versions")
 def get_versions():
-    client = Client()
-    response = client.get("/rest/versions/")
+    response = Client().get("/rest/versions/")
     utils.pretty_print(response)

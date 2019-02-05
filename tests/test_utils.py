@@ -5,7 +5,7 @@ from shutil import move, rmtree
 from click.testing import CliRunner
 from httmock import all_requests, HTTMock
 
-from hesperidescli.configure import set_conf, set_profile
+from hesperidescli.configure import set_conf
 from hesperidescli.configure.configfile import ConfigFile
 
 
@@ -29,12 +29,11 @@ def teardown_function():
         _BACKUP_DIR = None
 
 
-def init_client_config():
+def init_client_config(profile_name="default"):
     result = CliRunner().invoke(
         set_conf,
         [
-            "--profile",
-            "default",
+            profile_name,
             "--username",
             "user",
             "--password",
@@ -44,15 +43,13 @@ def init_client_config():
         ],
     )
     assert result.exit_code == 0, result.output
-    result = CliRunner().invoke(set_profile, ["--profile-name", "default"])
-    assert result.exit_code == 0, result.output
 
 
 @contextmanager
 def mock_server(content, status_code=200):
     @all_requests
     def match_all(url, request):
-        return {'status_code': status_code,
-                'content': content}
+        return {"status_code": status_code, "content": content}
+
     with HTTMock(match_all):
         yield

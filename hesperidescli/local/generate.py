@@ -21,9 +21,10 @@ def generate(descriptor_filepath):
                     # We generate a backup
                     shutil.copyfile(generated_filename, generated_filename + ".bak")
         with io.open(generated_filename, "w", encoding="utf-8") as generated_file:
-            print(
+            click.secho(
                 "GENERATION du fichier local {} à partir du template {}".format(
                     generated_filename, template_filename
-                )
+                ),
+                fg="red",
             )
             generated_file.write(generated_content)
