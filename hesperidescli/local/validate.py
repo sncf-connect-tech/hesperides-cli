@@ -18,12 +18,13 @@ def validate(descriptor_filepath):
         with io.open(generated_filename, "r", encoding="utf-8") as generated_file:
             current_content = generated_file.read()
             if current_content == generated_content:
-                print("OK: {}".format(generated_filename))
+                click.secho("OK: {}".format(generated_filename))
             else:
-                print(
+                click.secho(
                     "!!! Le fichier local {} ne correspond pas au template {} avec les valeurs renseignées".format(
                         generated_filename, template_filename
-                    )
+                    ),
+                    fg="red",
                 )
                 non_matching_pairs += 1
     if non_matching_pairs:

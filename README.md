@@ -29,13 +29,13 @@ To get all hesperides commands, just type:
 
 This client configuration is stored locally in `~/.hesperides/`:
 
-To set up your environment:
+To set up your environment and create a local user profile by answering to a few questions:
 
-    hesperides set-conf
+    hesperides set-conf [PROFILE_NAME]
     
-Once your configuration is set, you can start using it with:
+If you have multiple profiles, you can switch between them with:
 
-    hesperides set-profile [PROFILE_NAME]
+    hesperides use-profile [PROFILE_NAME]
 
 To try your configuration, type one of these commands:
 

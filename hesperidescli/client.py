@@ -8,7 +8,7 @@ class Client:
     def __init__(self):
         self.endpoint = configure.get_config("endpoint")
         auth = configure.get_credentials("auth")
-        if configure.get_config("ignore_ssl_warnings") == "True":
+        if configure.get_config("ignore_ssl_warnings", default=False) == "True":
             urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
         self.headers = {
             "Accept": "application/json",

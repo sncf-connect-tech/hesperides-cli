@@ -5,28 +5,20 @@ from hesperidescli.files import get_files
 
 
 class TestFiles(unittest.TestCase):
-    def test_get_files_missing_application_name(self):
+    def test_get_files_missing_args(self):
         result = CliRunner().invoke(get_files)
-        assert result.output == "--application-name required\nAborted!\n"
-
-    def test_get_files_missing_platform_name(self):
+        assert result.exit_code == 2
         result = CliRunner().invoke(get_files, ["--application-name", "toto"])
-        assert result.output == "--platform-name required\nAborted!\n"
-
-    def test_get_files_missing_path(self):
+        assert result.exit_code == 2
         result = CliRunner().invoke(
             get_files, ["--application-name", "toto", "--platform-name", "titi"]
         )
-        assert result.output == "--path required\nAborted!\n"
-
-    def test_get_files_missing_module_name(self):
+        assert result.exit_code == 2
         result = CliRunner().invoke(
             get_files,
             ["--application-name", "toto", "--platform-name", "titi", "--path", "#"],
         )
-        assert result.output == "--module-name required\nAborted!\n"
-
-    def test_get_files_missing_module_version(self):
+        assert result.exit_code == 2
         result = CliRunner().invoke(
             get_files,
             [
@@ -40,9 +32,7 @@ class TestFiles(unittest.TestCase):
                 "tata",
             ],
         )
-        assert result.output == "--module-version required\nAborted!\n"
-
-    def test_get_files_missing_instance_name(self):
+        assert result.exit_code == 2
         result = CliRunner().invoke(
             get_files,
             [
@@ -58,4 +48,4 @@ class TestFiles(unittest.TestCase):
                 "1.0.0",
             ],
         )
-        assert result.output == "--instance-name required\nAborted!\n"
+        assert result.exit_code == 2

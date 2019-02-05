@@ -5,7 +5,7 @@ from hesperidescli.client import Client
 
 
 @click.command("get-events")
-@click.option("--stream-name")
+@click.option("--stream-name", required=True)
 @click.option("--page")
 @click.option("--size")
 def get_events(stream_name, page, size):
@@ -14,6 +14,5 @@ def get_events(stream_name, page, size):
         params["page"] = page
     if size:
         params["size"] = size
-    client = Client()
-    response = client.get("/rest/events/" + stream_name, params=params)
+    response = Client().get("/rest/events/" + stream_name, params=params)
     utils.pretty_print(response)
