@@ -8,7 +8,7 @@ sudo: false
 
 cache: pip
 
-install:  pip install . -r dev-requirements.txt
+install: pip install -U . -r dev-requirements.txt
 
 script:
   - pylint hesperidescli

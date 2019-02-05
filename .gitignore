@@ -20,6 +20,7 @@ pip-log.txt
 /.pytest_cache/
 .coverage
 coverage.xml
+*,cover
 
 # Files generated during tests
 /tests/app-props.yml

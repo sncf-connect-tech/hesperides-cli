@@ -3,13 +3,13 @@ import urllib3
 
 from hesperidescli.configure import configure
 
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-
 
 class Client:
     def __init__(self):
         self.endpoint = configure.get_config("endpoint")
         auth = configure.get_credentials("auth")
+        if configure.get_config("ignore_ssl_warnings") == "True":
+            urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
         self.headers = {
             "Accept": "application/json",
             "Authorization": "Basic %s" % auth,
