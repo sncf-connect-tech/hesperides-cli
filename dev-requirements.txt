@@ -3,3 +3,4 @@ coveralls
 httmock
 pylint
 pytest
+pytest-cov

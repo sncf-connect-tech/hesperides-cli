@@ -70,17 +70,18 @@ def get_credentials(key):
     default="https://hesperides",
 )
 @click.option(
-    "--response-format",
-    prompt=False,
+    "--ignore-ssl-warnings",
+    prompt=True,
     hide_input=False,
     confirmation_prompt=False,
-    default="json",
+    flag_value=True,
+    default=False,
 )
-def set_conf(profile, username, password, hesperides_endpoint, response_format):
+def set_conf(profile, username, password, hesperides_endpoint, ignore_ssl_warnings):
     basic_auth = base64.b64encode(str.encode("%s:%s" % (username, password))).decode(
         "UTF-8"
     )
-    config = {"endpoint": hesperides_endpoint, "format": response_format}
+    config = {"endpoint": hesperides_endpoint, "ignore_ssl_warnings": str(ignore_ssl_warnings)}
     credentials = {"username": username, "auth": basic_auth}
     config_writer = ConfigFileWriter()
     config_writer.update_config(profile, config, False)
