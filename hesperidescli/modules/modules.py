@@ -200,7 +200,7 @@ def get_modules():
 def perform_search_modules(terms):
     params = {}
     params["terms"] = terms
-    response = Client().post("/rest/modules/perform_search", params=params)
+    response = Client().get("/rest/modules/perform_search", params=params)
     utils.pretty_print(response)
 
 
@@ -209,7 +209,7 @@ def perform_search_modules(terms):
 def search_module(terms):
     params = {}
     params["temrs"] = terms
-    response = Client().post("/rest/modules/search", params=params)
+    response = Client().get("/rest/modules/search", params=params)
     utils.pretty_print(response)
 
 

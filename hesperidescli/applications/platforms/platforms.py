@@ -56,7 +56,7 @@ def perform_search_application_platforms(application_name, platform_name):
     params["application_name"] = application_name
     if platform_name:
         params["platform_name"] = platform_name
-    response = Client().post(
+    response = Client().get(
         "/rest/applications/platforms/perform_search", params=params
     )
     utils.pretty_print(response)

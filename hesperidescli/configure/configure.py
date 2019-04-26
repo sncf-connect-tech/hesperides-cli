@@ -1,4 +1,4 @@
-import base64, click
+import base64, click, os
 
 from hesperidescli.configure.reader import ConfigFileReader, ConfigParserError
 from hesperidescli.configure.writer import ConfigFileWriter
@@ -48,7 +48,7 @@ def get_credentials(key, **kwargs):
 @click.command("set-conf")
 @click.argument("profile-name", default="default")
 @click.option(
-    "--username", prompt=True, hide_input=False, confirmation_prompt=False, default=""
+    "--username", prompt=True, hide_input=False, confirmation_prompt=False, default=os.environ.get('USER', os.environ.get('USERNAME'))
 )
 @click.option(
     "--password", prompt=True, hide_input=True, confirmation_prompt=False, default=""

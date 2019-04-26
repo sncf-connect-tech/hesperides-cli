@@ -33,5 +33,5 @@ def get_applications_using_module(module, version, type):
 @click.argument("name")
 def perform_search_applications(name):
     params = {"name": name}
-    response = Client().post("/rest/applications/perform_search", params=params)
+    response = Client().get("/rest/applications/perform_search", params=params)
     utils.pretty_print(response)
