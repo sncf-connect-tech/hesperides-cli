@@ -59,7 +59,7 @@ class PublishCommand(Command):
 
 setup(
     name=NAME,
-    version="0.3.1",
+    version="0.3.2",
     description=DESCRIPTION,
     long_description=long_description,
     author=AUTHOR,
