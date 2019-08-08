@@ -5,7 +5,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
-## [v0.3.0] - Work In Progress
+## [v0.3.3] - Work In Progress
+
+
+## [v0.3.2] - 2019-06-26
 ### Changed
 - Renamed `delete-module-workingcopy-template` into `create-module-workingcopy-template` (it was terribly badly named)
 - Renamed `get_application_from_module` into `get_applications_using_module`
@@ -30,6 +33,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Deprecated
 - All the `cache`, `feedback`, `indexation`, `snapshots` & `stats` commands
+
+
+## [v0.3.1] - 2018-03-12
 
 
 ## [v0.2.0] - 2017-08-31
