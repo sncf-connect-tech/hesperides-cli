@@ -9,9 +9,7 @@ from hesperidescli.client import Client
 @click.option("--from-package-name")
 @click.option("--from-package-version")
 @click.option("--from-is-working-copy", is_flag=True)
-def create_techno(
-    body, from_package_name, from_package_version, from_is_working_copy
-):
+def create_techno(body, from_package_name, from_package_version, from_is_working_copy):
     params = {}
     if from_package_name is None and from_package_version:
         raise click.BadParameter(
@@ -35,9 +33,7 @@ def create_techno(
 @click.option("--package-name", required=True)
 @click.option("--package-version", required=True)
 @click.option("--template-name", required=True)
-def create_techno_workingcopy(
-    body, package_name, package_version, template_name
-):
+def create_techno_workingcopy(body, package_name, package_version, template_name):
     with open(body, "r") as body_file:
         file_body = body_file.read()
     response = Client().post(
@@ -67,11 +63,7 @@ def delete_techno_release(package_name, package_version):
 @click.option("--package-version", required=True)
 def delete_techno_workingcopy(package_name, package_version):
     response = Client().delete(
-        "/rest/technos/"
-        + package_name
-        + "/"
-        + package_version
-        + "/workingcopy"
+        "/rest/technos/" + package_name + "/" + package_version + "/workingcopy"
     )
     utils.pretty_print(response)
 
@@ -97,11 +89,7 @@ def get_techno_release(package_name, package_version, template_name):
 @click.option("--package-version", required=True)
 def get_techno_release_model(package_name, package_version):
     response = Client().get(
-        "/rest/technos/"
-        + package_name
-        + "/"
-        + package_version
-        + "/release/model"
+        "/rest/technos/" + package_name + "/" + package_version + "/release/model"
     )
     utils.pretty_print(response)
 
@@ -127,11 +115,7 @@ def get_techno_workingcopy(package_name, package_version, template_name):
 @click.option("--package-version", required=True)
 def get_techno_workingcopy_model(package_name, package_version):
     response = Client().get(
-        "/rest/technos/"
-        + package_name
-        + "/"
-        + package_version
-        + "/workingcopy/model"
+        "/rest/technos/" + package_name + "/" + package_version + "/workingcopy/model"
     )
     utils.pretty_print(response)
 
@@ -141,11 +125,7 @@ def get_techno_workingcopy_model(package_name, package_version):
 @click.option("--package-version", required=True)
 def get_technos_release(package_name, package_version):
     response = Client().get(
-        "/rest/technos/"
-        + package_name
-        + "/"
-        + package_version
-        + "/release/templates"
+        "/rest/technos/" + package_name + "/" + package_version + "/release/templates"
     )
     utils.pretty_print(response)
 
@@ -167,9 +147,7 @@ def get_technos_workingcopy(package_name, package_version):
 @click.command("perform-search-technos")
 @click.argument("terms")
 def perform_search_technos(terms):
-    response = Client().get(
-        "/rest/technos/perform_search", params={"terms": terms}
-    )
+    response = Client().get("/rest/technos/perform_search", params={"terms": terms})
     utils.pretty_print(response)
 
 
@@ -178,9 +156,7 @@ def perform_search_technos(terms):
 @click.option("--package-name", required=True)
 @click.option("--package-version", required=True)
 @click.option("--template-name", required=True)
-def update_techno_workingcopy(
-    body, package_name, package_version, template_name
-):
+def update_techno_workingcopy(body, package_name, package_version, template_name):
     with open(body, "r") as body_file:
         file_body = body_file.read()
     response = Client().put(

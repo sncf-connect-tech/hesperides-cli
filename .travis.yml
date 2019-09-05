@@ -1,8 +1,7 @@
 language: python
 python:
   - "3.6"
-  # Does not support black:
-  # - "3.7-dev"
+  - "3.7"
 
 sudo: false
 
