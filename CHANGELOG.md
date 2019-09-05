@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 `create-application-platform`, `update-application-platform`, `delete-profile`, `set-conf`, `create-module` & `create-module-workingcopy-template`
 - Replaced `set-config` option `--response-format` by `--ignore-ssl-warnings`
 - Shortened import paths: no more `$resource.$resource`
+- Switching from deprecated endpoints to new ones: `/technos` & using `GET` for searches
 
 ### Added
 - `applications.get_applications`

@@ -16,7 +16,7 @@ def test_mustache_empty_pattern_ok():
 def test_mustache_empty_required_ko():
     with pytest.raises(ValueError) as subst_error:
         substitute_all_mustaches(r"{{c @required}}", local_values={})
-    assert "Aucune valeur n'a été définie pour la moustache c" in str(subst_error)
+    assert "Aucune valeur n'a été définie pour la moustache c" in str(subst_error.value)
 
 
 def test_mustache_pattern_ok():
@@ -35,7 +35,7 @@ def test_mustache_pattern_fail():
     template_content = r'{{marketLangs |  @pattern   "^\"([a-z]{2}|\*)-([A-Z]{2}|\*)\"(,\"([a-z]{2}|\*)-([A-Z]{2}|\*)\")*$" }}'
     with pytest.raises(ValueError) as subst_error:
         substitute_all_mustaches(template_content, local_values={"marketLangs": "XXX"})
-    assert "La valeur XXX ne respecte pas le @pattern" in str(subst_error)
+    assert "La valeur XXX ne respecte pas le @pattern" in str(subst_error.value)
 
 
 def test_mustache_subst_empty_iterable():

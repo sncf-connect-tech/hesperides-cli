@@ -13,7 +13,7 @@ from hesperidescli.local import generate as local_generate, validate as local_va
 from hesperidescli.indexation import indexation
 from hesperidescli.modules import modules
 from hesperidescli.stats import stats
-from hesperidescli.templates import templates
+from hesperidescli.technos import technos
 from hesperidescli.users import users
 from hesperidescli.versions import versions
 
@@ -97,18 +97,18 @@ cli.add_command(snapshots.take_application_platform_snapshot)
 
 cli.add_command(stats.get_stats)
 
-cli.add_command(templates.create_template_package)
-cli.add_command(templates.create_template_package_workingcopy)
-cli.add_command(templates.delete_template_package_release)
-cli.add_command(templates.delete_template_package_workingcopy)
-cli.add_command(templates.get_template_package_release)
-cli.add_command(templates.get_template_package_release_model)
-cli.add_command(templates.get_template_package_workingcopy)
-cli.add_command(templates.get_template_package_workingcopy_model)
-cli.add_command(templates.get_templates_packages_release)
-cli.add_command(templates.get_templates_packages_workingcopy)
-cli.add_command(templates.perform_search_templates_packages)
-cli.add_command(templates.update_template_package_workingcopy)
+cli.add_command(technos.create_techno)
+cli.add_command(technos.create_techno_workingcopy)
+cli.add_command(technos.delete_techno_release)
+cli.add_command(technos.delete_techno_workingcopy)
+cli.add_command(technos.get_techno_release)
+cli.add_command(technos.get_techno_release_model)
+cli.add_command(technos.get_techno_workingcopy)
+cli.add_command(technos.get_techno_workingcopy_model)
+cli.add_command(technos.get_technos_release)
+cli.add_command(technos.get_technos_workingcopy)
+cli.add_command(technos.perform_search_technos)
+cli.add_command(technos.update_techno_workingcopy)
 
 cli.add_command(users.get_user)
 

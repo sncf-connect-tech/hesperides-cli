@@ -2,7 +2,7 @@
 
 [![TravisCI build Status](https://travis-ci.org/voyages-sncf-technologies/hesperides-cli.svg?branch=master)](https://travis-ci.org/voyages-sncf-technologies/hesperides-cli) [![Coverage Status](https://coveralls.io/repos/github/voyages-sncf-technologies/hesperides-cli/badge.svg?branch=master)](https://coveralls.io/github/voyages-sncf-technologies/hesperides-cli?branch=master) [![Pypi latest version](https://img.shields.io/pypi/v/hesperides-cli.svg)](https://pypi.python.org/pypi/hesperides-cli) [![Supported Python versions](https://img.shields.io/pypi/pyversions/hesperides-cli.svg)](https://pypi.python.org/pypi/hesperides-cli) [![License](https://img.shields.io/pypi/l/hesperides-cli.svg)](https://pypi.python.org/pypi/hesperides-cli)
 
-Python Command Line Interface for Hesperides https://github.com/voyages-sncf-technologies/hesperides
+Python 3 lib & CLI (_Command Line Interface_) for [Hesperides](https://github.com/voyages-sncf-technologies/hesperides)
 
 
 ## Installation
