@@ -19,9 +19,9 @@ from hesperidescli.technos import (
 
 class TestTechnos(unittest.TestCase):
     def test_create_techno_missing_args(self):
-        result = CliRunner().invoke(create_techno, ["--from-package-version", "1.0.0"])
+        result = CliRunner().invoke(create_techno, ["--from-version", "1.0.0"])
         assert result.exit_code == 2
-        result = CliRunner().invoke(create_techno, ["--from-package-name", "toto"])
+        result = CliRunner().invoke(create_techno, ["--from-name", "toto"])
         assert result.exit_code == 2
         result = CliRunner().invoke(create_techno)
         assert result.exit_code == 2
@@ -30,20 +30,20 @@ class TestTechnos(unittest.TestCase):
         result = CliRunner().invoke(create_techno_workingcopy)
         assert result.exit_code == 2
         result = CliRunner().invoke(
-            create_techno_workingcopy, ["--package-name", "toto"]
+            create_techno_workingcopy, ["--name", "toto"]
         )
         assert result.exit_code == 2
         result = CliRunner().invoke(
             create_techno_workingcopy,
-            ["--package-name", "toto", "--package-version", "1.0.0"],
+            ["--name", "toto", "--version", "1.0.0"],
         )
         assert result.exit_code == 2
         result = CliRunner().invoke(
             create_techno_workingcopy,
             [
-                "--package-name",
+                "--name",
                 "toto",
-                "--package-version",
+                "--version",
                 "1.0.0",
                 "--template-name",
                 "titi",
@@ -54,24 +54,24 @@ class TestTechnos(unittest.TestCase):
     def test_delete_techno_release_missing_args(self):
         result = CliRunner().invoke(delete_techno_release)
         assert result.exit_code == 2
-        result = CliRunner().invoke(delete_techno_release, ["--package-name", "toto"])
+        result = CliRunner().invoke(delete_techno_release, ["--name", "toto"])
         assert result.exit_code == 2
 
     def test_delete_techno_workingcopy_missing_args(self):
         result = CliRunner().invoke(delete_techno_workingcopy)
         assert result.exit_code == 2
         result = CliRunner().invoke(
-            delete_techno_workingcopy, ["--package-name", "toto"]
+            delete_techno_workingcopy, ["--name", "toto"]
         )
         assert result.exit_code == 2
 
     def test_get_techno_release_missing_args(self):
         result = CliRunner().invoke(get_techno_release)
         assert result.exit_code == 2
-        result = CliRunner().invoke(get_techno_release, ["--package-name", "toto"])
+        result = CliRunner().invoke(get_techno_release, ["--name", "toto"])
         assert result.exit_code == 2
         result = CliRunner().invoke(
-            get_techno_release, ["--package-name", "toto", "--package-version", "1.0.0"]
+            get_techno_release, ["--name", "toto", "--version", "1.0.0"]
         )
         assert result.exit_code == 2
 
@@ -79,18 +79,18 @@ class TestTechnos(unittest.TestCase):
         result = CliRunner().invoke(get_techno_release_model)
         assert result.exit_code == 2
         result = CliRunner().invoke(
-            get_techno_release_model, ["--package-name", "toto"]
+            get_techno_release_model, ["--name", "toto"]
         )
         assert result.exit_code == 2
 
     def test_get_techno_workingcopy_missing_args(self):
         result = CliRunner().invoke(get_techno_workingcopy)
         assert result.exit_code == 2
-        result = CliRunner().invoke(get_techno_workingcopy, ["--package-name", "toto"])
+        result = CliRunner().invoke(get_techno_workingcopy, ["--name", "toto"])
         assert result.exit_code == 2
         result = CliRunner().invoke(
             get_techno_workingcopy,
-            ["--package-name", "toto", "--package-version", "1.0.0"],
+            ["--name", "toto", "--version", "1.0.0"],
         )
         assert result.exit_code == 2
 
@@ -98,20 +98,20 @@ class TestTechnos(unittest.TestCase):
         result = CliRunner().invoke(get_techno_workingcopy_model)
         assert result.exit_code == 2
         result = CliRunner().invoke(
-            get_techno_workingcopy_model, ["--package-name", "toto"]
+            get_techno_workingcopy_model, ["--name", "toto"]
         )
         assert result.exit_code == 2
 
     def test_get_technos_release_missing_args(self):
         result = CliRunner().invoke(get_technos_release)
         assert result.exit_code == 2
-        result = CliRunner().invoke(get_technos_release, ["--package-name", "toto"])
+        result = CliRunner().invoke(get_technos_release, ["--name", "toto"])
         assert result.exit_code == 2
 
     def test_get_technos_workingcopy_missing_args(self):
         result = CliRunner().invoke(get_technos_workingcopy)
         assert result.exit_code == 2
-        result = CliRunner().invoke(get_technos_workingcopy, ["--package-name", "toto"])
+        result = CliRunner().invoke(get_technos_workingcopy, ["--name", "toto"])
         assert result.exit_code == 2
 
     def test_perform_search_technos_missing_terms(self):
@@ -122,20 +122,20 @@ class TestTechnos(unittest.TestCase):
         result = CliRunner().invoke(update_techno_workingcopy)
         assert result.exit_code == 2
         result = CliRunner().invoke(
-            update_techno_workingcopy, ["--package-name", "toto"]
+            update_techno_workingcopy, ["--name", "toto"]
         )
         assert result.exit_code == 2
         result = CliRunner().invoke(
             update_techno_workingcopy,
-            ["--package-name", "toto", "--package-version", "1.0.0"],
+            ["--name", "toto", "--version", "1.0.0"],
         )
         assert result.exit_code == 2
         result = CliRunner().invoke(
             update_techno_workingcopy,
             [
-                "--package-name",
+                "--name",
                 "toto",
-                "--package-version",
+                "--version",
                 "1.0.0",
                 "--template-name",
                 "titi",
