@@ -7,7 +7,7 @@ from .test_utils import init_client_config, setup_function, teardown_function
 
 
 def test_create_client_fail_noconfig():
-    with pytest.raises(click.exceptions.Abort) as excinfo:
+    with pytest.raises(click.UsageError) as excinfo:
         Client()
     assert (
         str(excinfo.value)

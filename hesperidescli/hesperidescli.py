@@ -18,7 +18,11 @@ from hesperidescli.users import users
 from hesperidescli.versions import versions
 
 
+__version__ = '0.3.3'
+
+
 @click.group()
+@click.version_option(__version__)
 def cli():
     pass
 

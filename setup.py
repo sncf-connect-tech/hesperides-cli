@@ -2,6 +2,7 @@
 
 import io
 import os
+import re
 import sys
 from shutil import rmtree
 
@@ -22,6 +23,9 @@ here = os.path.abspath(os.path.dirname(__file__))
 # Note: this will only work if 'README.rst' is present in your MANIFEST.in file!
 with io.open(os.path.join(here, "README.md"), encoding="utf-8") as f:
     long_description = "\n" + f.read()
+
+with io.open(os.path.join(here, 'hesperidescli', 'hesperidescli.py'), encoding='utf8') as f:
+    version = re.search(r'__version__ = \'(.*?)\'', f.read()).group(1)
 
 
 class PublishCommand(Command):
@@ -59,9 +63,10 @@ class PublishCommand(Command):
 
 setup(
     name=NAME,
-    version="0.3.2",
+    version=version,
     description=DESCRIPTION,
     long_description=long_description,
+    long_description_content_type='text/markdown',
     author=AUTHOR,
     author_email=EMAIL,
     url=URL,

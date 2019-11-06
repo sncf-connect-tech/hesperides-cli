@@ -12,7 +12,7 @@ class ConfigFileReader(ConfigFile):
         try:
             return self.get_config_item("profile")
         except (ConfigParserError, KeyError):
-            raise click.Abort(
+            raise click.UsageError(
                 'No profile has been configured. Please type "hesperides set-conf"'
             )
 

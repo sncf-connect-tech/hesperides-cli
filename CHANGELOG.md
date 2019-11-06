@@ -5,7 +5,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
-## [v0.3.3] - Work In Progress
+## [v0.3.3] - 2019-11-06
+### Changed
+- the error message when no profile is configured is more explicit
+
+### Added
+- `--version` argument
 
 
 ## [v0.3.2] - 2019-06-26

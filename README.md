@@ -16,6 +16,15 @@ After cloning this repo and optionally creating a [virtualenv](https://github.co
 
     pip install -e .
 
+### Releasing a new version
+With a valid `~/.pypirc`:
+
+1. update `CHANGELOG.md`
+2. bump version in `hesperidescli/hesperidescli.py`
+3. `python setup.py sdist`
+4. `twine upload dist/*`
+5. `git tag $version && git push && git push --tags`
+
 
 ## Usage
 
@@ -42,3 +51,20 @@ To try your configuration, type one of these commands:
     hesperides get-versions
     hesperides get-user
     hesperides get-stats
+
+### Usage with Docker
+
+You can using the following `Dockerfile` as a starting point:
+
+    FROM python:3
+    RUN pip install hesperides-cli
+    ARG USERNAME
+    ARG PASSWORD
+    RUN hesperides set-conf --username $USERNAME --password $PASSWORD --hesperides-endpoint https://hesperides.example --ignore-ssl-warnings
+    ENTRYPOINT ["hesperides"]
+
+The resulting Docker image will contain some secret credentials, which is **not** a good practice,
+but makes it really easy to use for demos:
+
+    docker build --build-arg USERNAME=... --build-arg PASSWORD=... -t hesperides-cli .
+    docker run --rm hesperides-cli get-versions
