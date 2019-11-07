@@ -1,1 +1,1 @@
-from .hesperidescli import cli
+from .hesperidescli import cli, __version__
