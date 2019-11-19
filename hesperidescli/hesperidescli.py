@@ -83,6 +83,7 @@ cli.add_command(modules.perform_search_modules)
 cli.add_command(modules.search_module)
 cli.add_command(modules.update_module)
 cli.add_command(modules.update_module_workingcopy_template)
+cli.add_command(modules.upsert_module_workingcopy_template)
 
 cli.add_command(platforms.create_application_platform)
 cli.add_command(platforms.delete_application_platform)
