@@ -1,3 +1,4 @@
+import json
 import click
 
 from hesperidescli import utils
@@ -51,11 +52,14 @@ def create_module_release(module_name, module_version, release_version):
 def create_module_workingcopy_template(body, module_name, module_version):
     with open(body, "r") as body_file:
         file_body = body_file.read()
-    response = Client().post(
-        "/rest/rest/modules" + module_name + "/" + module_version + "/workingcopy",
-        body=file_body,
-    )
+    response = _create_module_workingcopy_template(file_body, module_name, module_version)
     utils.pretty_print(response)
+
+def _create_module_workingcopy_template(body, module_name, module_version):
+    return Client().post(
+        "/rest/modules/" + module_name + "/" + module_version + "/workingcopy/templates",
+        body=body,
+    )
 
 
 @click.command("delete-module-release")
@@ -63,7 +67,7 @@ def create_module_workingcopy_template(body, module_name, module_version):
 @click.option("--module-version", required=True)
 def delete_module_release(module_name, module_version):
     response = Client().delete(
-        "/rest/rest/modules" + module_name + "/" + module_version + "/release"
+        "/rest/modules/" + module_name + "/" + module_version + "/release"
     )
     utils.pretty_print(response)
 
@@ -73,7 +77,7 @@ def delete_module_release(module_name, module_version):
 @click.option("--module-version", required=True)
 def delete_module_workingcopy(module_name, module_version):
     response = Client().delete(
-        "/rest/rest/modules" + module_name + "/" + module_version + "/workingcopy"
+        "/rest/modules/" + module_name + "/" + module_version + "/workingcopy"
     )
     utils.pretty_print(response)
 
@@ -84,7 +88,7 @@ def delete_module_workingcopy(module_name, module_version):
 @click.option("--template-name", required=True)
 def delete_module_workingcopy_template(module_name, module_version, template_name):
     response = Client().delete(
-        "/rest/rest/modules"
+        "/rest/modules/"
         + module_name
         + "/"
         + module_version
@@ -128,16 +132,18 @@ def get_module_release(module_name, module_version):
 @click.option("--module-version", required=True)
 @click.option("--template-name", required=True)
 def get_module_release_template(module_name, module_version, template_name):
-    response = Client().get(
+    response = _get_module_release_template(module_name, module_version, template_name)
+    utils.pretty_print(response)
+
+def _get_module_release_template(module_name, module_version, template_name):
+    return Client().get(
         "/rest/modules/"
         + module_name
         + "/"
         + module_version
-        + "/release/templates"
+        + "/release/templates/"
         + template_name
     )
-    utils.pretty_print(response)
-
 
 @click.command("get-module-release-templates")
 @click.option("--module-name", required=True)
@@ -164,7 +170,11 @@ def get_module_workingcopy(module_name, module_version):
 @click.option("--module-version", required=True)
 @click.option("--template-name", required=True)
 def get_module_workingcopy_template(module_name, module_version, template_name):
-    response = Client().get(
+    response = _get_module_workingcopy_template(module_name, module_version, template_name)
+    utils.pretty_print(response)
+
+def _get_module_workingcopy_template(module_name, module_version, template_name):
+    return Client().get(
         "/rest/modules/"
         + module_name
         + "/"
@@ -172,7 +182,6 @@ def get_module_workingcopy_template(module_name, module_version, template_name):
         + "/workingcopy/templates/"
         + template_name
     )
-    utils.pretty_print(response)
 
 
 @click.command("get-module-workingcopy-templates")
@@ -229,12 +238,33 @@ def update_module(body):
 def update_module_workingcopy_template(body, module_name, module_version):
     with open(body, "r") as body_file:
         file_body = body_file.read()
-    response = Client().put(
+    response = _update_module_workingcopy_template(file_body, module_name, module_version)
+    utils.pretty_print(response)
+
+def _update_module_workingcopy_template(body, module_name, module_version):
+    return Client().put(
         "/rest/modules/"
         + module_name
         + "/"
         + module_version
         + "/workingcopy/templates",
-        body=file_body,
+        body=body,
     )
+
+@click.command("upsert-module-workingcopy-template")
+@click.argument("template-desc-filepath")
+@click.option("--module-name", required=True)
+@click.option("--module-version", required=True)
+def upsert_module_workingcopy_template(template_desc_filepath, module_name, module_version):
+    with open(template_desc_filepath, "r") as template_desc_file:
+        template_desc = json.load(template_desc_file)
+    response = _get_module_workingcopy_template(module_name, module_version, template_desc['filename'])
+    if response.status_code == 200:
+        template_desc['version_id'] = response.json()['version_id']
+        response = _update_module_workingcopy_template(json.dumps(template_desc), module_name, module_version)
+    elif response.status_code == 404:
+        template_desc['version_id'] = -1
+        response = _create_module_workingcopy_template(json.dumps(template_desc), module_name, module_version)
+    else:
+        response.raise_for_status()
     utils.pretty_print(response)
