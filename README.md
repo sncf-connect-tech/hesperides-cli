@@ -68,3 +68,7 @@ but makes it really easy to use for demos:
 
     docker build --build-arg USERNAME=... --build-arg PASSWORD=... -t hesperides-cli .
     docker run --rm hesperides-cli get-versions
+
+### Local files generation
+
+_cf._ [hesperidescli.local](hesperidescli/local)
