@@ -6,7 +6,7 @@ from hesperidescli.client import Client
 
 @click.command("create-application-platform")
 @click.argument("body")
-@click.option("--application-name", required=True)
+@click.option("--application-name", "--app", required=True)
 @click.option("--from-application")
 @click.option("--from-platform")
 def create_application_platform(
@@ -29,8 +29,8 @@ def create_application_platform(
 
 
 @click.command("delete-application-platform")
-@click.option("--application-name", required=True)
-@click.option("--platform-name", required=True)
+@click.option("--application-name", "--app", required=True)
+@click.option("--platform-name", "--ptf", required=True)
 def delete_application_platform(application_name, platform_name):
     response = Client().delete(
         "/rest/applications/" + application_name + "/platforms/" + platform_name
@@ -39,8 +39,8 @@ def delete_application_platform(application_name, platform_name):
 
 
 @click.command("get-application-platform")
-@click.option("--application-name", required=True)
-@click.option("--platform-name", required=True)
+@click.option("--application-name", "--app", required=True)
+@click.option("--platform-name", "--ptf", required=True)
 def get_application_platform(application_name, platform_name):
     response = Client().get(
         "/rest/applications/" + application_name + "/platforms/" + platform_name
@@ -49,13 +49,13 @@ def get_application_platform(application_name, platform_name):
 
 
 @click.command("perform-search-application-platforms")
-@click.option("--application-name", required=True)
-@click.option("--platform-name")
+@click.option("--application-name", "--app", required=True)
+@click.option("--platform-name", "--ptf")
 def perform_search_application_platforms(application_name, platform_name):
     params = {}
-    params["application_name"] = application_name
+    params["applicationName"] = application_name
     if platform_name:
-        params["platform_name"] = platform_name
+        params["platformName"] = platform_name
     response = Client().get(
         "/rest/applications/platforms/perform_search", params=params
     )
@@ -64,7 +64,7 @@ def perform_search_application_platforms(application_name, platform_name):
 
 @click.command("update-application-platform")
 @click.argument("body")
-@click.option("--application-name", required=True)
+@click.option("--application-name", "--app", required=True)
 @click.option("--copy-properties-for-upgraded", is_flag=True)
 def update_application_platform(
     body, application_name, copy_properties_for_upgraded_modules

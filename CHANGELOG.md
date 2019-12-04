@@ -5,6 +5,18 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [v0.4.0] - 2019-12-05
+### Fixed
+- `get-files` command, which was very buggy
+- `perform-search-application-platforms` command, whose query params were incorrect
+
+### Added
+- `write-files` command.
+Usage example: `hesperides write-files --app KTN --ptf TEST --path '#VSL#WAS' --module-name demoKatana-war --module-version 1.0.0.1 --working-copy`
+- `--verbose` optional global parameter
+- displaying warnings in case HTTP calls are made to deprecated endpoints
+
+
 ## [v0.3.3] - 2019-11-06
 ### Changed
 - the error message when no profile is configured is more explicit
