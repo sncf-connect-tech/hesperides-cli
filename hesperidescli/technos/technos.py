@@ -12,13 +12,9 @@ from hesperidescli.client import Client
 def create_techno(body, from_name, from_version, from_is_working_copy):
     params = {}
     if from_name is None and from_version:
-        raise click.BadParameter(
-            "--from-name required when --from-version is given"
-        )
+        raise click.BadParameter("--from-name required when --from-version is given")
     if from_name and from_version is None:
-        raise click.BadParameter(
-            "--from-version required when --from-name is given"
-        )
+        raise click.BadParameter("--from-version required when --from-name is given")
     params["from_name"] = from_name
     params["from_version"] = from_version
     params["from_is_working_copy"] = from_is_working_copy
@@ -52,9 +48,7 @@ def create_techno_workingcopy(body, name, version, template_name):
 @click.option("--name", required=True)
 @click.option("--version", required=True)
 def delete_techno_release(name, version):
-    response = Client().delete(
-        "/rest/technos/" + name + "/" + version + "/release"
-    )
+    response = Client().delete("/rest/technos/" + name + "/" + version + "/release")
     utils.pretty_print(response)
 
 
@@ -62,9 +56,7 @@ def delete_techno_release(name, version):
 @click.option("--name", required=True)
 @click.option("--version", required=True)
 def delete_techno_workingcopy(name, version):
-    response = Client().delete(
-        "/rest/technos/" + name + "/" + version + "/workingcopy"
-    )
+    response = Client().delete("/rest/technos/" + name + "/" + version + "/workingcopy")
     utils.pretty_print(response)
 
 
@@ -74,12 +66,7 @@ def delete_techno_workingcopy(name, version):
 @click.option("--template-name", required=True)
 def get_techno_release(name, version, template_name):
     response = Client().get(
-        "/rest/technos/"
-        + name
-        + "/"
-        + version
-        + "/release/templates/"
-        + template_name
+        "/rest/technos/" + name + "/" + version + "/release/templates/" + template_name
     )
     utils.pretty_print(response)
 
@@ -88,9 +75,7 @@ def get_techno_release(name, version, template_name):
 @click.option("--name", required=True)
 @click.option("--version", required=True)
 def get_techno_release_model(name, version):
-    response = Client().get(
-        "/rest/technos/" + name + "/" + version + "/release/model"
-    )
+    response = Client().get("/rest/technos/" + name + "/" + version + "/release/model")
     utils.pretty_print(response)
 
 
@@ -135,11 +120,7 @@ def get_technos_release(name, version):
 @click.option("--version", required=True)
 def get_technos_workingcopy(name, version):
     response = Client().get(
-        "/rest/technos/"
-        + name
-        + "/"
-        + version
-        + "/workingcopy/templates"
+        "/rest/technos/" + name + "/" + version + "/workingcopy/templates"
     )
     utils.pretty_print(response)
 

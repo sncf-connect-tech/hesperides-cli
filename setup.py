@@ -25,7 +25,7 @@ with io.open(os.path.join(here, "README.md"), encoding="utf-8") as f:
     long_description = "\n" + f.read()
 
 with io.open(os.path.join(here, 'hesperidescli', 'hesperidescli.py'), encoding='utf8') as f:
-    version = re.search(r'__version__ = \'(.*?)\'', f.read()).group(1)
+    version = re.search(r'__version__ = \"(.*?)\"', f.read()).group(1)
 
 
 class PublishCommand(Command):

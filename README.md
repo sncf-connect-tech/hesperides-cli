@@ -4,6 +4,8 @@
 
 Python 3 lib & CLI (_Command Line Interface_) for [Hesperides](https://github.com/voyages-sncf-technologies/hesperides)
 
+A changelog is available here: [CHANGELOG.md](CHANGELOG.md)
+
 
 ## Installation
 
@@ -69,6 +71,11 @@ but makes it really easy to use for demos:
     docker build --build-arg USERNAME=... --build-arg PASSWORD=... -t hesperides-cli .
     docker run --rm hesperides-cli get-versions
 
-### Local files generation
+If your goal is instead to generate files in your Docker image at startup time,
+you can start by putting something like this in your _entrypoint_:
+
+    hesperides write-files --app $APP --ptf $PTF
+
+### Local files generation with zero calls to the backend API
 
 _cf._ [hesperidescli.local](hesperidescli/local)

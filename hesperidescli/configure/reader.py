@@ -42,7 +42,7 @@ class ConfigFileReader(ConfigFile):
         self._print(self._CREDENTIALS_FILE_PATH)
 
     def _print(self, file_path):
-        click.secho("#", file_path, ":")
+        click.secho("#{}:".format(file_path))
         self.config.read(file_path)
         with open(file_path, "r") as config_file:
             click.secho(config_file.read())

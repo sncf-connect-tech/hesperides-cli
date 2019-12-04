@@ -1,3 +1,5 @@
+from http.client import HTTPConnection
+
 import click
 
 from hesperidescli.applications import applications
@@ -18,13 +20,15 @@ from hesperidescli.users import users
 from hesperidescli.versions import versions
 
 
-__version__ = '0.3.3'
+__version__ = "0.4.0"
 
 
 @click.group()
 @click.version_option(__version__)
-def cli():
-    pass
+@click.option("--verbose", is_flag=True)
+def cli(verbose):
+    if verbose:
+        HTTPConnection.debuglevel = 2
 
 
 cli.add_command(applications.get_application)
@@ -57,6 +61,7 @@ cli.add_command(local_generate)
 cli.add_command(local_validate)
 
 cli.add_command(files.get_files)
+cli.add_command(files.write_files)
 
 cli.add_command(indexation.perform_indexation_all)
 cli.add_command(indexation.perform_indexation_applications)

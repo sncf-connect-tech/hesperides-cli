@@ -29,25 +29,15 @@ class TestTechnos(unittest.TestCase):
     def test_create_techno_workingcopy_missing_args(self):
         result = CliRunner().invoke(create_techno_workingcopy)
         assert result.exit_code == 2
+        result = CliRunner().invoke(create_techno_workingcopy, ["--name", "toto"])
+        assert result.exit_code == 2
         result = CliRunner().invoke(
-            create_techno_workingcopy, ["--name", "toto"]
+            create_techno_workingcopy, ["--name", "toto", "--version", "1.0.0"],
         )
         assert result.exit_code == 2
         result = CliRunner().invoke(
             create_techno_workingcopy,
-            ["--name", "toto", "--version", "1.0.0"],
-        )
-        assert result.exit_code == 2
-        result = CliRunner().invoke(
-            create_techno_workingcopy,
-            [
-                "--name",
-                "toto",
-                "--version",
-                "1.0.0",
-                "--template-name",
-                "titi",
-            ],
+            ["--name", "toto", "--version", "1.0.0", "--template-name", "titi",],
         )
         assert result.exit_code == 2
 
@@ -60,9 +50,7 @@ class TestTechnos(unittest.TestCase):
     def test_delete_techno_workingcopy_missing_args(self):
         result = CliRunner().invoke(delete_techno_workingcopy)
         assert result.exit_code == 2
-        result = CliRunner().invoke(
-            delete_techno_workingcopy, ["--name", "toto"]
-        )
+        result = CliRunner().invoke(delete_techno_workingcopy, ["--name", "toto"])
         assert result.exit_code == 2
 
     def test_get_techno_release_missing_args(self):
@@ -78,9 +66,7 @@ class TestTechnos(unittest.TestCase):
     def test_get_techno_release_model_missing_args(self):
         result = CliRunner().invoke(get_techno_release_model)
         assert result.exit_code == 2
-        result = CliRunner().invoke(
-            get_techno_release_model, ["--name", "toto"]
-        )
+        result = CliRunner().invoke(get_techno_release_model, ["--name", "toto"])
         assert result.exit_code == 2
 
     def test_get_techno_workingcopy_missing_args(self):
@@ -89,17 +75,14 @@ class TestTechnos(unittest.TestCase):
         result = CliRunner().invoke(get_techno_workingcopy, ["--name", "toto"])
         assert result.exit_code == 2
         result = CliRunner().invoke(
-            get_techno_workingcopy,
-            ["--name", "toto", "--version", "1.0.0"],
+            get_techno_workingcopy, ["--name", "toto", "--version", "1.0.0"],
         )
         assert result.exit_code == 2
 
     def test_get_techno_workingcopy_model_missing_args(self):
         result = CliRunner().invoke(get_techno_workingcopy_model)
         assert result.exit_code == 2
-        result = CliRunner().invoke(
-            get_techno_workingcopy_model, ["--name", "toto"]
-        )
+        result = CliRunner().invoke(get_techno_workingcopy_model, ["--name", "toto"])
         assert result.exit_code == 2
 
     def test_get_technos_release_missing_args(self):
@@ -121,24 +104,14 @@ class TestTechnos(unittest.TestCase):
     def test_update_techno_workingcopy_missing_args(self):
         result = CliRunner().invoke(update_techno_workingcopy)
         assert result.exit_code == 2
+        result = CliRunner().invoke(update_techno_workingcopy, ["--name", "toto"])
+        assert result.exit_code == 2
         result = CliRunner().invoke(
-            update_techno_workingcopy, ["--name", "toto"]
+            update_techno_workingcopy, ["--name", "toto", "--version", "1.0.0"],
         )
         assert result.exit_code == 2
         result = CliRunner().invoke(
             update_techno_workingcopy,
-            ["--name", "toto", "--version", "1.0.0"],
-        )
-        assert result.exit_code == 2
-        result = CliRunner().invoke(
-            update_techno_workingcopy,
-            [
-                "--name",
-                "toto",
-                "--version",
-                "1.0.0",
-                "--template-name",
-                "titi",
-            ],
+            ["--name", "toto", "--version", "1.0.0", "--template-name", "titi",],
         )
         assert result.exit_code == 2

@@ -5,8 +5,8 @@ from hesperidescli.client import Client
 
 
 @click.command("get-global-properties")
-@click.option("--application-name", required=True)
-@click.option("--platform-name", required=True)
+@click.option("--application-name", "--app", required=True)
+@click.option("--platform-name", "--ptf", required=True)
 @click.option("--timestamp")
 def get_global_properties(application_name, platform_name, timestamp):
     params = {}
@@ -25,8 +25,8 @@ def get_global_properties(application_name, platform_name, timestamp):
 
 
 @click.command("get-global-properties-usage")
-@click.option("--application-name", required=True)
-@click.option("--platform-name", required=True)
+@click.option("--application-name", "--app", required=True)
+@click.option("--platform-name", "--ptf", required=True)
 def get_global_properties_usage(application_name, platform_name):
     response = Client().get(
         "/rest/applications/"
@@ -39,8 +39,8 @@ def get_global_properties_usage(application_name, platform_name):
 
 
 @click.command("get-properties")
-@click.option("--application-name", required=True)
-@click.option("--platform-name", required=True)
+@click.option("--application-name", "--app", required=True)
+@click.option("--platform-name", "--ptf", required=True)
 @click.option("--path", required=True)
 @click.option("--timestamp")
 def get_properties(application_name, platform_name, path, timestamp):
@@ -60,8 +60,8 @@ def get_properties(application_name, platform_name, path, timestamp):
 
 
 @click.command("get-properties-instance-model")
-@click.option("--application-name", required=True)
-@click.option("--platform-name", required=True)
+@click.option("--application-name", "--app", required=True)
+@click.option("--platform-name", "--ptf", required=True)
 def get_properties_instance_model(application_name, platform_name):
     response = Client().get(
         "/rest/applications/"
