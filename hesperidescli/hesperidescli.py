@@ -20,7 +20,7 @@ from hesperidescli.users import users
 from hesperidescli.versions import versions
 
 
-__version__ = "0.4.0"
+__version__ = "0.4.1"
 
 
 @click.group()

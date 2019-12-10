@@ -5,6 +5,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [v0.4.1] - 2019-12-12
+### Fixed
+- `write-files` when module selection options are provided
+
+### Changed
+- `get-files` & `write-files` now accept a `--working-copy/--release` switch argument
+- `write-files` now allow any number of selectors: `--path` / `--module-name` / `--module-version` / `--working-copy` / `--release` / `--instance-name`
+
 ## [v0.4.0] - 2019-12-05
 ### Fixed
 - `get-files` command, which was very buggy

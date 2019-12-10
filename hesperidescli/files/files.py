@@ -16,7 +16,7 @@ from hesperidescli.client import Client
 @click.option("--path", required=True)
 @click.option("--module-name", required=True)
 @click.option("--module-version", required=True)
-@click.option("--working-copy", is_flag=True)
+@click.option("--working-copy/--release", default=False)
 @click.option("--instance-name")
 @click.option("--name")
 def get_files(**kwargs):
@@ -39,7 +39,7 @@ def get_files(**kwargs):
 @click.option("--path")
 @click.option("--module-name")
 @click.option("--module-version")
-@click.option("--working-copy", is_flag=True)
+@click.option("--working-copy/--release", default=None)
 @click.option("--instance-name")
 def write_files(**kwargs):
     client = Client()
@@ -81,7 +81,7 @@ def _build_uri_and_params(
     module_name,
     module_version,
     working_copy,
-    instance_name,
+    instance_name=None,
     name=None,
 ):
     params = {
@@ -120,38 +120,52 @@ def _get_module_keys(
     path=None,
     module_name=None,
     module_version=None,
-    working_copy=False,
+    working_copy=None,
     instance_name=None,
 ):
-    if path and module_name and module_version:
-        return {
+    if path and module_name and module_version and working_copy is not None:
+        return [{
             "path": path,
             "module_name": module_name,
             "module_version": module_version,
             "working_copy": working_copy,
             "instance_name": instance_name,
-        }
-    if not path and not module_name and not module_version:
-        if instance_name:
-            raise click.BadParameter("Cannot provide --instance-name alone")
-        response = Client().get(
-            "/rest/applications/" + application_name + "/platforms/" + platform_name
-        )
-        response.raise_for_status()
-        module_keys = []
-        for module in response.json()["modules"]:
-            module_keys.append(
-                {
-                    "path": module["path"],
-                    "module_name": module["name"],
-                    "module_version": module["version"],
-                    "working_copy": module["working_copy"],
-                }
-            )
-        return module_keys
-    raise click.BadParameter(
-        "All of --path, --module-name and --module-version must be provided, or neither of them"
+        }]
+    response = Client().get(
+        "/rest/applications/" + application_name + "/platforms/" + platform_name
     )
+    response.raise_for_status()
+    module_keys = []
+    for module in response.json()["modules"]:
+        module_keys.append(
+            {
+                "path": module["path"],
+                "module_name": module["name"],
+                "module_version": module["version"],
+                "working_copy": module["working_copy"],
+                "instances": [m["name"] for m in module["instances"]],  # only needed for filtering below
+            }
+        )
+    if path:
+        module_keys = filter(lambda key: key["path"] == path, module_keys)
+    if module_name:
+        module_keys = filter(lambda key: key["module_name"] == module_name, module_keys)
+    if module_version:
+        module_keys = filter(lambda key: key["module_version"] == module_version, module_keys)
+    if module_version is not None:
+        module_keys = filter(lambda key: key["working_copy"] == working_copy, module_keys)
+    if instance_name:
+        module_keys = list(filter(lambda key: instance_name in key["instances"], module_keys))
+        if module_keys:  # else error management will be performed below
+            assert len(module_keys) == 1
+            module_keys[0]["instance_name"] = instance_name
+    if not module_keys:
+        raise click.BadParameter(
+            "Zero matching module(s) found given the --path / --module-name / --module-version / --working-copy / --release / --instance-name options provided"
+        )
+    for module_key in module_keys:
+        del module_key["instances"]  # should not be exposed outside this function
+    return module_keys
 
 
 def _wc2str(working_copy):
