@@ -147,13 +147,13 @@ def _get_module_keys(
             }
         )
     if path:
-        module_keys = filter(lambda key: key["path"] == path, module_keys)
+        module_keys = list(filter(lambda key: key["path"] == path, module_keys))
     if module_name:
-        module_keys = filter(lambda key: key["module_name"] == module_name, module_keys)
+        module_keys = list(filter(lambda key: key["module_name"] == module_name, module_keys))
     if module_version:
-        module_keys = filter(lambda key: key["module_version"] == module_version, module_keys)
-    if module_version is not None:
-        module_keys = filter(lambda key: key["working_copy"] == working_copy, module_keys)
+        module_keys = list(filter(lambda key: key["module_version"] == module_version, module_keys))
+    if working_copy is not None:
+        module_keys = list(filter(lambda key: key["working_copy"] == working_copy, module_keys))
     if instance_name:
         module_keys = list(filter(lambda key: instance_name in key["instances"], module_keys))
         if module_keys:  # else error management will be performed below
