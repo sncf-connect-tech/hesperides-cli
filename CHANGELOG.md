@@ -5,11 +5,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
-## [v0.4.2] - 2019-12-12
+## [v0.4.3] - 2019-12-10
+### Fixed
+- wrong files final location in `write-files`
+
+## [v0.4.2] - 2019-12-10
 ### Fixed
 - `write-files --release/--working-copy`
 
-## [v0.4.1] - 2019-12-12
+## [v0.4.1] - 2019-12-10
 ### Fixed
 - `write-files` when module selection options are provided
 

@@ -60,17 +60,16 @@ def write_files(**kwargs):
                 uri + "/" + file["name"], params=params, accept="text/plain"
             )
             response.raise_for_status()
-            os.makedirs(file["location"], exist_ok=True)
-            generated_filepath = os.path.join(file["location"], file["filename"])
+            os.makedirs(os.path.dirname(file["location"]), exist_ok=True)
             click.secho(
                 'Generating file "{}" from template named "{}"'.format(
-                    generated_filepath, file["name"]
+                    file["location"], file["name"]
                 ),
                 fg="blue",
             )
-            with open(generated_filepath, "w") as generated_file:
+            with open(file["location"], "w") as generated_file:
                 generated_file.write(response.text)
-            chmod(generated_filepath, file["rights"])
+            chmod(file["location"], file["rights"])
 
 
 # pylint: disable=too-many-arguments
