@@ -22,10 +22,10 @@ After cloning this repo and optionally creating a [virtualenv](https://github.co
 With a valid `~/.pypirc`:
 
 1. update `CHANGELOG.md`
-2. bump version in `hesperidescli/hesperidescli.py`
+2. bump version in `hesperidescli/hesperidescli.py` & `git commit` & `git push`
 3. `python setup.py sdist`
 4. `twine upload dist/*`
-5. `git tag $version && git push && git push --tags`
+5. perform a release on GitGub, including the description added to `CHANGELOG.md`
 
 
 ## Usage
