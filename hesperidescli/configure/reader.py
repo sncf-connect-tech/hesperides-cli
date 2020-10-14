@@ -11,10 +11,10 @@ class ConfigFileReader(ConfigFile):
     def get_profile(self):
         try:
             return self.get_config_item("profile")
-        except (ConfigParserError, KeyError):
+        except (ConfigParserError, KeyError) as error:
             raise click.UsageError(
                 'No profile has been configured. Please type "hesperides set-conf"'
-            )
+            ) from error
 
     def get_config_item(self, *args, **kwargs):
         self.config.read(self._CONFIG_FILE_PATH)

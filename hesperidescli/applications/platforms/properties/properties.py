@@ -91,13 +91,13 @@ def get_properties_instance_model(application_name, platform_name):
 
 def _export(key_value_properties):
     has_any_invalid_prop_name = False
-    for property in key_value_properties:
-        if all(c in VALID_EXPORTABLE_CHARS for c in property["name"]):
-            print("export " + property["name"] + '="' + property["value"] + '"')
+    for prop in key_value_properties:
+        if all(c in VALID_EXPORTABLE_CHARS for c in prop["name"]):
+            print("export " + prop["name"] + '="' + prop["value"] + '"')
         else:
             secho(
                 "[WARNING] Property name cannot be exported as it contains invalid characters: "
-                + property["name"],
+                + prop["name"],
                 err=True,
                 fg="yellow",
             )
