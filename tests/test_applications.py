@@ -15,9 +15,9 @@ class TestApplications(unittest.TestCase):
         assert (
             result.output
             == """Usage: get-application [OPTIONS] APPLICATION_NAME
-Try "get-application --help" for help.
+Try 'get-application --help' for help.
 
-Error: Missing argument "APPLICATION_NAME".
+Error: Missing argument 'APPLICATION_NAME'.
 """
         )
 

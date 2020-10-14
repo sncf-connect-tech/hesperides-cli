@@ -32,12 +32,20 @@ class TestTechnos(unittest.TestCase):
         result = CliRunner().invoke(create_techno_workingcopy, ["--name", "toto"])
         assert result.exit_code == 2
         result = CliRunner().invoke(
-            create_techno_workingcopy, ["--name", "toto", "--version", "1.0.0"],
+            create_techno_workingcopy,
+            ["--name", "toto", "--version", "1.0.0"],
         )
         assert result.exit_code == 2
         result = CliRunner().invoke(
             create_techno_workingcopy,
-            ["--name", "toto", "--version", "1.0.0", "--template-name", "titi",],
+            [
+                "--name",
+                "toto",
+                "--version",
+                "1.0.0",
+                "--template-name",
+                "titi",
+            ],
         )
         assert result.exit_code == 2
 
@@ -75,7 +83,8 @@ class TestTechnos(unittest.TestCase):
         result = CliRunner().invoke(get_techno_workingcopy, ["--name", "toto"])
         assert result.exit_code == 2
         result = CliRunner().invoke(
-            get_techno_workingcopy, ["--name", "toto", "--version", "1.0.0"],
+            get_techno_workingcopy,
+            ["--name", "toto", "--version", "1.0.0"],
         )
         assert result.exit_code == 2
 
@@ -107,11 +116,19 @@ class TestTechnos(unittest.TestCase):
         result = CliRunner().invoke(update_techno_workingcopy, ["--name", "toto"])
         assert result.exit_code == 2
         result = CliRunner().invoke(
-            update_techno_workingcopy, ["--name", "toto", "--version", "1.0.0"],
+            update_techno_workingcopy,
+            ["--name", "toto", "--version", "1.0.0"],
         )
         assert result.exit_code == 2
         result = CliRunner().invoke(
             update_techno_workingcopy,
-            ["--name", "toto", "--version", "1.0.0", "--template-name", "titi",],
+            [
+                "--name",
+                "toto",
+                "--version",
+                "1.0.0",
+                "--template-name",
+                "titi",
+            ],
         )
         assert result.exit_code == 2

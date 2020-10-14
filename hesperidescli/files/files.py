@@ -123,13 +123,15 @@ def _get_module_keys(
     instance_name=None,
 ):
     if path and module_name and module_version and working_copy is not None:
-        return [{
-            "path": path,
-            "module_name": module_name,
-            "module_version": module_version,
-            "working_copy": working_copy,
-            "instance_name": instance_name,
-        }]
+        return [
+            {
+                "path": path,
+                "module_name": module_name,
+                "module_version": module_version,
+                "working_copy": working_copy,
+                "instance_name": instance_name,
+            }
+        ]
     response = Client().get(
         "/rest/applications/" + application_name + "/platforms/" + platform_name
     )
@@ -142,19 +144,29 @@ def _get_module_keys(
                 "module_name": module["name"],
                 "module_version": module["version"],
                 "working_copy": module["working_copy"],
-                "instances": [m["name"] for m in module["instances"]],  # only needed for filtering below
+                "instances": [
+                    m["name"] for m in module["instances"]
+                ],  # only needed for filtering below
             }
         )
     if path:
         module_keys = list(filter(lambda key: key["path"] == path, module_keys))
     if module_name:
-        module_keys = list(filter(lambda key: key["module_name"] == module_name, module_keys))
+        module_keys = list(
+            filter(lambda key: key["module_name"] == module_name, module_keys)
+        )
     if module_version:
-        module_keys = list(filter(lambda key: key["module_version"] == module_version, module_keys))
+        module_keys = list(
+            filter(lambda key: key["module_version"] == module_version, module_keys)
+        )
     if working_copy is not None:
-        module_keys = list(filter(lambda key: key["working_copy"] == working_copy, module_keys))
+        module_keys = list(
+            filter(lambda key: key["working_copy"] == working_copy, module_keys)
+        )
     if instance_name:
-        module_keys = list(filter(lambda key: instance_name in key["instances"], module_keys))
+        module_keys = list(
+            filter(lambda key: instance_name in key["instances"], module_keys)
+        )
         if module_keys:  # else error management will be performed below
             assert len(module_keys) == 1
             module_keys[0]["instance_name"] = instance_name
