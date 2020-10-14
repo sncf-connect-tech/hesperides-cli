@@ -52,7 +52,6 @@ def get_credentials(key, **kwargs):
 @click.option(
     "--username",
     prompt=True,
-    hide_input=False,
     confirmation_prompt=False,
     default=os.environ.get("USER", os.environ.get("USERNAME")),
 )
@@ -62,14 +61,12 @@ def get_credentials(key, **kwargs):
 @click.option(
     "--hesperides-endpoint",
     prompt=True,
-    hide_input=False,
     confirmation_prompt=False,
     default="https://hesperides",
 )
 @click.option(
     "--ignore-ssl-warnings",
     prompt=True,
-    hide_input=False,
     confirmation_prompt=False,
     flag_value=True,
     default=False,

@@ -52,7 +52,6 @@ To try your configuration, type one of these commands:
 
     hesperides get-versions
     hesperides get-user
-    hesperides get-stats
 
 ### Usage with Docker
 
@@ -72,11 +71,23 @@ but makes it really easy to use for demos:
     docker run --rm hesperides-cli get-versions
 
 If your goal is instead to generate files in your Docker image at startup time,
-you can start by putting something like this in your _entrypoint_:
+you can start by putting something like this in your `ENTRYPOINT`:
 
     hesperides write-files --app $APP --ptf $PTF
 
-####  Warning for Windows bash users
+### Exporting properties as environment variables
+
+For this use case, you can use `get-properties --export`.
+
+Here is an example of usage, that could be included in a Gitlab CD/CI step for instance:
+
+    tmp_file=$(mktemp) && hesperides get-properties --app APP --ptf PTF --path '#ROOT#test-module#1.1#WORKINGCOPY' --export > $tmp_file && source $tmp_file && rm $tmp_file
+
+### Local files generation with zero calls to the backend API
+
+_cf._ [hesperidescli.local](hesperidescli/local)
+
+###  Warning for Windows bash users
 
 When using this tool with a Python version installed through Windows,
 in combination with a Linux-like shell environment (_e.g._ Git Bash),
@@ -86,7 +97,3 @@ because your Python executable will interpret Unix path like `/var/tmp` as relat
 In this situation, use this command to find out where is the location of your root (`/`) for Python:
 
     python -c 'import os; os.chdir("/"); print(os.getcwd())'
-
-### Local files generation with zero calls to the backend API
-
-_cf._ [hesperidescli.local](hesperidescli/local)
