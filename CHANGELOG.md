@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [v0.5.1] - 2020-10-15
+### Fixed
+- made `--ignore-ssl-warnings` flag of `set_conf` command optionnal in non-interactive mode
+
 ## [v0.5.0] - 2020-10-14
 ### Added
 - `get-properties --export`: for usage as environment variables in a shell

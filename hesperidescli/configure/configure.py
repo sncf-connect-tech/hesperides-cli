@@ -4,6 +4,7 @@ import click
 
 from hesperidescli.configure.reader import ConfigFileReader, ConfigParserError
 from hesperidescli.configure.writer import ConfigFileWriter
+from hesperidescli.utils import LazyPromptOption
 
 
 @click.command("delete-profile")
@@ -70,6 +71,7 @@ def get_credentials(key, **kwargs):
     confirmation_prompt=False,
     flag_value=True,
     default=False,
+    cls=LazyPromptOption,  # only prompt for a value if zero CLI arguments have been provided
 )
 def set_conf(
     profile_name, username, password, hesperides_endpoint, ignore_ssl_warnings
